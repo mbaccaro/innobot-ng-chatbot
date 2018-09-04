@@ -2,9 +2,9 @@ import { Component, Injector, Output, Input, OnInit, EventEmitter } from "@angul
 import { Router, ActivatedRoute } from "@angular/router";
 import { LazyLoadEvent } from "../../../../node_modules/mcapp.ng.components";
 import { SortEvent } from "../../../../node_modules/primeng/api";
-import { SortDirection } from "@shared/helpers/QueryParameters";
 import { AppComponentBase } from "../../shared/common/app-base-component";
 import { QnADto, AgentDto } from "./qna-model";
+import { SortDirection } from "../../shared/helpers/QueryParameters";
 
 @Component({
     selector: "qna-grid",

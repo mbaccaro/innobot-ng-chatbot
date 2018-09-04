@@ -1,4 +1,5 @@
 import { QnAAgentCategoryDto } from "../category/category-model";
+//import * as moment from 'moment';
 
 export class QnADto implements IQnADto {
     id: number;
@@ -153,7 +154,7 @@ export class AgentDto implements IAgentDto {
     outputVoiceType: number;
     isDeleted: boolean;
     thresholdNumber: number;
-    creationTime: moment.Moment;
+    creationTime: any;
     messageHandlingId: number;
 
     constructor(data?: IAgentDto) {
@@ -189,7 +190,7 @@ export class AgentDto implements IAgentDto {
             this.outputVoiceType = data["outputVoiceType"];
             this.isDeleted = data["isDeleted"];
             this.thresholdNumber = data["thresholdNumber"];
-            this.creationTime = data["creationTime"] ? moment(data["creationTime"].toString()) : <any>undefined;
+            this.creationTime = data["creationTime"] ? data["creationTime"].toString() : <any>undefined;
             this.messageHandlingId = data["messageHandlingId"];
         }
     }
@@ -250,7 +251,7 @@ export interface IAgentDto {
     outputVoiceType: number;
     isDeleted: boolean;
     thresholdNumber: number;
-    creationTime: moment.Moment;
+    creationTime: any;
     messageHandlingId: number;
 }
 
@@ -520,5 +521,12 @@ export interface IKeywordTypeValueDto {
     id: number;
     isDeleted: boolean;
     value: string;
+}
+
+export enum MessageHandlingDetailDtoMessageHandlingType {
+    _1 = 1, 
+    _2 = 2, 
+    _3 = 3, 
+    _4 = 4, 
 }
 
