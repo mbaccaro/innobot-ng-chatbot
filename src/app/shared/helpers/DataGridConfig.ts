@@ -1,5 +1,5 @@
 import { SortDirection } from "./QueryParameters";
-import { LazyLoadEvent, SortEvent, ConfirmationService } from "mcapp.ng.components";
+import { LazyLoadEvent } from "mcapp.ng.components";
 
 export class DataGridConfig {
 
