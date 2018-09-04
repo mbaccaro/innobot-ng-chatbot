@@ -30,6 +30,7 @@
     "mcapp.ng.components": "^1.0.24",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.3.2",
+    "primeng": "^5.2.7",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
