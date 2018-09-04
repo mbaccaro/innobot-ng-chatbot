@@ -1,0 +1,101 @@
+<!-- <div class="d-flex h-100"> -->
+<!-- <side-bar-submenu></side-bar-submenu> -->
+<form novalidate [formGroup]="formValidation">
+    <div class="m-subheader" appunwraptag="">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <button class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air mr-3" (click)="goQnaGrid();">
+                    <i class="la la-arrow-left"></i>
+                </button>
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    {{ qnA.id > 0 ? l("EditQnA") : l("CreateNewQnA") }}
+                </h3>
+            </div>
+            <div class="ml-auto">
+                <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [buttonBusy]="saving" [disabled]="formValidation.invalid || checkEmptyQuestions || saving"
+                    (click)="saveQnA();">
+                    <i class="la la-save"></i>{{l("SaveQnA")}}
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="row">
+            <div class="col-md-9">
+                <mcapp-web-panel [showHeader]="false">
+
+                    <div id="m_repeater_2">
+                        <div class="form-group m-form__group row">
+                            <label class="col-form-label col-lg-2 col-sm-12">
+                                {{l("PrimaryQuestion")}}:
+                            </label>
+                            <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
+                                <div class="input-group">
+                                    <input type="text" name="primaryQuestionInput" formControlName="question" [fieldValidate]="validate" [formFieldValidation]="formValidation.controls.question"
+                                        [(ngModel)]="primaryQuestion.question" class="form-control form-control-danger" placeholder="Input the primary question">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row my-3">
+                        <label class="col-form-label col-lg-2 col-md-12">
+                            {{l("Answer")}}:
+                        </label>
+                        <div class="col-lg-10 col-md-12">
+                            <mcapp-web-editor name="answer" [(ngModel)]="qnA.answer" formControlName="answer" [fieldValidate]="validate" [formFieldValidation]="formValidation.controls.answer"
+                                [style]="{'height':'300px'}"></mcapp-web-editor>
+                        </div>
+                    </div>
+                    <div class="form-group m-form__group row mt-4">
+                        <label class="col-form-label col-lg-2 col-sm-12">
+                            {{l("AlternativeQuestions")}}:
+                        </label>
+                        <div class="col-lg-10 col-md-10 col-sm-12">
+                            <div class="row mb-2 mx-auto">
+                                <div class="m-input-icon m-input-icon--left col">
+                                    <input class="form-control m-input" placeholder="Input the alternative question" type="text" [(ngModel)]="newQuestion" [ngModelOptions]="{standalone:true}"
+                                        id="newQuestion">
+                                    <span class="m-input-icon__icon m-input-icon__icon--left">
+                                        <span>
+                                            <i class="la la-comments"></i>
+                                        </span>
+                                    </span>
+                                </div>
+                                <button class="btn btn-info m-btn m-btn--icon m-btn--icon-only btn-icon-md ml-2" (click)="addQuestion(newQuestion)">
+                                    <i class="la la-plus"></i>
+                                </button>
+                            </div>
+                            <div class="mb-2">
+                                <ng-container *ngFor="let question of qnA.questions; index as i;">
+                                    <div class="row mb-2 mx-auto" *ngIf="question.isDeleted === false && question.isPrimary === false">
+                                        <div class="m-input-icon m-input-icon--left col">
+                                            <input class="form-control m-input m-input--solid" placeholder="Input the alternative question" type="text" (blur)="onBlurAlternativeQuestion();"
+                                                [(ngModel)]="question.question" [ngModelOptions]="{standalone:true}">
+                                            <span class="m-input-icon__icon m-input-icon__icon--left">
+                                                <span>
+                                                    <i class="la la-comment"></i>
+                                                </span>
+                                            </span>
+                                        </div>
+                                        <span *ngIf="question.question === ''" class="text-danger">l("RequiredFieldError")</span>
+                                        <button style="text-decoration: none" class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only btn-icon-md ml-2 m-btn--hover-danger"
+                                            (click)="deleteQuestion(i)">
+                                            <i class="la la-trash"></i>
+                                        </button>
+                                    </div>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </mcapp-web-panel>
+            </div>
+            <div class="col-md-3">
+                <div>
+                    <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)" 
+                    (unselectNode)="onUnselectCategory($event)" [selectedQnaCategories]="qnA.categories" ></category-tree>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!-- </div> -->

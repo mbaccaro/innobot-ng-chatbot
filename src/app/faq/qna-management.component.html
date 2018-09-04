@@ -1,0 +1,32 @@
+<div class="d-flex h-100">
+<side-bar-submenu></side-bar-submenu>
+<div [@routerTransition]>
+    <div class="m-subheader">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto col-xs-6">
+                <button class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air mr-3" (click)="goBack();">
+                    <i class="la la-arrow-left"></i>
+                </button>
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    <span>{{l("Agent")}}</span> :
+                    <span>{{selectedAgentName}}</span>
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="row">
+            <div class="col-md-3">
+                <div *ngIf="projectAgentService.selectedAgent &&  projectAgentService.selectedAgent.name">
+                    <category-tree [agentId]="projectAgentService.selectedAgent.id" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
+                        (unselectNode)="onUnselectCategory($event)"></category-tree>
+                    <keyword-type-agent></keyword-type-agent>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <mcapp-web-panel header="Q&A">
+                    <qna-grid [agent]="projectAgentService.selectedAgent" (searchLazyLoad)="onLoadGrid($event);" (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid"></qna-grid>
+                </mcapp-web-panel>
+            </div>
+        </div>
+    </div>
