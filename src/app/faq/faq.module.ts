@@ -8,7 +8,7 @@ import { QnaGridComponent } from "./qna/qna-grid.component";
 import { QnaFormComponent } from "./qna/qna-form.component";
 import { QnaDetailComponent } from "./qna/qna-detail.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
-
+import { LayoutModule } from "./../layout/layout.module";
 
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
@@ -36,31 +36,31 @@ import {
 
 @NgModule({
     imports: [
-        // TODO- remove this part 
-         FormsModule,
-         ReactiveFormsModule,
-         CommonModule,
-         UtilsModule, 
-         FileUploadModule,
-         TableModule,
-         PanelModule,
-         DropdownModule,
-         ScrollPanelModule,
-         DialogModule,
-         TooltipModule,
-         EditorModule,
-         InputTextareaModule,
-         ChipsModule,
-         DataListModule,
-         OrderListModule,
-         RadioButtonModule,
-         InputTextareaModule,
-         TabViewModule,
-         TreeTableModule,
-         SpinnerModule,
-         TreeModule,
-         ContextMenuModule,
-         MultiSelectModule
+        LayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        UtilsModule, 
+        FileUploadModule,
+        TableModule,
+        PanelModule,
+        DropdownModule,
+        ScrollPanelModule,
+        DialogModule,
+        TooltipModule,
+        EditorModule,
+        InputTextareaModule,
+        ChipsModule,
+        DataListModule,
+        OrderListModule,
+        RadioButtonModule,
+        InputTextareaModule,
+        TabViewModule,
+        TreeTableModule,
+        SpinnerModule,
+        TreeModule,
+        ContextMenuModule,
+        MultiSelectModule
     ],
     declarations: [
         QnaManagementComponent,

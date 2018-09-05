@@ -7,7 +7,6 @@ import { InnobotService } from "./innobot.service";
 import { Yo2Component } from "./yo2/yo2.component";
 import { FAQModule } from "./faq/faq.module";
 import { LayoutModule } from "./layout/layout.module";
-
 @NgModule({
   declarations: [
     YoComponent, 
