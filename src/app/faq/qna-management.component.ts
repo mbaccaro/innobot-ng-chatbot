@@ -59,7 +59,6 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onLoadGrid(queryParameters: QueryParameters): void {
 
-<<<<<<< HEAD
         debugger;
 
         this.qnAsGrid = [];
@@ -78,9 +77,6 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.qnAsGrid.push(qnaDto);
         this.dataGridConfig.totals = 1;
 
-=======
-        //debugger;
->>>>>>> e6e538e8cedc99fb88349f1a320ceadca28fc2d2
         // const chatBotAgentQnaIntance =  this.faqService.getChatBotAgentQnAInstance();
 
         // chatBotAgentQnaIntance.getQnA(this.agentId, null, queryParameters.toString()).subscribe((result) => {
