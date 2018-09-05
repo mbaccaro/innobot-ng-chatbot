@@ -1,45 +1,45 @@
-// import { Injectable } from "@angular/core";
-// import { ChatBotClient, ChatBotClientConfig, ChatBotAgentQnA, ChatBotAgentCategory } from 'innobot-chat-api';
+import { Injectable } from "@angular/core";
+import { ChatBotClient, ChatBotClientConfig, ChatBotAgentQnA, ChatBotAgentCategory } from 'innobot-chat-api';
 
-// @Injectable()
-// export class FAQService {
+@Injectable()
+export class FAQService {
  
-//     constructor() {
+    constructor() {
 
 
-//     }
+    }
 
-//     public config(): ChatBotClientConfig {
+    public config(): ChatBotClientConfig {
 
-//         const config = new ChatBotClientConfig();
-//         config.innobotUri = "http://dev.app.innobot.internal.epeinnovations.com";
+        const config = new ChatBotClientConfig();
+        config.innobotUri = "http://dev.app.innobot.internal.epeinnovations.com";
 
-//         return config;
+        return config;
 
-//     }
+    }
 
-//     public getChatBotInstance(): ChatBotClient  {
+    public getChatBotInstance(): ChatBotClient  {
 
-//         const chatbot = new ChatBotClient(this.config());
-//         return chatbot;
+        const chatbot = new ChatBotClient(this.config());
+        return chatbot;
     
-//     }
+    }
     
-//     public getChatBotAgentQnAInstance() : ChatBotAgentQnA {
+    public getChatBotAgentQnAInstance() : ChatBotAgentQnA {
     
-//         const chatbotAgentQnA = new ChatBotAgentQnA(this.config());
-//         return chatbotAgentQnA;
+        const chatbotAgentQnA = new ChatBotAgentQnA(this.config());
+        return chatbotAgentQnA;
     
-//     }
+    }
     
-//     public getChatBotAgentCategory() : ChatBotAgentCategory {
+    public getChatBotAgentCategory() : ChatBotAgentCategory {
     
-//         const chatbot = new ChatBotAgentCategory(this.config());
-//         return chatbot;
+        const chatbot = new ChatBotAgentCategory(this.config());
+        return chatbot;
     
-//     }
+    }
 
-// }
+}
 
 
 

@@ -1,9 +1,10 @@
 import { Component, Injector, OnInit } from "@angular/core";
 import { AppComponentBase } from "../shared/common/app-base-component";
-// import { FAQService } from "./faq-service";
+import { FAQService } from "./faq-service";
 import { CategoryDto } from "./category/category-model";
 import { QueryParameters } from "../shared/helpers/QueryParameters";
 import { QnADto, QnAQuestionDto } from "./qna/qna-model";
+import { ChatBotAgentQnA } from "innobot-chat-api";
 
 @Component({
     selector: "qna-management",
@@ -12,8 +13,9 @@ import { QnADto, QnAQuestionDto } from "./qna/qna-model";
 
 export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
-    // protected faqService: FAQService;
-    public selectedCategoryId: number;
+    private faqService: FAQService;
+    private chatBotAgentQnAInstance: ChatBotAgentQnA;
+    public selectedCategory: any;
     public selectedQnAId: number;
     public qnAsGrid: Array<any>;
     public agentId: number;
@@ -28,27 +30,30 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public constructor(injector: Injector) {
         super(injector);
 
-        // this.faqService = injector.get(FAQService);
+        this.faqService = injector.get(FAQService);
 
     }
 
     public ngOnInit(): void {
 
+        this.agentId = 3;
+        this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
         this.loadQnAGrid();
         this.showDetailsQnA = false;
+        this.selectedCategory = new CategoryDto();
 
     }
 
     public onSelectCategory(category: CategoryDto): void {
 
-        this.selectedCategoryId = category.id;
+        this.selectedCategory = category;
         this.loadQnAGrid();
 
     }
 
     public onUnselectCategory(category: CategoryDto): void {
 
-        this.selectedCategoryId = undefined;
+        this.selectedCategory = new CategoryDto();
         this.loadQnAGrid();
 
     }
@@ -75,31 +80,14 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onLoadGrid(queryParameters: QueryParameters): void {
 
-        this.qnAsGrid = [];
-        const qnaDto: QnADto = new QnADto();
+        const categoryName = this.selectedCategory && this.selectedCategory.name !== '' ? this.selectedCategory.name : null;
 
-        qnaDto.agentId = 3;
-        qnaDto.agentName = 'qnatax';
-        qnaDto.categories = [];
-        qnaDto.answer = 'I am good';
-        qnaDto.questions = [];
-        const question = new QnAQuestionDto();
-        question.isPrimary = true;
-        question.isDeleted = false;
-        question.question = "how are you?"
-        qnaDto.questions.push(question);
-        this.qnAsGrid.push(qnaDto);
-        this.dataGridConfig.totals = 1;
+        this.chatBotAgentQnAInstance.getQnA(this.agentId, categoryName, queryParameters.toString()).subscribe((result) => {
 
-        // const chatBotAgentQnaIntance =  this.faqService.getChatBotAgentQnAInstance();
+            this.qnAsGrid = result.result;
+            this.dataGridConfig.totals = result.count;
 
-        // chatBotAgentQnaIntance.getQnA(this.agentId, null, queryParameters.toString()).subscribe((result) => {
-
-        //     debugger;
-        //     this.qnAsGrid = result.result;
-        //     this.dataGridConfig.totals = result.count;
-
-        // });
+        });
 
     }
 
