@@ -76,6 +76,9 @@ import {
     ],
     providers: [
         //FAQService
+    ],
+    entryComponents: [
+        QnaManagementComponent
     ]
 })
 export class FAQModule { }
