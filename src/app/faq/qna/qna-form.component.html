@@ -2,14 +2,15 @@
     <div class="m-subheader" appunwraptag="">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
-                <button class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only m-btn--pill m-btn--air mr-3" (click)="goQnaGrid();">
-                    <i class="la la-arrow-left">Go Back</i>
-                </button>
                 <h3 class="m-subheader__title m-subheader__title--separator">
                     {{ qnA.id > 0 ? "Edit Q&A" : "Add Q&A" }}
                 </h3>
             </div>
             <div class="ml-auto">
+                <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="checkEmptyQuestions || saving"
+                    (click)="cancelQnA();">
+                    <i class="la la-save"></i>Cancel
+                </button>
                 <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="checkEmptyQuestions || saving"
                     (click)="saveQnA();">
                     <i class="la la-save"></i>Save Q&A
@@ -28,8 +29,8 @@
                             </label>
                             <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
                                 <div class="input-group">
-                                    <input type="text" name="primaryQuestionInput"
-                                        [(ngModel)]="primaryQuestion.question" class="form-control form-control-danger" placeholder="Input the primary question">
+                                    <input type="text" name="primaryQuestionInput" [(ngModel)]="primaryQuestion.question" class="form-control form-control-danger"
+                                        placeholder="Input the primary question">
                                 </div>
                             </div>
                         </div>
@@ -44,7 +45,7 @@
                     </div>
                     <div class="form-group m-form__group row mt-4">
                         <label class="col-form-label col-lg-2 col-sm-12">
-                                Alternative Questions:
+                            Alternative Questions:
                         </label>
                         <div class="col-lg-10 col-md-10 col-sm-12">
                             <div class="row mb-2 mx-auto">
@@ -87,8 +88,8 @@
             </div>
             <div class="col-md-3">
                 <div>
-                    <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)" 
-                    (unselectNode)="onUnselectCategory($event)" [selectedQnaCategories]="qnA.categories" ></category-tree>
+                    <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"
+                        [selectedQnaCategories]="qnA.categories"></category-tree>
                 </div>
             </div>
         </div>

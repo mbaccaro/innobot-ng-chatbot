@@ -1,3 +1,33 @@
 <div>
-    details here
+    <div class="ml-auto">
+        <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button">
+            <i class="la la-save"></i>Delete Q&A
+        </button>
+        <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" (click)="editQnA();">
+            <i class="la la-save"></i>Edit Q&A
+        </button>
+    </div>
+    <br>
+    <div>
+        <div id="m_repeater_2">
+            <div class="form-group m-form__group row">
+                <label class="col-form-label col-lg-2 col-sm-12">
+                    Question:
+                </label>
+                <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
+                    <div class="input-group">
+                        {{qnA.questions[0].question}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group m-form__group row my-3">
+            <label class="col-form-label col-lg-2 col-md-12">
+                Answer:
+            </label>
+            <div class="col-lg-10 col-md-12">
+                {{qnA.answer}}
+            </div>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,5 @@
-import { Component, Injector, OnInit } from "@angular/core";
-//import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+import { Component, Injector, Input, OnInit, Output, EventEmitter } from "@angular/core";
+import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import * as underscore from "lodash";
 import { QnADto, QnAQuestionDto } from "./qna-model";
 import { AppComponentBase } from "../../shared/common/app-base-component";
@@ -12,29 +12,37 @@ import { CategoryDto, QnAAgentCategoryDto } from "../category/category-model";
 
 export class QnaFormComponent extends AppComponentBase implements OnInit {
 
-    // protected projectAgentService: ProjectAgentService;
-    // protected qnAServiceProxy: QnAServiceProxy;
-    //private router: Router;
-    //private route: ActivatedRoute;
+    @Output() public cancel: EventEmitter<any> = new EventEmitter();
+    @Output() public save: EventEmitter<QnADto> = new EventEmitter();
+
     public qnA: QnADto;
     public newQuestion: QnAQuestionDto;
     public primaryQuestion: QnAQuestionDto;
-    //public formValidation: FormGroup;
+    public formValidation: FormGroup;
     public validate: boolean;
     public validateQuestions: boolean;
     public saving: boolean;
-    //private formBuilder: FormBuilder;
-
+    private formBuilder: FormBuilder;
 
     public constructor(injector: Injector) {
         super(injector);
 
-        // this.projectAgentService = injector.get(ProjectAgentService);
-        // this.qnAServiceProxy = injector.get(QnAServiceProxy);
-        //this.router = injector.get(Router);
-        //this.route = injector.get(ActivatedRoute);
-        //this.formBuilder = injector.get(FormBuilder);
+        this.formBuilder = injector.get(FormBuilder);
 
+    }
+
+    @Input() public set model(model: QnADto) {
+
+        this.qnA = model;
+
+        if (this.qnA.id > 0 && this.qnA.questions && this.qnA.questions.length > 0) {
+            this.primaryQuestion = this.qnA.questions.find(x => x.isPrimary === true);
+        }
+
+    }
+
+    public get model() {
+        return this.qnA;
     }
 
     public get checkEmptyQuestions(): boolean {
@@ -53,10 +61,10 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     private createValidationModel(): void {
 
-        // this.formValidation = this.formBuilder.group({
-        //     question: [{ value: null }, [Validators.required]],
-        //     answer: [{ value: null }, [Validators.required]]
-        // });
+        this.formValidation = this.formBuilder.group({
+            question: [{ value: null }, [Validators.required]],
+            answer: [{ value: null }, [Validators.required]]
+        });
 
     }
 
@@ -65,19 +73,6 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         this.qnA = new QnADto();
         this.qnA.questions = [];
         this.primaryQuestion = new QnAQuestionDto();
-
-        // this.route.queryParams
-        //     .subscribe(params => {
-
-        //         this.qnA.id = +atob(params.qna);
-        //         this.qnA.agentId = +atob(params.id);
-        //         this.qnA.agentName = atob(params.name);
-
-        //         if (this.qnA.id > 0) {
-        //             this.getQnA(this.qnA.id);
-        //         }
-
-        //     });
 
     }
 
@@ -119,18 +114,6 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     }
 
-    private getQnA(qnAId: number): void {
-
-        // this.qnAServiceProxy.getQnA(qnAId, API_VERSION)
-        //     .subscribe((result) => {
-
-        //         this.qnA = result;
-        //         this.primaryQuestion = this.qnA.questions.find(x => x.isPrimary === true);
-
-        //     });
-
-    }
-
     private loadPrimaryQuestion(): void {
 
         const primaryQuestionIndex: number = this.qnA.questions.findIndex(x => x.isPrimary === true);
@@ -163,6 +146,14 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
             this.insertQnA(this.qnA);
         }
 
+        this.save.emit(this.qnA);
+
+    }
+
+    public cancelQnA(): void {
+
+        this.cancel.emit();
+        
     }
 
     private setValidateAlternativeQuestions(): void {
@@ -277,10 +268,6 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
             this.qnA.categories.splice(index, 1);
         }
 
-    }
-
-    public goQnaGrid(): void {
-        //this.router.navigate(["/app/faq/qna/qna-admin"], { queryParams: { id: btoa(this.qnA.agentId.toString()) } });
     }
 
 }
