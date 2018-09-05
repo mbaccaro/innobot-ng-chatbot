@@ -115,8 +115,9 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
         this.getQnAs();
 
     }
-    protected onChange2(event: LazyLoadEvent): void {
-debugger
+    
+    public onChange2(event: LazyLoadEvent): void {
+
         this.dataGridConfig.state = event;
         const skip = event.first;
 

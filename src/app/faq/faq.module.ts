@@ -77,13 +77,15 @@ import {
     ],
     exports: [
         QnaManagementComponent,
-        SearchBoxComponent
+        SearchBoxComponent,
+        TriggerFaqBtnComponent
     ],
     providers: [
         // FAQService
     ],
     entryComponents: [
-        QnaManagementComponent
+        QnaManagementComponent,
+        TriggerFaqBtnComponent
     ]
 })
 export class FAQModule { }
