@@ -26,6 +26,7 @@
               "node_modules/mcapp.ng.components/resources/mcapp.min.css",
               "node_modules/mcapp.ng.components/resources/themes/metronic/theme.scss",
               "src/assets/css/style.bundle.css",
+              "src/assets/scss/main.scss",
               "node_modules/quill/dist/quill.core.css",
               "node_modules/quill/dist/quill.snow.css"
             ],

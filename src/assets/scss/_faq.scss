@@ -1,0 +1,141 @@
+.innobot-faq{
+    width: 380px;
+    border-right: solid 1px #ebedf2;
+    height: 100%;
+}
+.innobot-faq-header{
+    height: 50px;
+    display:flex;
+    border-bottom: solid 1px #ebedf2;
+    justify-content:space-between;
+    align-items: center;
+    h4{
+        padding: 15px;
+    }
+    .innobot-faq-actions{
+        padding: 15px;
+    }
+}
+
+.innobot-faq-list{
+    .innobot-faq-item{
+        display:flex;
+        border-bottom: 1px solid #ebedf2;
+        &:hover{
+            background: #ebedf2;
+        }
+        .innobot-faq-body{
+            padding: 10px;
+        }
+        .innobot-faq-question{
+            color: #a32020;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .innobot-faq-anwser{
+            color: #34495e;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .innobot-faq-arrow{
+            width: 40px;
+            padding: 10px;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}
+
+//breadcrumbs
+.innobot-breadcrumbs {
+    margin: 0px;
+    display:flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    .innobot-breadcrumbs-item {
+        list-style: none;
+        color:#34495e;
+        text-transform: uppercase;
+        font-size:10px;
+        margin-right: 7px;
+        font-weight: 400;
+        &:nth-child(1 + n){
+            &:after{
+                content: '\f054';
+                font-family: "Font Awesome 5 Pro";
+                margin-left: 7px;
+            }
+        }
+        
+    }
+}
+
+.innobot-qna-detail{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    .innobot-qna-detail-body{
+        flex: 1;
+    }
+    .innobot-qna-detail-footer{
+        background-color: #ffffff;
+        box-shadow: 0 1px 15px 0 rgba(69, 65, 78, 0.1);
+    }
+}
+
+.innobot-qna-detail-row{
+    display:flex;
+    margin-bottom: 10px;
+    .innobot-qna-detail-left{
+        width: 40px;
+        flex-basis: 40px;
+        flex-grow: 0;
+        flex-shrink: 0;
+        box-sizing: border-box;
+    }
+}
+
+.innobot-qna-title{
+    font-size:12px;
+    color:#a32020;
+}
+
+.innobot-qna-detal-body{
+    font-size:11px;
+    color:#4A4A4A;
+    font-weight: 400;
+    p{
+        margin-bottom: 15px;
+    }
+    ul{
+        margin-left: 20px;
+        margin-bottom: 15px;
+    }
+}
+
+// tabs
+.innobot-tabs {
+    margin: 0px;
+    padding: 0px;
+    display:flex; 
+    height: 40px;      
+    .innobot-tabs-item {
+        list-style: none;
+        text-transform: uppercase;
+        flex: 1;
+        text-align: center;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        box-sizing: content-box;
+        font-size: 11px;
+        font-weight: 500;
+        &.active-tab{
+            border-bottom: 3px solid red;
+            color: #A32020;
+        }
+    }
+}

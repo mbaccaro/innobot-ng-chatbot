@@ -1,0 +1,98 @@
+//button
+.innobot-btn{
+    background:transparent;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    cursor: pointer;
+    &:focus{
+        outline:none;
+    }
+}
+
+.innobot-btn-icon{
+    width: 2px;
+    height: 27px;
+    border-radius: 50%;
+    display:flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.innobot-btn-primary-gradient{
+    background: linear-gradient(100deg, #f4516c, #ffb822);
+    color:white;
+}
+
+.innobot-btn-secondary{
+    background: #ebedf2;
+    color:#b5b1dd;
+}
+
+.i-badge{
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 11px;
+}
+
+.i-badge-secondary{
+    border-radius: 9px;
+    color: #95a5a6;
+    background-color: #ebedf2;
+}
+
+
+//MARGIN PADDING UTILS
+$spaceamounts: (3, 5, 7, 10, 15, 20, 25, 30);
+$sides: (top, bottom, left, right, all);
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+
+    @if $side == 'all' {
+      .i-m-#{$space} {
+        margin: #{$space}px;
+      }
+
+      .i-p-#{$space} {
+        padding: #{$space}px;
+      }
+    } @else {
+      .i-m#{str-slice($side, 0, 1)}-#{$space} {
+        margin-#{$side}: #{$space}px;
+      }
+
+      .i-p-#{str-slice($side, 0, 1)}-#{$space} {
+        padding-#{$side}: #{$space}px;
+      }
+    }
+  }
+}
+
+.i-w-25{
+  width: 25%;
+}
+
+.i-w-50{
+  width: 50%;
+}
+
+.i-w-75{
+  width: 75%;
+}
+
+.i-w-100 {
+  width: 100%;
+}
