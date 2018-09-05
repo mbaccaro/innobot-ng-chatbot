@@ -9,9 +9,9 @@ import { QnaFormComponent } from "./qna/qna-form.component";
 import { QnaDetailComponent } from "./qna/qna-detail.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
 import { LayoutModule } from "./../layout/layout.module";
-
-// import { CategoryFormComponent } from "./category/category-form.component";
+import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
+
 import {
     TableModule,
     FileUploadModule,
@@ -68,14 +68,14 @@ import {
         QnaFormComponent,
         QnaDetailComponent,
         CategoryTreeComponent,
-        // CategoryFormComponent
+        CategoryFormComponent,
         TriggerFaqBtnComponent
     ],
     exports: [
         QnaManagementComponent
     ],
     providers: [
-        //FAQService
+        // FAQService
     ],
     entryComponents: [
         QnaManagementComponent

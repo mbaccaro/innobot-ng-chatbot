@@ -13,7 +13,9 @@ import { ContentRightComponent } from "./content-right/content-right.component";
         ContentRightComponent
     ],
     exports: [
-        MainLayoutComponent
+        MainLayoutComponent,
+        ContentLeftComponent, 
+        ContentRightComponent
     ],
     providers: [
     ]

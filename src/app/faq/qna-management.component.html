@@ -1,23 +1,30 @@
-<div class="m-content">
-    <div class="row">
-        <div class="col-md-3" *ngIf="selectedCategoryId === 0 || selectedCategoryId === undefined">
-            <mcapp-web-panel header="Category">
-                <category-tree [agentId]="3" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
-            </mcapp-web-panel>
+<app-main-layout>
+    <app-content-left>
+        <div *ngIf="selectedCategoryId === 0 || selectedCategoryId === undefined">
+            <category-tree [agentId]="3" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
         </div>
         <div class="col-md-9" *ngIf="selectedCategoryId  > 0 || selectedCategoryId ===-1">
-            <mcapp-web-panel header="Q&A">
-                <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go
-                    back to category</button>
-                <qna-grid (searchLazyLoad)="onLoadGrid($event);" (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
-                    [qnAs]="qnAsGrid"></qna-grid>
-                <qna-detail></qna-detail>
-            </mcapp-web-panel>
+           
+            <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                Go back to category
+            </button>
+            
+            <qna-grid (searchLazyLoad)="onLoadGrid($event);" (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" 
+                [enableLazyLoad]="true"
+                [qnAs]="qnAsGrid">
+            </qna-grid>
+
+            <qna-detail></qna-detail>
+
             <div *ngIf="selectedQnAId  > 0 || selectedQnAId ===-1">
-                <mcapp-web-panel header="Q&A CRUD">
-                    <qna-form></qna-form>
-                </mcapp-web-panel>
+                <qna-form></qna-form>
             </div>
+            
         </div>
-    </div>
-</div>
+    </app-content-left>
+    <app-content-right>
+        content right
+    </app-content-right>
+</app-main-layout>
+
+
