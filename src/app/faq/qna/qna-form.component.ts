@@ -1,5 +1,4 @@
 import { Component, Injector, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
 import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import * as underscore from "lodash";
 import { QnADto, QnAQuestionDto } from "./qna-model";
@@ -15,15 +14,15 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     // protected projectAgentService: ProjectAgentService;
     // protected qnAServiceProxy: QnAServiceProxy;
-    private router: Router;
-    private route: ActivatedRoute;
-    protected qnA: QnADto;
+    //private router: Router;
+    //private route: ActivatedRoute;
+    public qnA: QnADto;
     public newQuestion: QnAQuestionDto;
     public primaryQuestion: QnAQuestionDto;
-    protected formValidation: FormGroup;
-    protected validate: boolean;
-    protected validateQuestions: boolean;
-    protected saving: boolean;
+    public formValidation: FormGroup;
+    public validate: boolean;
+    public validateQuestions: boolean;
+    public saving: boolean;
     private formBuilder: FormBuilder;
 
 
@@ -32,8 +31,8 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
         // this.projectAgentService = injector.get(ProjectAgentService);
         // this.qnAServiceProxy = injector.get(QnAServiceProxy);
-        this.router = injector.get(Router);
-        this.route = injector.get(ActivatedRoute);
+        //this.router = injector.get(Router);
+        //this.route = injector.get(ActivatedRoute);
         this.formBuilder = injector.get(FormBuilder);
 
     }
@@ -54,10 +53,10 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     private createValidationModel(): void {
 
-        this.formValidation = this.formBuilder.group({
-            question: [{ value: null }, [Validators.required]],
-            answer: [{ value: null }, [Validators.required]]
-        });
+        // this.formValidation = this.formBuilder.group({
+        //     question: [{ value: null }, [Validators.required]],
+        //     answer: [{ value: null }, [Validators.required]]
+        // });
 
     }
 
@@ -67,18 +66,18 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         this.qnA.questions = [];
         this.primaryQuestion = new QnAQuestionDto();
 
-        this.route.queryParams
-            .subscribe(params => {
+        // this.route.queryParams
+        //     .subscribe(params => {
 
-                this.qnA.id = +atob(params.qna);
-                this.qnA.agentId = +atob(params.id);
-                this.qnA.agentName = atob(params.name);
+        //         this.qnA.id = +atob(params.qna);
+        //         this.qnA.agentId = +atob(params.id);
+        //         this.qnA.agentName = atob(params.name);
 
-                if (this.qnA.id > 0) {
-                    this.getQnA(this.qnA.id);
-                }
+        //         if (this.qnA.id > 0) {
+        //             this.getQnA(this.qnA.id);
+        //         }
 
-            });
+        //     });
 
     }
 
@@ -281,7 +280,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     }
 
     public goQnaGrid(): void {
-        this.router.navigate(["/app/faq/qna/qna-admin"], { queryParams: { id: btoa(this.qnA.agentId.toString()) } });
+        //this.router.navigate(["/app/faq/qna/qna-admin"], { queryParams: { id: btoa(this.qnA.agentId.toString()) } });
     }
 
 }

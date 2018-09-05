@@ -4,6 +4,7 @@ import { AppComponentBase } from "../shared/common/app-base-component";
 // import { FAQService } from "./faq-service";
 import { CategoryDto } from "./category/category-model";
 import { QueryParameters } from "../shared/helpers/QueryParameters";
+import { QnADto, QnAQuestionDto } from "./qna/qna-model";
 
 @Component({
     selector: "qna-management",
@@ -14,16 +15,9 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     //protected faqService: FAQService;
     public selectedCategoryId: number;
+    public selectedQnAId: number;
     public qnAsGrid: Array<any>;
     public agentId: number;
-
-    // private get userId(): number {
-    //     return this.appSession.userId || 1;
-    // }
-
-    // private get tenantId(): number {
-    //     return this.appSession.tenantId || 1;
-    // }
 
     public get selectedAgentName() {
         return "qna-tax";//this.projectAgentService.selectedAgent ? this.projectAgentService.selectedAgent.name : "";
@@ -66,10 +60,27 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public onLoadGrid(queryParameters: QueryParameters): void {
 
         debugger;
+
+        this.qnAsGrid = [];
+        const qnaDto: QnADto = new QnADto();
+
+        qnaDto.agentId = 3;
+        qnaDto.agentName = 'qnatax';
+        qnaDto.categories = [];
+        qnaDto.answer = 'I am good';
+        qnaDto.questions = [];
+        const question = new QnAQuestionDto();
+        question.isPrimary = true;
+        question.isDeleted = false;
+        question.question = "how are you?"
+        qnaDto.questions.push(question);
+        this.qnAsGrid.push(qnaDto);
+        this.dataGridConfig.totals = 1;
+
         // const chatBotAgentQnaIntance =  this.faqService.getChatBotAgentQnAInstance();
 
         // chatBotAgentQnaIntance.getQnA(this.agentId, null, queryParameters.toString()).subscribe((result) => {
-         
+
         //     debugger;
         //     this.qnAsGrid = result.result;
         //     this.dataGridConfig.totals = result.count;

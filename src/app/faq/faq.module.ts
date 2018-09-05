@@ -26,7 +26,7 @@ import {
 
 import { QnaManagementComponent } from "./qna-management.component";
 import { QnaGridComponent } from "./qna/qna-grid.component";
-// import { QnaFormComponent } from "./qna/qna-form.component";
+import { QnaFormComponent } from "./qna/qna-form.component";
 // import { CategoryTreeComponent } from "./category/category-tree.component";
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
@@ -35,38 +35,38 @@ import { QnaGridComponent } from "./qna/qna-grid.component";
     imports: [
         RouterModule.forRoot(
             [
-              { path: "", component: QnaGridComponent}
+                { path: "", component: QnaGridComponent }
             ]
-          ),//TODO- remove this part 
-         FormsModule,
-         ReactiveFormsModule,
-         CommonModule,
-         UtilsModule, 
-         McAppUploadFile,
-         McAppTableModule,
-         McAppPanelModule,
-         McAppDropdownModule,
-         McAppScrollPanelModule,
-         McAppDialog,
-         McAppTooltip,
-         EditorModule,
-         InputTextareaModule,
-         ChipsModule,
-         McAppDataListModule,
-         OrderListModule,
-         RadioButtonModule,
-         InputTextareaModule,
-         TabViewModule,
-         TreeTableModule,
-         SpinnerModule,
-         TreeModule,
-         ContextMenuModule,
-         MultiSelectModule
+        ),//TODO- remove this part 
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        UtilsModule,
+        McAppUploadFile,
+        McAppTableModule,
+        McAppPanelModule,
+        McAppDropdownModule,
+        McAppScrollPanelModule,
+        McAppDialog,
+        McAppTooltip,
+        EditorModule,
+        InputTextareaModule,
+        ChipsModule,
+        McAppDataListModule,
+        OrderListModule,
+        RadioButtonModule,
+        InputTextareaModule,
+        TabViewModule,
+        TreeTableModule,
+        SpinnerModule,
+        TreeModule,
+        ContextMenuModule,
+        MultiSelectModule
     ],
     declarations: [
         QnaManagementComponent,
-         QnaGridComponent
-        // QnaFormComponent,
+        QnaGridComponent,
+        QnaFormComponent
         // CategoryTreeComponent,
         // CategoryFormComponent
 
