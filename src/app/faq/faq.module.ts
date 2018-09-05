@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UtilsModule } from "../shared/utils/utils.module";
 import { RouterModule, Router } from "@angular/router";
-
+import { TriggerFaqBtnComponent } from "./utils/trigger-faq-btn/trigger-faq-btn.component";
 import {
     TableModule as McAppTableModule,
     FileUploadModule as McAppUploadFile,
@@ -37,39 +37,40 @@ import { QnaFormComponent } from "./qna/qna-form.component";
             [
                 { path: "", component: QnaGridComponent }
             ]
-        ),//TODO- remove this part 
-        FormsModule,
-        ReactiveFormsModule,
-        CommonModule,
-        UtilsModule,
-        McAppUploadFile,
-        McAppTableModule,
-        McAppPanelModule,
-        McAppDropdownModule,
-        McAppScrollPanelModule,
-        McAppDialog,
-        McAppTooltip,
-        EditorModule,
-        InputTextareaModule,
-        ChipsModule,
-        McAppDataListModule,
-        OrderListModule,
-        RadioButtonModule,
-        InputTextareaModule,
-        TabViewModule,
-        TreeTableModule,
-        SpinnerModule,
-        TreeModule,
-        ContextMenuModule,
-        MultiSelectModule
+          ),
+        // TODO- remove this part 
+         FormsModule,
+         ReactiveFormsModule,
+         CommonModule,
+         UtilsModule, 
+         McAppUploadFile,
+         McAppTableModule,
+         McAppPanelModule,
+         McAppDropdownModule,
+         McAppScrollPanelModule,
+         McAppDialog,
+         McAppTooltip,
+         EditorModule,
+         InputTextareaModule,
+         ChipsModule,
+         McAppDataListModule,
+         OrderListModule,
+         RadioButtonModule,
+         InputTextareaModule,
+         TabViewModule,
+         TreeTableModule,
+         SpinnerModule,
+         TreeModule,
+         ContextMenuModule,
+         MultiSelectModule
     ],
     declarations: [
         QnaManagementComponent,
         QnaGridComponent,
-        QnaFormComponent
+        QnaFormComponent,
         // CategoryTreeComponent,
         // CategoryFormComponent
-
+        TriggerFaqBtnComponent
     ],
     exports: [
         QnaManagementComponent
