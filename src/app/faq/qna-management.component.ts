@@ -65,7 +65,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onLoadGrid(queryParameters: QueryParameters): void {
 
-        debugger;
+        //debugger;
         // const chatBotAgentQnaIntance =  this.faqService.getChatBotAgentQnAInstance();
 
         // chatBotAgentQnaIntance.getQnA(this.agentId, null, queryParameters.toString()).subscribe((result) => {

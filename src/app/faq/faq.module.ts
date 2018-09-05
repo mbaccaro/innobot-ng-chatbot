@@ -3,7 +3,7 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UtilsModule } from "../shared/utils/utils.module";
 import { RouterModule, Router } from "@angular/router";
-
+import { TriggerFaqBtnComponent } from "./utils/trigger-faq-btn/trigger-faq-btn.component";
 import {
     TableModule as McAppTableModule,
     FileUploadModule as McAppUploadFile,
@@ -26,7 +26,7 @@ import {
 
 import { QnaManagementComponent } from "./qna-management.component";
 import { QnaGridComponent } from "./qna/qna-grid.component";
-// import { QnaFormComponent } from "./qna/qna-form.component";
+import { QnaFormComponent } from "./qna/qna-form.component";
 // import { CategoryTreeComponent } from "./category/category-tree.component";
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
@@ -37,7 +37,8 @@ import { QnaGridComponent } from "./qna/qna-grid.component";
             [
               { path: "", component: QnaGridComponent}
             ]
-          ),//TODO- remove this part 
+          ),
+        // TODO- remove this part 
          FormsModule,
          ReactiveFormsModule,
          CommonModule,
@@ -65,11 +66,11 @@ import { QnaGridComponent } from "./qna/qna-grid.component";
     ],
     declarations: [
         QnaManagementComponent,
-         QnaGridComponent
-        // QnaFormComponent,
+        QnaGridComponent,
+        QnaFormComponent,
         // CategoryTreeComponent,
         // CategoryFormComponent
-
+        TriggerFaqBtnComponent
     ],
     exports: [
         QnaManagementComponent

@@ -6,13 +6,13 @@
                     <i class="la la-arrow-left"></i>
                 </button>
                 <h3 class="m-subheader__title m-subheader__title--separator">
-                    {{ qnA.id > 0 ? l("EditQnA") : l("CreateNewQnA") }}
+                    {{ qnA.id > 0 ? "EditQnA" : "CreateNewQnA" }}
                 </h3>
             </div>
             <div class="ml-auto">
-                <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [buttonBusy]="saving" [disabled]="formValidation.invalid || checkEmptyQuestions || saving"
+                <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="formValidation.invalid || checkEmptyQuestions || saving"
                     (click)="saveQnA();">
-                    <i class="la la-save"></i>{{l("SaveQnA")}}
+                    <i class="la la-save"></i>{{ SaveQnA }}
                 </button>
             </div>
         </div>
@@ -25,7 +25,7 @@
                     <div id="m_repeater_2">
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-2 col-sm-12">
-                                {{l("PrimaryQuestion")}}:
+                                {{ PrimaryQuestion }}:
                             </label>
                             <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
                                 <div class="input-group">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group m-form__group row my-3">
                         <label class="col-form-label col-lg-2 col-md-12">
-                            {{l("Answer")}}:
+                            {{"Answer"}}:
                         </label>
                         <div class="col-lg-10 col-md-12">
                             <mcapp-web-editor name="answer" [(ngModel)]="qnA.answer" formControlName="answer" [fieldValidate]="validate" [formFieldValidation]="formValidation.controls.answer"
@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group m-form__group row mt-4">
                         <label class="col-form-label col-lg-2 col-sm-12">
-                            {{l("AlternativeQuestions")}}:
+                            {{"AlternativeQuestions"}}:
                         </label>
                         <div class="col-lg-10 col-md-10 col-sm-12">
                             <div class="row mb-2 mx-auto">
@@ -75,7 +75,7 @@
                                                 </span>
                                             </span>
                                         </div>
-                                        <span *ngIf="question.question === ''" class="text-danger">l("RequiredFieldError")</span>
+                                        <span *ngIf="question.question === ''" class="text-danger">RequiredFieldError</span>
                                         <button style="text-decoration: none" class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only btn-icon-md ml-2 m-btn--hover-danger"
                                             (click)="deleteQuestion(i)">
                                             <i class="la la-trash"></i>
