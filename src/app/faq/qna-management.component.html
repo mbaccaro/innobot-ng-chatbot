@@ -13,7 +13,7 @@
                     [qnAs]="qnAsGrid"></qna-grid>
                 <qna-detail></qna-detail>
             </mcapp-web-panel>
-            <div *ngIf="selectedQnAId  > 0 || selectedQnAId ===-1">
+            <div *ngIf="selectedQnAId  > 0 || selectedQnAId === undefined">
                 <mcapp-web-panel header="Q&A CRUD">
                     <qna-form></qna-form>
                 </mcapp-web-panel>
