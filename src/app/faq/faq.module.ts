@@ -2,19 +2,26 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UtilsModule } from "../shared/utils/utils.module";
-import { RouterModule, Router } from "@angular/router";
 import { TriggerFaqBtnComponent } from "./utils/trigger-faq-btn/trigger-faq-btn.component";
+import { QnaManagementComponent } from "./qna-management.component";
+import { QnaGridComponent } from "./qna/qna-grid.component";
+import { QnaFormComponent } from "./qna/qna-form.component";
+import { CategoryTreeComponent } from "./category/category-tree.component";
+// import { CategoryFormComponent } from "./category/category-form.component";
+// import { FAQService } from "./faq-service";
 import {
-    TableModule as McAppTableModule,
-    FileUploadModule as McAppUploadFile,
-    PanelModule as McAppPanelModule,
-    DropdownModule as McAppDropdownModule,
-    ScrollPanelModule as McAppScrollPanelModule,
-    DialogModule as McAppDialog,
-    DataListModule as McAppDataListModule,
+    TableModule,
+    FileUploadModule,
+    PanelModule,
+    DropdownModule,
+    ScrollPanelModule,
+    DialogModule,
+    DataListModule,
     OrderListModule,
-    RadioButtonModule, InputTextareaModule, ChipsModule,
-    TooltipModule as McAppTooltip,
+    RadioButtonModule, 
+    InputTextareaModule, 
+    ChipsModule,
+    TooltipModule,
     TabViewModule,
     TreeTableModule,
     EditorModule,
@@ -24,37 +31,25 @@ import {
     MultiSelectModule
 } from "mcapp.ng.components";
 
-import { QnaManagementComponent } from "./qna-management.component";
-import { QnaGridComponent } from "./qna/qna-grid.component";
-import { QnaFormComponent } from "./qna/qna-form.component";
-import { CategoryTreeComponent } from "./category/category-tree.component";
-//import { CategoryTreeComponent } from "./category/category-tree.component";
-// import { CategoryFormComponent } from "./category/category-form.component";
-// import { FAQService } from "./faq-service";
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(
-            [
-                { path: "", component: QnaGridComponent }
-            ]
-          ),
         // TODO- remove this part 
          FormsModule,
          ReactiveFormsModule,
          CommonModule,
          UtilsModule, 
-         McAppUploadFile,
-         McAppTableModule,
-         McAppPanelModule,
-         McAppDropdownModule,
-         McAppScrollPanelModule,
-         McAppDialog,
-         McAppTooltip,
+         FileUploadModule,
+         TableModule,
+         PanelModule,
+         DropdownModule,
+         ScrollPanelModule,
+         DialogModule,
+         TooltipModule,
          EditorModule,
          InputTextareaModule,
          ChipsModule,
-         McAppDataListModule,
+         DataListModule,
          OrderListModule,
          RadioButtonModule,
          InputTextareaModule,
