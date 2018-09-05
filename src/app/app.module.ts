@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule, Injector } from "@angular/core";
 import { createCustomElement } from "@angular/elements";
 import { YoComponent } from "./yo/yo.component";
