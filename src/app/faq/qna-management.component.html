@@ -7,7 +7,6 @@
         </div>
         <div class="col-md-9">
             <mcapp-web-panel header="Q&A">
-                <div>bring qna grid</div>
                 <qna-grid (searchLazyLoad)="onLoadGrid($event);" (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
                     [qnAs]="qnAsGrid"></qna-grid>
             </mcapp-web-panel>
