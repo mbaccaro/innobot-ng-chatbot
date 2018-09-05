@@ -8,7 +8,7 @@ import { QnaGridComponent } from "./qna/qna-grid.component";
 import { QnaFormComponent } from "./qna/qna-form.component";
 import { QnaDetailComponent } from "./qna/qna-detail.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
-
+import { SearchBoxComponent } from "../shared/common/search-box/search-box.component";
 
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
@@ -61,6 +61,7 @@ import {
          TreeModule,
          ContextMenuModule,
          MultiSelectModule
+         
     ],
     declarations: [
         QnaManagementComponent,
@@ -69,10 +70,12 @@ import {
         QnaDetailComponent,
         CategoryTreeComponent,
         // CategoryFormComponent
-        TriggerFaqBtnComponent
+        TriggerFaqBtnComponent,
+        SearchBoxComponent
     ],
     exports: [
-        QnaManagementComponent
+        QnaManagementComponent,
+        SearchBoxComponent
     ],
     providers: [
         //FAQService
