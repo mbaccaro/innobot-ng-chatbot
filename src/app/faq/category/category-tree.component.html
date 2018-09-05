@@ -1,7 +1,7 @@
 <mcapp-web-panel header="Category">
     <mcapp-web-actions>
         <button (click)="createCategoryModel(true);" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-            <i class="la la-plus"></i>{{l("AddRootCategory")}}
+            <i class="la la-plus"></i>Add Category
         </button>
     </mcapp-web-actions>
 
@@ -9,4 +9,4 @@
         (onNodeUnselect)="nodeUnselect($event)" [propagateSelectionDown]="false" [contextMenu]="cm" (onNodeContextMenuSelect)="contextSelect($event)"></mcapp-web-tree>        
               <mcapp-web-contextMenu appendTo="body" #cm [model]="items" ></mcapp-web-contextMenu>
 </mcapp-web-panel>
-<category-form [model]="categoryModel" (save)="onCategorySaved($event)" (cancel)="onCancelCategory()"></category-form>
+<!-- <category-form [model]="categoryModel" (save)="onCategorySaved($event)" (cancel)="onCancelCategory()"></category-form> -->

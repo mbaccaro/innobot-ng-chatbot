@@ -1,11 +1,9 @@
 <div class="m-content">
     <div class="row">
         <div class="col-md-3">
-            <div>
-                bring the category grid
-                <!-- <category-tree [agentId]="projectAgentService.selectedAgent.id" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
-                        (unselectNode)="onUnselectCategory($event)"></category-tree> -->
-            </div>
+            <mcapp-web-panel header="Category">
+                <category-tree [agentId]="3" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
+            </mcapp-web-panel>
         </div>
         <div class="col-md-9">
             <mcapp-web-panel header="Q&A">

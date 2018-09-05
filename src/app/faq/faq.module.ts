@@ -27,7 +27,8 @@ import {
 import { QnaManagementComponent } from "./qna-management.component";
 import { QnaGridComponent } from "./qna/qna-grid.component";
 import { QnaFormComponent } from "./qna/qna-form.component";
-// import { CategoryTreeComponent } from "./category/category-tree.component";
+import { CategoryTreeComponent } from "./category/category-tree.component";
+//import { CategoryTreeComponent } from "./category/category-tree.component";
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
 
@@ -68,7 +69,7 @@ import { QnaFormComponent } from "./qna/qna-form.component";
         QnaManagementComponent,
         QnaGridComponent,
         QnaFormComponent,
-        // CategoryTreeComponent,
+        CategoryTreeComponent,
         // CategoryFormComponent
         TriggerFaqBtnComponent
     ],
