@@ -27,10 +27,14 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     public categoryModel: CategoryDto;
     public contextSelectNode: TreeNodeClass;
     private chatBotAgentCategoryIntance: ChatBotAgentCategory;
+    private generalCategory: CategoryDto;
+
     @Output() public selectNode: EventEmitter<CategoryDto> = new EventEmitter();
     @Output() public unselectNode: EventEmitter<CategoryDto> = new EventEmitter();
     @Input() public agentId: number;
     @Input() public selectionMode: string;
+
+
     @Input() public set selectedQnaCategories(value: QnAAgentCategoryDto[]) {
 
         this.pSelectedQnaCategories = value;
@@ -64,12 +68,24 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.previousSingleSelect = new TreeNodeClass();
         this.contextSelectNode = new TreeNodeClass();
         this.chatBotAgentCategoryIntance = this.faqService.getChatBotAgentCategory();
+        this.initGeneralCategory();
         this.populateTree();
        
     }
 
-    public populateTree(): void {
+    public initGeneralCategory(): void {
 
+        this.generalCategory = new CategoryDto();
+        this.generalCategory.id = -1; 
+        this.generalCategory.name = 'General';
+        this.generalCategory.parentId = null;
+        this.generalCategory.agentId = this.agentId;
+        this.creatTreeNode(this.generalCategory, null);
+
+    }
+
+    public populateTree(): void {
+        
         this.chatBotAgentCategoryIntance.getCategories(this.agentId).subscribe((result) => {
 
             const categories = result;

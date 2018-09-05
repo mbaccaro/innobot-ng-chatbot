@@ -80,7 +80,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onLoadGrid(queryParameters: QueryParameters): void {
 
-        const categoryName = this.selectedCategory && this.selectedCategory.name !== '' ? this.selectedCategory.name : null;
+        const categoryName = (this.selectedCategory && this.selectedCategory.name !== '' && this.selectedCategory.id > 0) ? this.selectedCategory.name : null;
 
         this.chatBotAgentQnAInstance.getQnA(this.agentId, categoryName, queryParameters.toString()).subscribe((result) => {
 
