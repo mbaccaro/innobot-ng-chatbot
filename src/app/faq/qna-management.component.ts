@@ -23,10 +23,6 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public showCategoryTree: boolean;
     public openQnAForm: boolean;
 
-    public get selectedAgentName() {
-        return "qna-tax"; // this.projectAgentService.selectedAgent ? this.projectAgentService.selectedAgent.name : "";
-    }
-
     public constructor(injector: Injector) {
         super(injector);
 

@@ -4,11 +4,7 @@
             <app-search-box (onSearch)="onSearch($event)" [value]="dataGridConfig.filter"></app-search-box>
         </div>
     </div>
-    <div *ngIf="!hideActionButtons" class="ml-auto mr-3">
-        <button (click)="createQna();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-            <i class="la la-plus"></i>New Q&A
-        </button>
-    </div>
+   
 </div>
 
 <div class="primeng-data-style">
@@ -47,4 +43,10 @@
 
         
     </mcapp-web-dataList>
+    
+    <div class="ml-auto mr-3">
+        <button (click)="createQna();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+            <i class="la la-plus"></i>New Q&A
+        </button>
+    </div>
 </div>
