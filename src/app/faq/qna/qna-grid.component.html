@@ -1,7 +1,7 @@
 <div class="row align-items-center m-form m-form--label-align-right m--margin-bottom-30">
     <div class="col">
         <div class="form-group m-form__group align-items-center">
-            <!-- <app-search-box (onSearch)="onSearch($event)" [value]="dataGridConfig.filter"></app-search-box> -->
+            <app-search-box (onSearch)="onSearch($event)" [value]="dataGridConfig.filter"></app-search-box>
         </div>
     </div>
     <div *ngIf="!hideActionButtons" class="ml-auto mr-3">
@@ -10,113 +10,41 @@
         </button>
     </div>
 </div>
+
 <div class="primeng-data-style">
-    <mcapp-web-table #dt [value]="qnAs" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage" [rowExpandMode]="'single'"
-        [first]="dataGridConfig.skip" [paginator]="true" [responsive]="true" [totalRecords]="dataGridConfig.totals" (onLazyLoad)="onChange($event)"
-        (onSort)="onSort($event)" dataKey="identifier" [lazy]="enableLazyLoad">
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th width="20"></th>
-                <th [pSortableColumn]="'QnaQuestions[0].Question'">Question
-                    <mcapp-web-sortIcon [field]="'question'"></mcapp-web-sortIcon>
-                </th>
-                <th>Category</th>
-                <!-- <th *ngFor="let col of dataGridCols">
-                    {{col.header}}
-                </th> -->
-                <th width="100">
-                    <div *ngIf="!hideActionButtons">Actions</div>
-                </th>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-expanded="expanded" let-columns="columns">
-            <tr [pSelectableRow]="rowData">
-                <td class="expand-arrow">
-                    <a [pRowToggler]="rowData" class="m-datatable__toggle-subtable" href="#">
-                        <i [ngClass]="expanded ? 'fa fa-caret-down' : 'fa fa-caret-right'"></i>
-                    </a>
+    <mcapp-web-dataList [value]="qnAs" [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage"
+        [lazy]="true" (onLazyLoad)="onChange2($event)" [paginator]="true" >
+       
+
+               <!-- <ui-datalist>
+                    <ui-datalist-header>
+
+                    </ui-datalist-header>
+
+                    <ui-datalist-content>
+                        <ui-datalist-data>
+
+                        </ui-datalist-data>
+                    </ui-datalist-content>
+               </ui-datalist>>
+            <div >
+                <td [attr.colspan]="4">
+                    {{item.question}}
                 </td>
-                <td>
-                    <div *ngFor="let question of rowData.questions">
-                        <span *ngIf="question.isPrimary === true">
-                            {{question.question}}
-                        </span>
-                    </div>
-                </td>
-                <td>
-                    <span *ngFor="let category of rowData.categories; let isLastCategory=last;">
-                        {{category.agentCategoryName}}{{isLastCategory ? '' : ', '}}
-                    </span>
-                </td>
-                <td>
-                    <div *ngIf="!hideActionButtons">
-                        <div (click)="onEdit(rowData)" class="btn m-btn m-btn--hover-accent m-btn--icon m-btn--icon-only m-btn--pill">
-                            <i class="la la-edit"></i>
-                        </div>
-                        <div (click)="onDelete(rowData)" class="btn m-btn m-btn--hover-danger m-btn--icon m-btn--icon-only m-btn--pill">
-                            <i class="la la-trash"></i>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
-            <tr class="m-datatable__row-subtable">
-                <td colspan="4" class="m-datatable__subtable">
-                    <div class="subtable p-4">
-                        <ul class="nav nav-tabs m-tabs-line m-tabs-line--primary">
-                            <li class="nav-item m-tabs__item" (click)="currentTab = 'answer'">
-                                <a class="nav-link m-tabs__link" [ngClass]="{'active': (currentTab === 'answer') }">
-                                    <i class="la la-comments"></i> Answer
-                                </a>
-                            </li>
-                            <li class="nav-item m-tabs__item" (click)="currentTab = 'alternativeQuestions'">
-                                <a class="nav-link m-tabs__link" [ngClass]="{'active': (currentTab === 'alternativeQuestions') }">
-                                    <i class="la la-comment-o"></i>Alternative Questions
-                                </a>
-                            </li>
-                        </ul>
-                        <div class="answer-response" *ngIf="currentTab === 'answer'">
-                            <!-- <div [innerHTML]="rowData.answer | highlight: searchString"></div> highlight we need to see this reference-->
-                        </div>
-                        <div class="alternative-questions" *ngIf="currentTab === 'alternativeQuestions'">
-                            <mcapp-web-table [value]="rowData.questions" alwaysShowPaginator="false" [paginator]="true" [lazy]="true" [rows]="25" [totalRecords]="rowData.questions.length > 1 ? (rowData.questions.length - 1) : 0">
-                                <ng-template pTemplate="header">
-                                    <tr>
-                                        <th [pSortableColumn]="'question'">Alternative Questions
-                                            <mcapp-web-sortIcon [field]="'question'"></mcapp-web-sortIcon>
-                                        </th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" #utterance let-item let-idx="rowIndex">
-                                    <tr [pSelectableRow]>
-                                        <div *ngIf="item.isPrimary === false">
-                                            <td [attr.colspan]="4">
-                                                {{item.question}}
-                                            </td>
-                                        </div>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="emptymessage" let-columns>
-                                    <tr>
-                                        <td>
-                                            No questions found!
-                                        </td>
-                                    </tr>
-                                </ng-template>
-                            </mcapp-web-table>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-        <ng-template pTemplate="emptymessage" let-columns>
-            <tr>
-                <td></td>
-                <td>
-                    No questions found!
-                </td>
-            </tr>
-        </ng-template>
-    </mcapp-web-table>
+            </div> -->
+            <ng-template pTemplate="body" let-rowData >
+                    <tr >
+                             <td>
+                            <div *ngFor="let question of rowData.questions">
+                                <span *ngIf="question.isPrimary === true">
+                                    {{question.question}}
+                                </span>
+                            </div>
+                        </td>
+                   
+                </tr>
+            </ng-template>
+
+        
+    </mcapp-web-dataList>
 </div>

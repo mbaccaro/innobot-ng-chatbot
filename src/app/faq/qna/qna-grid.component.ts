@@ -3,9 +3,9 @@ import { Component, Injector, Output, Input, OnInit, EventEmitter } from "@angul
 import { LazyLoadEvent } from "../../../../node_modules/mcapp.ng.components";
 import { SortEvent } from "../../../../node_modules/primeng/api";
 import { AppComponentBase } from "../../shared/common/app-base-component";
-import { QnADto, AgentDto } from "./qna-model";
+import { QnADto, AgentDto, QnAQuestionDto } from "./qna-model";
 import { SortDirection } from "../../shared/helpers/QueryParameters";
-
+import {ChatBotClientConfig, ChatBotAgentQnA} from "innobot-chat-api";
 @Component({
     selector: "qna-grid",
     templateUrl: "./qna-grid.component.html"
@@ -19,7 +19,9 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
     // protected route: ActivatedRoute;
     public currentTab = "answer";
     public searchString = "";
-   
+    //  public qna: QnADto;
+    //  public qnaQuestion: QnAQuestionDto;
+    //  public qnaQuestions: Array<QnAQuestionDto>;
     @Output() public searchLazyLoad: EventEmitter<any> = new EventEmitter();
     @Output() public reloadGrid: EventEmitter<any> = new EventEmitter();
     @Input() public set totals(totals: number) {
@@ -40,10 +42,26 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
         // this.route = injector.get(ActivatedRoute);
 
     }
+//     public config(): ChatBotClientConfig {
+// debugger
+//         const config = new ChatBotClientConfig();
+//         config.innobotUri = "http://dev.app.innobot.internal.epeinnovations.com";
+    
+//         return config;
+    
+//     }
+
+    // public getChatBotAgentQnAInstance(): ChatBotAgentQnA {
+    
+    //     const chatbotAgentQnA = new ChatBotAgentQnA(this.config());
+    //     return chatbotAgentQnA;
+    
+    // }
 
     public ngOnInit(): void {
 
         this.qnAs = [];
+      
         this.totals = 0;
         this.setupGrid();
 
@@ -59,12 +77,49 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
     private getQnAs(): void {
 
         this.applyQueryParameters();
+        // this.qna = new QnADto();
+        // this.qna.id = 1;
+        // this.qna.agentId = 3;
+        // this.qna.answer = " no way";
+        // this.qnaQuestion = new QnAQuestionDto();
+        // this.qnaQuestion.id = 1;
+        // this.qnaQuestion.isPrimary = true;
+        // this.qnaQuestion.question = "what is this?";
+        // this.qnaQuestions = [];
+        // this.qnaQuestions.push(this.qnaQuestion);
+        // this.qna.questions = this.qnaQuestions;
+        // this.qnAs.push(this.qna);
+        // const chatbotAgentQnA = this.getChatBotAgentQnAInstance();
+   
+        //   chatbotAgentQnA.getQnA(3, "rental",  this.queryParameters.toString()).subscribe((data) => {
+        //     const items = [];
+        //     console.log(data);
+        //   }, (error => console.log("error"))
+        // );
+        //   this.reloadGrid.emit(this.queryParameters);
         this.reloadGrid.emit(this.queryParameters);
 
     }
 
     protected onChange(event: LazyLoadEvent): void {
 
+        this.dataGridConfig.state = event;
+        const skip = event.first;
+
+        if (this.dataGridConfig.take !== event.rows) {
+
+            this.dataGridConfig.skip = 0;
+            this.dataGridConfig.take = event.rows;
+
+        } else if (skip !== this.dataGridConfig.skip) {
+            this.dataGridConfig.skip = skip;
+        }
+
+        this.getQnAs();
+
+    }
+    protected onChange2(event: LazyLoadEvent): void {
+debugger
         this.dataGridConfig.state = event;
         const skip = event.first;
 
