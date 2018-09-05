@@ -3,25 +3,62 @@ import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UtilsModule } from "../shared/utils/utils.module";
 
-// import { QnaManagementComponent } from "./qna-management.component";
+import {
+    TableModule as McAppTableModule,
+    FileUploadModule as McAppUploadFile,
+    PanelModule as McAppPanelModule,
+    DropdownModule as McAppDropdownModule,
+    ScrollPanelModule as McAppScrollPanelModule,
+    DialogModule as McAppDialog,
+    DataListModule as McAppDataListModule,
+    OrderListModule,
+    RadioButtonModule, InputTextareaModule, ChipsModule,
+    TooltipModule as McAppTooltip,
+    TabViewModule,
+    TreeTableModule,
+    EditorModule,
+    SpinnerModule,
+    TreeModule,
+    ContextMenuModule,
+    MultiSelectModule
+} from "mcapp.ng.components";
+
+import { QnaManagementComponent } from "./qna-management.component";
 // import { QnaGridComponent } from "./qna/qna-grid.component";
 // import { QnaFormComponent } from "./qna/qna-form.component";
 // import { CategoryTreeComponent } from "./category/category-tree.component";
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
 
-
-
 @NgModule({
     imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        CommonModule,
-        UtilsModule
+         FormsModule,
+         ReactiveFormsModule,
+         CommonModule,
+         UtilsModule, 
+         McAppUploadFile,
+         McAppTableModule,
+         McAppPanelModule,
+         McAppDropdownModule,
+         McAppScrollPanelModule,
+         McAppDialog,
+         McAppTooltip,
+         EditorModule,
+         InputTextareaModule,
+         ChipsModule,
+         McAppDataListModule,
+         OrderListModule,
+         RadioButtonModule,
+         InputTextareaModule,
+         TabViewModule,
+         TreeTableModule,
+         SpinnerModule,
+         TreeModule,
+         ContextMenuModule,
+         MultiSelectModule
     ],
     declarations: [
-
-        // QnaManagementComponent,
+        QnaManagementComponent
         // QnaGridComponent,
         // QnaFormComponent,
         // CategoryTreeComponent,
@@ -29,6 +66,7 @@ import { UtilsModule } from "../shared/utils/utils.module";
 
     ],
     exports: [
+        QnaManagementComponent
     ],
     providers: [
         //FAQService
