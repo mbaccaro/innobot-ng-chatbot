@@ -1,5 +1,4 @@
 import { Component, Injector, OnInit } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
 import { AppComponentBase } from "../shared/common/app-base-component";
 // import { FAQService } from "./faq-service";
 import { CategoryDto } from "./category/category-model";
@@ -19,6 +18,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public qnAsGrid: Array<any>;
     public agentId: number;
     public showDetailsQnA: boolean;
+    public showCategoryTree: boolean;
+    public openQnAForm: boolean;
 
     public get selectedAgentName() {
         return "qna-tax";//this.projectAgentService.selectedAgent ? this.projectAgentService.selectedAgent.name : "";
