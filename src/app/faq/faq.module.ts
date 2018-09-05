@@ -6,7 +6,10 @@ import { TriggerFaqBtnComponent } from "./utils/trigger-faq-btn/trigger-faq-btn.
 import { QnaManagementComponent } from "./qna-management.component";
 import { QnaGridComponent } from "./qna/qna-grid.component";
 import { QnaFormComponent } from "./qna/qna-form.component";
+import { QnaDetailComponent } from "./qna/qna-detail.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
+
+
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
 import {
@@ -30,7 +33,6 @@ import {
     ContextMenuModule,
     MultiSelectModule
 } from "mcapp.ng.components";
-
 
 @NgModule({
     imports: [
@@ -64,6 +66,7 @@ import {
         QnaManagementComponent,
         QnaGridComponent,
         QnaFormComponent,
+        QnaDetailComponent,
         CategoryTreeComponent,
         // CategoryFormComponent
         TriggerFaqBtnComponent

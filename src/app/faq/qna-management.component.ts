@@ -18,6 +18,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public selectedQnAId: number;
     public qnAsGrid: Array<any>;
     public agentId: number;
+    public showDetailsQnA: boolean;
 
     public get selectedAgentName() {
         return "qna-tax";//this.projectAgentService.selectedAgent ? this.projectAgentService.selectedAgent.name : "";
@@ -33,6 +34,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public ngOnInit(): void {
 
         this.loadQnAGrid();
+        this.showDetailsQnA = false;
 
     }
 
@@ -47,6 +49,19 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.selectedCategoryId = undefined;
         this.loadQnAGrid();
+
+    }
+
+    public onSelectQnA(qnA: QnADto): void {
+
+        this.selectedQnAId = qnA.id;
+        this.showDetailsQnA = true;
+    }
+
+    public onUnselectQnA(category: CategoryDto): void {
+
+        this.selectedQnAId = undefined;
+        this.showDetailsQnA = true;
 
     }
 

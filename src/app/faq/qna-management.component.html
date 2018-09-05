@@ -9,6 +9,7 @@
             <mcapp-web-panel header="Q&A">
                 <qna-grid (searchLazyLoad)="onLoadGrid($event);" (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
                     [qnAs]="qnAsGrid"></qna-grid>
+                <qna-detail></qna-detail>
             </mcapp-web-panel>
             <mcapp-web-panel header="Q&A CRUD">
                 <qna-form></qna-form>
