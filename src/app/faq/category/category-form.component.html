@@ -3,7 +3,7 @@
         [modal]="true" [width]="650" [draggable]="true">
         <form novalidate (ngSubmit)="save()" [formGroup]="formValidation">          
                 <div class="form-group">
-                    <label>{{l("CategoryName")}}</label>
+                    <label>CategoryName</label>
                     <input class="form-control" type="text" name="name" [(ngModel)]="model.name" 
                     formControlName="Name" [fieldValidate]="validate" [formFieldValidation]="formValidation.controls.Name">                      
                 </div>           
@@ -12,7 +12,7 @@
             <button [disabled]="saving" McAppButton type="button" state="secondary" (click)="onCancel();">
                 <i class="la la-close"></i>{{l("Cancel")}}
             </button>
-            <button [disabled]="formValidation.invalid" McAppButton type="button" state="primary" (click)="onSave()"  [busyText]="l('SavingWithThreeDot')">
+            <button [disabled]="formValidation.invalid" McAppButton type="button" state="primary" (click)="onSave()" >
                 <i class="la la-save"></i>{{l("Save")}}
             </button>
         </mcapp-web-footer>

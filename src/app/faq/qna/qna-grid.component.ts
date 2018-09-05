@@ -1,5 +1,4 @@
 import { Component, Injector, Output, Input, OnInit, EventEmitter } from "@angular/core";
-//import { Router, ActivatedRoute } from "@angular/router";
 import { LazyLoadEvent } from "../../../../node_modules/mcapp.ng.components";
 import { SortEvent } from "../../../../node_modules/primeng/api";
 import { AppComponentBase } from "../../shared/common/app-base-component";
@@ -15,8 +14,6 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
     // protected projectAgentService: ProjectAgentService;
     // protected qnAServiceProxy: QnAServiceProxy;
-    // protected router: Router;
-    // protected route: ActivatedRoute;
     public currentTab = "answer";
     public searchString = "";
     //  public qna: QnADto;
@@ -36,8 +33,8 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
     public constructor(injector: Injector) {
         super(injector);
 
-        //this.projectAgentService = injector.get(ProjectAgentService);
-        //this.qnAServiceProxy = injector.get(QnAServiceProxy);
+        // this.projectAgentService = injector.get(ProjectAgentService);
+        // this.qnAServiceProxy = injector.get(QnAServiceProxy);
         // this.router = injector.get(Router);
         // this.route = injector.get(ActivatedRoute);
 
@@ -101,7 +98,7 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
     }
 
-    protected onChange(event: LazyLoadEvent): void {
+    public onChange(event: LazyLoadEvent): void {
 
         this.dataGridConfig.state = event;
         const skip = event.first;
@@ -118,8 +115,9 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
         this.getQnAs();
 
     }
-    protected onChange2(event: LazyLoadEvent): void {
-debugger
+    
+    public onChange2(event: LazyLoadEvent): void {
+
         this.dataGridConfig.state = event;
         const skip = event.first;
 
@@ -136,7 +134,7 @@ debugger
 
     }
 
-    protected onSearch(searchValue): void {
+    public onSearch(searchValue): void {
 
         this.dataGridConfig.skip = 0;
         this.dataGridConfig.filter = searchValue;
@@ -145,7 +143,7 @@ debugger
 
     }
 
-    protected onSort(event: SortEvent): void {
+    public  onSort(event: SortEvent): void {
 
         this.dataGridConfig.skip = 0;
         this.dataGridConfig.sortField = event.field;
@@ -154,7 +152,7 @@ debugger
 
     }
 
-    protected onEdit(event: any): void {
+    public onEdit(event: any): void {
 
         // this.router.navigate(["/app/admin/qna"], {
         //     queryParams: {

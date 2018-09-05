@@ -10,9 +10,9 @@ import { QnaDetailComponent } from "./qna/qna-detail.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
 import { SearchBoxComponent } from "../shared/common/search-box/search-box.component";
 import { LayoutModule } from "./../layout/layout.module";
-
-// import { CategoryFormComponent } from "./category/category-form.component";
+import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
+
 import {
     TableModule,
     FileUploadModule,
@@ -37,31 +37,31 @@ import {
 
 @NgModule({
     imports: [
-        // TODO- remove this part 
-         FormsModule,
-         ReactiveFormsModule,
-         CommonModule,
-         UtilsModule, 
-         FileUploadModule,
-         TableModule,
-         PanelModule,
-         DropdownModule,
-         ScrollPanelModule,
-         DialogModule,
-         TooltipModule,
-         EditorModule,
-         InputTextareaModule,
-         ChipsModule,
-         DataListModule,
-         OrderListModule,
-         RadioButtonModule,
-         InputTextareaModule,
-         TabViewModule,
-         TreeTableModule,
-         SpinnerModule,
-         TreeModule,
-         ContextMenuModule,
-         MultiSelectModule
+        LayoutModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        UtilsModule, 
+        FileUploadModule,
+        TableModule,
+        PanelModule,
+        DropdownModule,
+        ScrollPanelModule,
+        DialogModule,
+        TooltipModule,
+        EditorModule,
+        InputTextareaModule,
+        ChipsModule,
+        DataListModule,
+        OrderListModule,
+        RadioButtonModule,
+        InputTextareaModule,
+        TabViewModule,
+        TreeTableModule,
+        SpinnerModule,
+        TreeModule,
+        ContextMenuModule,
+        MultiSelectModule
          
     ],
     declarations: [
@@ -70,19 +70,22 @@ import {
         QnaFormComponent,
         QnaDetailComponent,
         CategoryTreeComponent,
-        // CategoryFormComponent
+        CategoryFormComponent,
         TriggerFaqBtnComponent,
+        CategoryFormComponent,
         SearchBoxComponent
     ],
     exports: [
         QnaManagementComponent,
-        SearchBoxComponent
+        SearchBoxComponent,
+        TriggerFaqBtnComponent
     ],
     providers: [
-        //FAQService
+        // FAQService
     ],
     entryComponents: [
-        QnaManagementComponent
+        QnaManagementComponent,
+        TriggerFaqBtnComponent
     ]
 })
 export class FAQModule { }

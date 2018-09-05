@@ -5,6 +5,7 @@ import { createCustomElement } from "@angular/elements";
 import { InnobotService } from "./innobot.service";
 import { FAQModule } from "./faq/faq.module";
 import { QnaManagementComponent } from "./faq/qna-management.component";
+import { TriggerFaqBtnComponent } from "./faq/utils/trigger-faq-btn/trigger-faq-btn.component";
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { QnaManagementComponent } from "./faq/qna-management.component";
     BrowserAnimationsModule,
     FAQModule
   ],
+  bootstrap: [QnaManagementComponent],
   providers: [
     InnobotService
   ],
@@ -28,7 +30,8 @@ export class AppModule {
   }
 
   public ngDoBootstrap(): void {
-    
+
+    customElements.define("trigger-faq-btn", createCustomElement(TriggerFaqBtnComponent, { injector: this.injector }));
     customElements.define("qna-management", createCustomElement(QnaManagementComponent, { injector: this.injector }));
 
   }

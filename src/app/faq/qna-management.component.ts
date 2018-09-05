@@ -12,7 +12,7 @@ import { QnADto, QnAQuestionDto } from "./qna/qna-model";
 
 export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
-    //protected faqService: FAQService;
+    // protected faqService: FAQService;
     public selectedCategoryId: number;
     public selectedQnAId: number;
     public qnAsGrid: Array<any>;
@@ -22,13 +22,13 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public openQnAForm: boolean;
 
     public get selectedAgentName() {
-        return "qna-tax";//this.projectAgentService.selectedAgent ? this.projectAgentService.selectedAgent.name : "";
+        return "qna-tax"; // this.projectAgentService.selectedAgent ? this.projectAgentService.selectedAgent.name : "";
     }
 
     public constructor(injector: Injector) {
         super(injector);
 
-        //this.faqService = injector.get(FAQService);
+        // this.faqService = injector.get(FAQService);
 
     }
 
@@ -74,8 +74,6 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     }
 
     public onLoadGrid(queryParameters: QueryParameters): void {
-
-        //debugger;
 
         this.qnAsGrid = [];
         const qnaDto: QnADto = new QnADto();
