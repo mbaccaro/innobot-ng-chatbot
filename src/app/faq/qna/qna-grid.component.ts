@@ -1,5 +1,5 @@
 import { Component, Injector, Output, Input, OnInit, EventEmitter } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+//import { Router, ActivatedRoute } from "@angular/router";
 import { LazyLoadEvent } from "../../../../node_modules/mcapp.ng.components";
 import { SortEvent } from "../../../../node_modules/primeng/api";
 import { AppComponentBase } from "../../shared/common/app-base-component";
@@ -15,8 +15,8 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
     // protected projectAgentService: ProjectAgentService;
     // protected qnAServiceProxy: QnAServiceProxy;
-    protected router: Router;
-    protected route: ActivatedRoute;
+    // protected router: Router;
+    // protected route: ActivatedRoute;
     public currentTab = "answer";
     public searchString = "";
    
@@ -36,8 +36,8 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
         //this.projectAgentService = injector.get(ProjectAgentService);
         //this.qnAServiceProxy = injector.get(QnAServiceProxy);
-        this.router = injector.get(Router);
-        this.route = injector.get(ActivatedRoute);
+        // this.router = injector.get(Router);
+        // this.route = injector.get(ActivatedRoute);
 
     }
 
@@ -101,13 +101,13 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
     protected onEdit(event: any): void {
 
-        this.router.navigate(["/app/admin/qna"], {
-            queryParams: {
-                id: btoa(this.agent.id.toString()),
-                name: btoa(this.agent.name),
-                qna: btoa(event.id.toString())
-            }
-        });
+        // this.router.navigate(["/app/admin/qna"], {
+        //     queryParams: {
+        //         id: btoa(this.agent.id.toString()),
+        //         name: btoa(this.agent.name),
+        //         qna: btoa(event.id.toString())
+        //     }
+        // });
 
     }
 
@@ -138,13 +138,13 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
     public createQna(): void {
 
-        this.router.navigate(["/app/admin/qna"], {
-            queryParams: {
-                id: btoa(this.agent.id.toString()),
-                name: btoa(this.agent.name),
-                qna: btoa("0")
-            }
-        });
+        // this.router.navigate(["/app/admin/qna"], {
+        //     queryParams: {
+        //         id: btoa(this.agent.id.toString()),
+        //         name: btoa(this.agent.name),
+        //         qna: btoa("0")
+        //     }
+        // });
 
     }
 

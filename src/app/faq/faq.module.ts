@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { UtilsModule } from "../shared/utils/utils.module";
+import { RouterModule, Router } from "@angular/router";
 
 import {
     TableModule as McAppTableModule,
@@ -24,7 +25,7 @@ import {
 } from "mcapp.ng.components";
 
 import { QnaManagementComponent } from "./qna-management.component";
-// import { QnaGridComponent } from "./qna/qna-grid.component";
+import { QnaGridComponent } from "./qna/qna-grid.component";
 // import { QnaFormComponent } from "./qna/qna-form.component";
 // import { CategoryTreeComponent } from "./category/category-tree.component";
 // import { CategoryFormComponent } from "./category/category-form.component";
@@ -32,6 +33,11 @@ import { QnaManagementComponent } from "./qna-management.component";
 
 @NgModule({
     imports: [
+        RouterModule.forRoot(
+            [
+              { path: "", component: QnaGridComponent}
+            ]
+          ),//TODO- remove this part 
          FormsModule,
          ReactiveFormsModule,
          CommonModule,
@@ -58,8 +64,8 @@ import { QnaManagementComponent } from "./qna-management.component";
          MultiSelectModule
     ],
     declarations: [
-        QnaManagementComponent
-        // QnaGridComponent,
+        QnaManagementComponent,
+         QnaGridComponent
         // QnaFormComponent,
         // CategoryTreeComponent,
         // CategoryFormComponent

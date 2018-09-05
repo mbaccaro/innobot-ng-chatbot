@@ -1,29 +1,26 @@
 <div class="row align-items-center m-form m-form--label-align-right m--margin-bottom-30">
     <div class="col">
         <div class="form-group m-form__group align-items-center">
-            <app-search-box (onSearch)="onSearch($event)" [value]="dataGridConfig.filter"></app-search-box>
+            <!-- <app-search-box (onSearch)="onSearch($event)" [value]="dataGridConfig.filter"></app-search-box> -->
         </div>
     </div>
     <div *ngIf="!hideActionButtons" class="ml-auto mr-3">
         <button (click)="createQna();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-            <i class="la la-plus"></i>{{l("NewQnA")}}
+            <i class="la la-plus"></i>New Q&A
         </button>
     </div>
 </div>
 <div class="primeng-data-style">
-    <mcapp-web-table #dt [value]="qnAs" 
-    [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage" 
-    [rowExpandMode]="'single'" [first]="dataGridConfig.skip" [paginator]="true" 
-    [responsive]="true" [totalRecords]="dataGridConfig.totals"
-        (onLazyLoad)="onChange($event)" 
+    <mcapp-web-table #dt [value]="qnAs" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage" [rowExpandMode]="'single'"
+        [first]="dataGridConfig.skip" [paginator]="true" [responsive]="true" [totalRecords]="dataGridConfig.totals" (onLazyLoad)="onChange($event)"
         (onSort)="onSort($event)" dataKey="identifier" [lazy]="enableLazyLoad">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th width="20"></th>
-                <th [pSortableColumn]="'QnaQuestions[0].Question'">{{l("Question")}}
+                <th [pSortableColumn]="'QnaQuestions[0].Question'">Question
                     <mcapp-web-sortIcon [field]="'question'"></mcapp-web-sortIcon>
                 </th>
-                <th>{{l("Category")}}</th>
+                <th>Category</th>
                 <!-- <th *ngFor="let col of dataGridCols">
                     {{col.header}}
                 </th> -->
@@ -70,23 +67,23 @@
                         <ul class="nav nav-tabs m-tabs-line m-tabs-line--primary">
                             <li class="nav-item m-tabs__item" (click)="currentTab = 'answer'">
                                 <a class="nav-link m-tabs__link" [ngClass]="{'active': (currentTab === 'answer') }">
-                                    <i class="la la-comments"></i> {{l("Answer")}}
+                                    <i class="la la-comments"></i> Answer
                                 </a>
                             </li>
                             <li class="nav-item m-tabs__item" (click)="currentTab = 'alternativeQuestions'">
                                 <a class="nav-link m-tabs__link" [ngClass]="{'active': (currentTab === 'alternativeQuestions') }">
-                                    <i class="la la-comment-o"></i>{{l("AlternativeQuestions")}}
+                                    <i class="la la-comment-o"></i>Alternative Questions
                                 </a>
                             </li>
                         </ul>
                         <div class="answer-response" *ngIf="currentTab === 'answer'">
-                            <div [innerHTML]="rowData.answer | highlight: searchString"></div>
+                            <!-- <div [innerHTML]="rowData.answer | highlight: searchString"></div> highlight we need to see this reference-->
                         </div>
                         <div class="alternative-questions" *ngIf="currentTab === 'alternativeQuestions'">
                             <mcapp-web-table [value]="rowData.questions" alwaysShowPaginator="false" [paginator]="true" [lazy]="true" [rows]="25" [totalRecords]="rowData.questions.length > 1 ? (rowData.questions.length - 1) : 0">
                                 <ng-template pTemplate="header">
                                     <tr>
-                                        <th [pSortableColumn]="'question'">{{l("AlternativeQuestions")}}
+                                        <th [pSortableColumn]="'question'">Alternative Questions
                                             <mcapp-web-sortIcon [field]="'question'"></mcapp-web-sortIcon>
                                         </th>
                                     </tr>
@@ -103,7 +100,7 @@
                                 <ng-template pTemplate="emptymessage" let-columns>
                                     <tr>
                                         <td>
-                                            {{l("NoQuestionsFound")}}
+                                            No questions found!
                                         </td>
                                     </tr>
                                 </ng-template>
@@ -117,7 +114,7 @@
             <tr>
                 <td></td>
                 <td>
-                    {{l("NoQuestionsFound")}}
+                    No questions found!
                 </td>
             </tr>
         </ng-template>
