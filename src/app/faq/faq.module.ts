@@ -9,6 +9,7 @@ import { QnaFormComponent } from "./qna/qna-form.component";
 import { QnaDetailComponent } from "./qna/qna-detail.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
 import { SearchBoxComponent } from "../shared/common/search-box/search-box.component";
+import { LayoutModule } from "./../layout/layout.module";
 
 // import { CategoryFormComponent } from "./category/category-form.component";
 // import { FAQService } from "./faq-service";
@@ -79,6 +80,9 @@ import {
     ],
     providers: [
         //FAQService
+    ],
+    entryComponents: [
+        QnaManagementComponent
     ]
 })
 export class FAQModule { }
