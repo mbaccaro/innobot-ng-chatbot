@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from "@angular/core";
-import { FormGroup, Validators, FormBuilder } from "@angular/forms";
+//import { FormGroup, Validators, FormBuilder } from "@angular/forms";
 import * as underscore from "lodash";
 import { QnADto, QnAQuestionDto } from "./qna-model";
 import { AppComponentBase } from "../../shared/common/app-base-component";
@@ -19,11 +19,11 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     public qnA: QnADto;
     public newQuestion: QnAQuestionDto;
     public primaryQuestion: QnAQuestionDto;
-    public formValidation: FormGroup;
+    //public formValidation: FormGroup;
     public validate: boolean;
     public validateQuestions: boolean;
     public saving: boolean;
-    private formBuilder: FormBuilder;
+    //private formBuilder: FormBuilder;
 
 
     public constructor(injector: Injector) {
@@ -33,7 +33,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         // this.qnAServiceProxy = injector.get(QnAServiceProxy);
         //this.router = injector.get(Router);
         //this.route = injector.get(ActivatedRoute);
-        this.formBuilder = injector.get(FormBuilder);
+        //this.formBuilder = injector.get(FormBuilder);
 
     }
 

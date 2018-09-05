@@ -59,7 +59,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onLoadGrid(queryParameters: QueryParameters): void {
 
-        debugger;
+        //debugger;
 
         this.qnAsGrid = [];
         const qnaDto: QnADto = new QnADto();

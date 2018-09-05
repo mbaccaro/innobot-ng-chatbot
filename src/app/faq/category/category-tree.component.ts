@@ -49,7 +49,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         super(injector);
 
         //this.faqService = injector.get(FAQService);
-        
+
     }
 
     public ngOnInit(): void {
@@ -68,6 +68,33 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     }
 
     public populateTree(): void {
+
+        const categories = [];
+        let category: CategoryDto = new CategoryDto();
+        category.id = -1;
+        category.agentId = 3;
+        category.name = 'General';
+        category.parentId = null;
+        categories.push(category);
+
+        category = new CategoryDto();
+        category.id = 1;
+        category.agentId = 3;
+        category.name = 'Greetings';
+        category.parentId = null;
+        categories.push(category);
+
+        category = new CategoryDto();
+        category.id = 2;
+        category.agentId = 3;
+        category.name = 'Compliments';
+        category.parentId = null;
+
+        categories.push(category);
+
+        categories.forEach(category => {
+            this.creatTreeNode(category, null);
+        });
 
         // this.chatBotAgentCategoryIntance.getCategories(this.agentId).subscribe((result) => {
 
@@ -113,7 +140,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.selectedFiles = [];
 
         if (this.categoryTree && this.selectedQnaCategories) {
-          this.categoryTree.forEach(node => this.populateSelectedNode(node));
+            this.categoryTree.forEach(node => this.populateSelectedNode(node));
         }
 
         this.previousSelectNodes = this.selectedFiles;
@@ -158,7 +185,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         }
 
     }
-    
+
     public addNewTreeNode(category: CategoryDto): void {
 
         const newNode = this.dtoToNode(category);
@@ -206,7 +233,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     }
 
     public onCancelCategory(): void {
-       this.categoryModel = null;
+        this.categoryModel = null;
     }
 
     public createCategory(category: CategoryDto): void {
@@ -239,7 +266,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         //             //this.notify.info(this.l("SavedSuccessfully"));
         //             this.categoryModel = null;
         //             this.contextSelectNode.label = category.name;
-                   
+
         //             if (this.selectionMode === "single") {
 
         //                 // this.categoryServiceProxy.isCategoryUsedByQnA(this.contextSelectNode.id, API_VERSION).subscribe((re) => {

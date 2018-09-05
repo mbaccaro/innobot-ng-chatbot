@@ -39,7 +39,7 @@
                             Answer:
                         </label>
                         <div class="col-lg-10 col-md-12">
-                            <mcapp-web-editor name="answer" [(ngModel)]="qnA.answer" [style]="{'height':'300px'}"></mcapp-web-editor>
+                            <!-- <mcapp-web-editor name="answer" [(ngModel)]="qnA.answer" [style]="{'height':'300px'}"></mcapp-web-editor> -->
                         </div>
                     </div>
                     <div class="form-group m-form__group row mt-4">
@@ -87,8 +87,8 @@
             </div>
             <div class="col-md-3">
                 <div>
-                    <!-- <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)" 
-                    (unselectNode)="onUnselectCategory($event)" [selectedQnaCategories]="qnA.categories" ></category-tree> -->
+                    <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)" 
+                    (unselectNode)="onUnselectCategory($event)" [selectedQnaCategories]="qnA.categories" ></category-tree>
                 </div>
             </div>
         </div>
