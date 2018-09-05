@@ -1,0 +1,85 @@
+.innobot-chatbox{
+    width: $chatbox-width;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    
+}
+.innobot-chatbox-messages{
+    padding: 15px;
+    flex: 1;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.innobot-chatbox-message-item{
+    display:flex;
+    align-items: flex-start;
+    margin-top: 15px;
+    .innobot-chatbox-message-body{
+        padding: 15px;
+        border-radius: $border-radius;
+        font-size:12px;
+    }
+    &.innobot-bot-message{
+        .innobot-chatbox-message-body{
+            background: $chatbox-bot-message-bg;
+            color: $chatbox-bot-message-color;
+            margin-right: $chatbox-avatar-size + 15px;
+            margin-left: 15px;
+        }
+        
+    }
+
+    &.innobot-user-message{
+        flex-direction: row-reverse;
+        .innobot-chatbox-message-body{
+            background: $chatbox-user-message-bg;
+            color: $chatbox-user-message-color;
+            margin-left: $chatbox-avatar-size + 15px;
+            margin-right: 15px;
+        }
+    }
+}
+
+.innobot-user-inital{
+    width: $chatbox-avatar-size;
+    height: $chatbox-avatar-size;
+    background:linear-gradient(106deg, #f4516c, #ffb822);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    font-size:18px;
+    font-weight: 500;
+    color:white;
+}
+
+.innobot-chatbox-footer{
+    // height: 45px;
+    border-top: 1px solid $border-color;
+    padding: 15px;
+    border-bottom-right-radius: $border-radius;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.innobot-chatbox-input{
+    flex:1;
+    input{
+        background:  #f4f5f8;
+        border: none;
+        border-radius: 20px;
+        padding: 10px 20px;
+        width: 100%;
+        box-sizing: border-box;
+        font-family: "poppins";
+        font-size: 13px;
+        &::placeholder{
+            color: #C5CAD7;
+            font-weight: 300;
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}
