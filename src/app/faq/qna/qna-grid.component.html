@@ -8,37 +8,26 @@
 </div>
 
 <div class="primeng-data-style">
-    <mcapp-web-dataList [value]="qnAs"  [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take"
-        [rowsPerPageOptions]="dataGridConfig.rowsPerPage" [lazy]="true" (onLazyLoad)="onChange2($event)" [paginator]="true">
+    <mcapp-web-dataList [value]="qnAs" [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage"
+        [lazy]="true" (onLazyLoad)="onChange($event)" [paginator]="true" >
+            <ng-template pTemplate="body" let-rowData >
+                    <tr >
+                             <td (click)="getDetails(rowData);" >
+                            <div *ngFor="let question of rowData.questions">
+                                <span  style="color: orangered" *ngIf="question.isPrimary === true">
+                                    {{question.question}}
+                                </span>
+                            </div>
+                            <div >
+                                    <span style="color: chartreuse">
+                                      <div [innerHtml]="rowData.answer | safehtml"></div>
+                                    </span>
+                                </div>
+                        </td>
+                   
+                </tr>
+            </ng-template>
 
-
-        <!-- <ui-datalist>
-                    <ui-datalist-header>
-
-                    </ui-datalist-header>
-
-                    <ui-datalist-content>
-                        <ui-datalist-data>
-
-                        </ui-datalist-data>
-                    </ui-datalist-content>
-               </ui-datalist>>
-            <div >
-                <td [attr.colspan]="4">
-                    {{item.question}}
-                </td>
-            </div> -->
-        <ng-template pTemplate="body" let-rowData>
-            <tr>
-                <td>
-                    <div *ngFor="let question of rowData.questions">
-                        <span *ngIf="question.isPrimary === true">
-                            {{question.question}}
-                        </span>
-                    </div>
-                </td>
-
-            </tr>
-        </ng-template>
+        
     </mcapp-web-dataList>
 </div>

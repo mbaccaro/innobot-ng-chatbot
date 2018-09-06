@@ -60,6 +60,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.closeFullScreenDetails();
         this.selectedCategory = category;
+        this.selectedQnA = new QnADto();
+        this.selectedQnA.id = 0;
         this.loadQnAGrid();
 
     }
@@ -68,9 +70,13 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.closeFullScreenDetails();
         this.selectedCategory = new CategoryDto();
+        this.selectedQnA = new QnADto();
+        this.selectedQnA.id = 0;
         this.loadQnAGrid();
 
     }
+
+    
 
     public onSelectQnA(qnA: QnADto): void {
 
@@ -83,6 +89,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.closeFullScreenDetails();
         this.selectedQnA = new QnADto();
+        this.selectedQnA.id = 0;
         this.showDetailsQnA = true;
 
     }

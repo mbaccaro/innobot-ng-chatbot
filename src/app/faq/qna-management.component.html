@@ -1,32 +1,42 @@
-<app-layout>
-    <app-header></app-header>
+<app-main-layout>
     <app-main-content>
         <app-content-left>
             <!-- CATEGORY SCREEN-->
             <div *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
-                <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
-                    (unselectNode)="onUnselectCategory($event)"></category-tree>
+                <category-tree [agentId]="3" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
             </div>
             <!-- QNA LIST SCREEN-->
-            <div *ngIf="selectedCategory.id  > 0 || selectedCategory.id === -1">
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go
-                    Full Screen
+            <div *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0)">
+                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go Full Screen
                 </button>
-                <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go
-                    back
+                <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go back
                 </button>
-                <qna-grid (selectedQnA)="onSelectQnA($event)" (unselectedQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
+                <qna-grid (selectQnA)="onSelectQnA($event)" (unselectQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
                     (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
                 </qna-grid>
                 <div *ngIf="!openQnAForm">
                     <button (click)="createQnA();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                         <i class="la la-plus"></i>Add Q&A
                     </button>
+                    <qna-grid (selectedQnA)="onSelectQnA($event)" (unselectedQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
+                        (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
+                    </qna-grid>
+                    <div *ngIf="!openQnAForm">
+                        <button (click)="createQnA();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                            <i class="la la-plus"></i>Add Q&A
+                        </button>
+                    </div>
+                </div>
+                <!-- QNA DETAIL -->
+                <div *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
+                    <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
                 </div>
             </div>
             <!-- QNA DETAIL -->
             <div *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
-                <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
+                <button (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go back
+                </button>
+                <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)"  (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
             </div>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">

@@ -16,7 +16,11 @@
                 </label>
                 <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
                     <div class="input-group">
-                        {{qnA.questions[0].question}}
+                            <div *ngFor="let question of qna.questions">
+                                    <span *ngIf="question.isPrimary === true">
+                                        {{question.question}}
+                                    </span>
+                                </div>
                     </div>
                 </div>
             </div>
@@ -25,8 +29,8 @@
             <label class="col-form-label col-lg-2 col-md-12">
                 Answer:
             </label>
-            <div class="col-lg-10 col-md-12">
-                {{qnA.answer}}
+            <div class="col-lg-10 col-md-12" [innerHtml] ="qna.answer | safehtml">
+               
             </div>
         </div>
     </div>
