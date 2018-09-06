@@ -55,7 +55,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public toggle(): void {
 
         this.isFullScreen = !this.isFullScreen;
-        debugger  
+  
         if (this.selectedCategory === null || this.selectedCategory === undefined) {
             this.onSelectCategory(this.selectedCategory);
 
@@ -103,7 +103,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.showDetailsQnA = true;
 
         } else {
-            debugger
+    
             this.loadQnAGrid();
             this.selectedQnA = this.qnAsGrid.pop();
             this.showDetailsQnA = true;
