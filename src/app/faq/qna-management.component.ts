@@ -23,7 +23,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public openQnAForm: boolean;
     public openCategoryForm: boolean;
     public isFullScreen: boolean;
-    public tabChosen: string;
+    public selectedTab: string;
 
     public constructor(injector: Injector) {
         super(injector);
@@ -43,7 +43,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.openCategoryForm = false;
         this.selectedCategory = new CategoryDto();
         this.selectedQnA = new CategoryDto();
-        this.tabChosen = "category";
+        this.selectedTab = "category";
 
     }
 
@@ -171,12 +171,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     }
 
-    public categoryTabClick(): void {
-        this.tabChosen = "category";
-    }
-
-    public commonQuestionsTabClick(): void {
-        this.tabChosen = "commonQuestions";
+    public tabClick(tab): void {
+        this.selectedTab = tab;
     }
 
 }
