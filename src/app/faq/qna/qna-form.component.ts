@@ -70,10 +70,13 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     private loadQnAParameters(): void {
 
-        this.qnA = new QnADto();
-        this.qnA.questions = [];
-        this.primaryQuestion = new QnAQuestionDto();
-
+        if (!this.qnA) {
+         
+            this.qnA = new QnADto();
+            this.qnA.questions = [];
+            this.primaryQuestion = new QnAQuestionDto();
+        
+        }
     }
 
     private updateQnA(qnA: QnADto): void {
@@ -153,7 +156,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     public cancelQnA(): void {
 
         this.cancel.emit();
-        
+
     }
 
     private setValidateAlternativeQuestions(): void {

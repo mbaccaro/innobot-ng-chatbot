@@ -98,6 +98,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public onSelectQnA(qnA: QnADto): void {
 
         this.closeFullScreenDetails();
+
         if (!this.isFullScreen || qnA.id !== 0) {
             this.selectedQnA = qnA;
             this.showDetailsQnA = true;
@@ -132,7 +133,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.isFullScreen = true;
         this.openQnAForm = true; 
         this.showDetailsQnA = false;
-
+        debugger;
     }
     
     public deleteQnA(): void {
