@@ -56,7 +56,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.isFullScreen = !this.isFullScreen;
   
-        if (this.selectedCategory === null || this.selectedCategory === undefined) {
+        if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
             this.onSelectCategory(this.selectedCategory);
 
         } else if (this.selectedCategory != null) {
