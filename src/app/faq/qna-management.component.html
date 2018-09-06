@@ -1,12 +1,10 @@
 <app-main-layout>
     <app-content-left>
-
         <!-- CATEGORY SCREEN-->
         <div *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
             <category-tree [agentId]="3" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
                 (unselectNode)="onUnselectCategory($event)"></category-tree>
         </div>
-
         <!-- QNA LIST SCREEN-->
         <div *ngIf="selectedCategory.id  > 0 || selectedCategory.id === -1">
             <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go
