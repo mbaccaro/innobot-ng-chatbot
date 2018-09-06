@@ -50,17 +50,12 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
         this.qnAs = [];
         this.totals = 0;     
-      console.log( this.selectQnA);
-        this.setupGrid();
+         this.setupGrid();
 
     }
+    
     public getDetails(item: QnADto) {
-
-      console.log(item);
-      
       this.selectQnA.emit(item);
-
-
     }
 
     private setupGrid(): void {

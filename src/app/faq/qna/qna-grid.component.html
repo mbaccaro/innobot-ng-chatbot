@@ -9,25 +9,34 @@
 
 <div class="primeng-data-style">
     <mcapp-web-dataList [value]="qnAs" [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage"
-        [lazy]="true" (onLazyLoad)="onChange($event)" [paginator]="true" >
-            <ng-template pTemplate="body" let-rowData >
-                    <tr >
-                             <td (click)="getDetails(rowData);" >
-                            <div *ngFor="let question of rowData.questions">
-                                <span  style="color: orangered" *ngIf="question.isPrimary === true">
-                                    {{question.question}}
-                                </span>
-                            </div>
-                            <div >
-                                    <span style="color: chartreuse">
-                                      <div [innerHtml]="rowData.answer | safehtml"></div>
-                                    </span>
-                                </div>
-                        </td>
-                   
-                </tr>
-            </ng-template>
+        [lazy]="true" (onLazyLoad)="onChange($event)" [paginator]="true">
+        <ng-template pTemplate="body" let-rowData>
+                <div className="innobot-faq-list">
+                <div (click)="getDetails(rowData);">
+                    <div class="innobot-faq-item">
+                        <div class="innobot-faq-body">
 
-        
+                            <div *ngFor="let question of rowData.questions">
+                                <h6 class="innobot-faq-question" style="color:orange"  *ngIf="question.isPrimary === true">
+                                    {{question.question}}</h6>
+
+                            </div>
+
+
+                            <div class="innobot-faq-anwser">
+                                <div style="color:gray" [innerHtml]="rowData.answer |  slice:0:300 | safehtml  " ></div>
+                            </div>
+                            <div class="innobot-faq-arrow">
+                                <i class="fa fa-chevron-right" aria-hidden="true" ></i>
+                            </div>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
+         
+        </ng-template>
+
+
     </mcapp-web-dataList>
-</div>
+    </div>
