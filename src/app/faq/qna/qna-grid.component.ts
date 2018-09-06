@@ -4,7 +4,7 @@ import { SortEvent } from "../../../../node_modules/primeng/api";
 import { AppComponentBase } from "../../shared/common/app-base-component";
 import { QnADto, AgentDto, QnAQuestionDto } from "./qna-model";
 import { SortDirection } from "../../shared/helpers/QueryParameters";
-import {ChatBotClientConfig, ChatBotAgentQnA} from "innobot-chat-api";
+
 @Component({
     selector: "qna-grid",
     templateUrl: "./qna-grid.component.html"
@@ -117,5 +117,5 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
     public onUnselectRow(event: QnADto): void {
         this.unselectQnA.emit(event);
     }
-    
+
 }

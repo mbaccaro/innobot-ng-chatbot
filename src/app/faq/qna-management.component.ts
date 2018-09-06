@@ -21,6 +21,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public agentId: number;
     public showDetailsQnA: boolean;
     public openQnAForm: boolean;
+    public openCategoryForm: boolean;
     public isFullScreen: boolean;
 
     public constructor(injector: Injector) {
@@ -32,12 +33,13 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public ngOnInit(): void {
 
-        this.agentId = 3;
+        this.agentId = 1;
         this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
         this.loadQnAGrid();
         this.showDetailsQnA = false;
         this.isFullScreen = false;
         this.openQnAForm = false;
+        this.openCategoryForm = false;
         this.selectedCategory = new CategoryDto();
         this.selectedQnA = new CategoryDto();
         
@@ -47,7 +49,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.openQnAForm = false;
         this.showDetailsQnA = false;
-
+        this.openCategoryForm = false;
     }
 
     public toggle(): void {
