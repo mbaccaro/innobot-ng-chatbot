@@ -71,9 +71,9 @@ import {
         QnaDetailComponent,
         CategoryTreeComponent,
         CategoryFormComponent,
-        TriggerFaqBtnComponent,
         CategoryFormComponent,
-        SearchBoxComponent
+        SearchBoxComponent,
+        TriggerFaqBtnComponent
     ],
     exports: [
         QnaManagementComponent,
