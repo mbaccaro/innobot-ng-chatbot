@@ -5,9 +5,25 @@
 
             <!-- CATEGORY SCREEN-->
             <div *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Toggle Full Screen
-                </button>
+                
+                    <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Toggle Full Screen
+                        </button>
+                        <div>
+                                <ul class="innobot-tabs">
+                                    <li data-name="category" class="btn" (click)="categoryTabClick()">
+                                        <span data-name="category">Category</span>
+                                    </li>
+                                    <li data-name="commonQuestions"  class="btn" (click)="commonQuestionsTabClick()">
+                                        <span data-name="commonQuestions">Common Questions</span>
+                                    </li>
+                                </ul>                                                              
+                            </div>
+            <div *ngIf="tabChosen==='category'">
                 <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
+            </div>
+            <div *ngIf="tabChosen==='commonQuestions'">
+              Most Common Questions
+            </div>
             </div>
             <!-- QNA LIST SCREEN-->
             <div *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
