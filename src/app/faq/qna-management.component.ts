@@ -32,7 +32,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public ngOnInit(): void {
 
-        this.agentId = 3;
+        this.agentId = 1;
         this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
         this.loadQnAGrid();
         this.showDetailsQnA = false;
@@ -53,7 +53,19 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public toggle(): void {
 
         this.isFullScreen = !this.isFullScreen;
-        
+        debugger  
+        if (this.selectedCategory === null || this.selectedCategory === undefined) {
+            this.onSelectCategory(this.selectedCategory);
+
+        } else if (this.selectedCategory != null) {
+         
+            this.onSelectQnA(this.selectedQnA);
+            
+        } else {
+            this.onUnselectCategory(null);
+        }
+
+        console.log(this.isFullScreen);
     }
 
     public onSelectCategory(category: CategoryDto): void {
@@ -62,8 +74,11 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedCategory = category;
         this.selectedQnA = new QnADto();
         this.selectedQnA.id = 0;
-        this.loadQnAGrid();
+        if (this.selectedCategory !== undefined) {
+            this.loadQnAGrid();
 
+        }
+       
     }
 
     public onUnselectCategory(category: CategoryDto): void {
@@ -81,8 +96,17 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public onSelectQnA(qnA: QnADto): void {
 
         this.closeFullScreenDetails();
-        this.selectedQnA = qnA;
-        this.showDetailsQnA = true;
+        if (!this.isFullScreen || qnA.id !== 0) {
+            this.selectedQnA = qnA;
+            this.showDetailsQnA = true;
+
+        } else {
+            debugger
+            this.loadQnAGrid();
+            this.selectedQnA = this.qnAsGrid.pop();
+            this.showDetailsQnA = true;
+        }
+       
     }
 
     public onUnselectQnA(qnA: QnADto): void {

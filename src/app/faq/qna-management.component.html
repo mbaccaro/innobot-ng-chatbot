@@ -2,10 +2,12 @@
     <app-content-left>
         <!-- CATEGORY SCREEN-->
         <div *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
-            <category-tree [agentId]="3" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
+                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go Full Screen
+                    </button>
+            <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
         </div>
         <!-- QNA LIST SCREEN-->
-        <div *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0)">
+        <div *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
             <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go Full Screen
             </button>
             <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go back
@@ -21,6 +23,8 @@
         </div>
         <!-- QNA DETAIL -->
         <div *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
+                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go Full Screen
+                    </button>
             <button (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go back
             </button>
             <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)"  (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
@@ -28,7 +32,7 @@
     </app-content-left>
     <div *ngIf="isFullScreen">
         <app-content-right>
-            <div *ngIf="selectedQnA === undefined">
+            <div *ngIf="selectedQnA === undefined ||  selectedQnA.id === 0">
                 no content!
             </div>
             <!-- QNA DETAIL -->
