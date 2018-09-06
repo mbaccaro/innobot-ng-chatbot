@@ -36,6 +36,7 @@
                     <button (click)="createQnA();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                         <i class="la la-plus"></i>Add Q&A
                     </button>
+
                 </div>
             </div>
             <!-- QNA DETAIL -->
@@ -48,11 +49,7 @@
             </div>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">
-<<<<<<< HEAD
-            <div *ngIf="selectedQnA === undefined">
-=======
             <div *ngIf="(selectedQnA === undefined ||  selectedQnA.id === 0 || selectedCategory.id === undefined || selectedCategory.id === null) && !openQnAForm">
->>>>>>> 11edc968da5b65825dda47aae2130d6c46fb7bbb
                 no content!
             </div>
             <!-- CATEGORY FORM -->
@@ -65,7 +62,7 @@
             </div>
             <!-- QNA FORM -->
             <div *ngIf="openQnAForm">
-                <qna-form [model]="selectedQnA" (save)="onSaveQnA()"></qna-form>
+                <qna-form [model]="selectedQnA"></qna-form>
             </div>
         </app-content-right>
     </app-main-content>

@@ -51,18 +51,6 @@ body{
     margin-right: 25px;
 }
 
-//CONTENT
-.innobot-main-content{
-    width:100%;
-    height: 100%;
-    display: flex;
-    overflow-y: scroll;
-    height: calc(100vh - 70px);
-    .innobot-content-body-left{
-        width: 400px;
-    }
-}
-
 //SIDEBAR
 .innobot-sidebar{
     border-right: solid 1px $border-color;
