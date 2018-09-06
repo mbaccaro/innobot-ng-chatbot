@@ -35,6 +35,10 @@
             <div *ngIf="selectedQnA === undefined ||  selectedQnA.id === 0">
                 no content!
             </div>
+            <!-- CATEGORY FORM -->
+            <div *ngIf="openCategoryForm">
+                <!-- <category-form [model]="category" (save)="onCategorySaved($event)" (cancel)="onCancelCategory()"></category-form> -->
+            </div>
             <!-- QNA DETAIL -->
             <div *ngIf="showDetailsQnA && selectedQnA.id  > 0">
                 <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>

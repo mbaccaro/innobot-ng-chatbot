@@ -116,5 +116,5 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
     public onUnselectRow(event: QnADto): void {
         this.unselectQnA.emit(event);
     }
-    
+
 }

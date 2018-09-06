@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ChatBotClient, ChatBotClientConfig, ChatBotAgentQnA, ChatBotAgentCategory } from 'innobot-chat-api';
+import { environment } from "../../environments/environment";
 
 @Injectable()
 export class FAQService {
@@ -12,7 +13,7 @@ export class FAQService {
     public config(): ChatBotClientConfig {
 
         const config = new ChatBotClientConfig();
-        config.innobotUri = "http://dev.app.innobot.internal.epeinnovations.com";
+        config.innobotUri = environment.innobotUri;
 
         return config;
 
