@@ -35,7 +35,7 @@
             </div>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">
-            <div *ngIf="(selectedQnA === undefined ||  selectedQnA.id === 0 || selectedCategory.id === undefined || selectedCategory.id === null)">
+            <div *ngIf="(selectedQnA === undefined ||  selectedQnA.id === 0 || selectedCategory.id === undefined || selectedCategory.id === null) && !openQnAForm">
                 no content!
             </div>
             <!-- CATEGORY FORM -->
