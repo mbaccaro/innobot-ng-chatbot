@@ -13,6 +13,7 @@ import { LayoutModule } from "./../layout/layout.module";
 import { CategoryFormComponent } from "./category/category-form.component";
 import { FAQService } from "./faq-service";
 import {SafeHtmlPipe} from "../faq/utils/safe-html-pipe";
+import {StripHtmlPipe} from "../faq/utils/strip-html-pipe";
 
 import {
     TableModule,
@@ -75,7 +76,8 @@ import {
         CategoryFormComponent,
         SearchBoxComponent,
         TriggerFaqBtnComponent,
-        SafeHtmlPipe
+        SafeHtmlPipe,
+        StripHtmlPipe
     ],
     exports: [
         QnaManagementComponent,
