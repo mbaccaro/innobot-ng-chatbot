@@ -11,32 +11,24 @@
     <mcapp-web-dataList [value]="qnAs" [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage"
         [lazy]="true" (onLazyLoad)="onChange($event)" [paginator]="true">
         <ng-template pTemplate="body" let-rowData>
-                <div className="innobot-faq-list">
-                <div (click)="getDetails(rowData);">
+                <div class="innobot-faq-list">
                     <div class="innobot-faq-item">
                         <div class="innobot-faq-body">
-
-                            <div *ngFor="let question of rowData.questions">
-                                <h6 class="innobot-faq-question" style="color:orange"  *ngIf="question.isPrimary === true">
-                                    {{question.question}}</h6>
-
-                            </div>
-
+                            <ng-container *ngFor="let question of rowData.questions">
+                                <h6 class="innobot-faq-question"  *ngIf="question.isPrimary === true" (click)="getDetails(rowData)">
+                                    {{question.question}}
+                                </h6>
+                            </ng-container>
 
                             <div class="innobot-faq-anwser">
-                                <div style="color:gray" [innerHtml]="rowData.answer  | striphtml |  slice:0:300  " >.....</div> 
+                                <div [innerHtml]="rowData.answer  | striphtml |  slice:0:300  " >.....</div> 
                             </div>
                             <div class="innobot-faq-arrow">
                                 <i class="fa fa-chevron-right" aria-hidden="true" ></i>
                             </div>
-
-                        </div>
                         </div>
                     </div>
                 </div>
-         
         </ng-template>
-
-
     </mcapp-web-dataList>
     </div>

@@ -4,7 +4,8 @@ import { QnADto } from "./qna-model";
 
 @Component({
     selector: "qna-detail",
-    templateUrl: "./qna-detail.component.html"
+    templateUrl: "./qna-detail.component.html",
+    styleUrls: ["./qna-detail.scss"]
 })
 
 export class QnaDetailComponent extends AppComponentBase implements OnInit {

@@ -16,11 +16,11 @@
                 </label>
                 <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
                     <div class="input-group">
-                            <div *ngFor="let question of qna.questions">
-                                    <span *ngIf="question.isPrimary === true">
-                                        {{question.question}}
-                                    </span>
-                                </div>
+                        <div *ngFor="let question of qna.questions">
+                            <span *ngIf="question.isPrimary === true">
+                                {{question.question}}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
