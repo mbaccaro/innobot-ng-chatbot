@@ -16,12 +16,12 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     private faqService: FAQService;
     private chatBotAgentQnAInstance: ChatBotAgentQnA;
     public selectedCategory: any;
-    public selectedQnAId: number;
+    public selectedQnA: any;
     public qnAsGrid: Array<any>;
     public agentId: number;
     public showDetailsQnA: boolean;
-    public showCategoryTree: boolean;
     public openQnAForm: boolean;
+    public isFullScreen: boolean;
 
     public constructor(injector: Injector) {
         super(injector);
@@ -36,12 +36,29 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
         this.loadQnAGrid();
         this.showDetailsQnA = false;
+        this.isFullScreen = false;
+        this.openQnAForm = false;
         this.selectedCategory = new CategoryDto();
+        this.selectedQnA = new CategoryDto();
+        
+    }
 
+    private closeFullScreenDetails(): void {
+
+        this.openQnAForm = false;
+        this.showDetailsQnA = false;
+
+    }
+
+    public toggle(): void {
+
+        this.isFullScreen = !this.isFullScreen;
+        
     }
 
     public onSelectCategory(category: CategoryDto): void {
 
+        this.closeFullScreenDetails();
         this.selectedCategory = category;
         this.loadQnAGrid();
 
@@ -49,6 +66,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onUnselectCategory(category: CategoryDto): void {
 
+        this.closeFullScreenDetails();
         this.selectedCategory = new CategoryDto();
         this.loadQnAGrid();
 
@@ -56,13 +74,15 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onSelectQnA(qnA: QnADto): void {
 
-        this.selectedQnAId = qnA.id;
+        this.closeFullScreenDetails();
+        this.selectedQnA = qnA;
         this.showDetailsQnA = true;
     }
 
-    public onUnselectQnA(category: CategoryDto): void {
+    public onUnselectQnA(qnA: QnADto): void {
 
-        this.selectedQnAId = undefined;
+        this.closeFullScreenDetails();
+        this.selectedQnA = new QnADto();
         this.showDetailsQnA = true;
 
     }
@@ -71,6 +91,34 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.applyQueryParameters();
         this.onLoadGrid(this.queryParameters);
+
+    }
+
+    public editQnA(): void {
+
+        this.isFullScreen = true;
+        this.openQnAForm = true; 
+        this.showDetailsQnA = false;
+
+    }
+    
+    public deleteQnA(): void {
+
+        this.isFullScreen = false;
+        this.openQnAForm = false; 
+        this.showDetailsQnA = false;
+        //routine to delete the selected qna here.
+        this.loadQnAGrid();
+
+    }
+
+    public createQnA(): void {
+
+        this.isFullScreen = true;
+        this.openQnAForm = true;
+        this.selectedQnA = new QnADto();
+        this.selectedQnA.id = 0;
+        this.selectedQnA.agentId = this.agentId;
 
     }
 
