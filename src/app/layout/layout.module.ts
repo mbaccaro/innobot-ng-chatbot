@@ -4,10 +4,11 @@ import { ContentLeftComponent } from "./content-left/content-left.component";
 import { ContentRightComponent } from "./content-right/content-right.component";
 import { HeaderComponent } from "./header/header.component";
 import { MainContentComponent } from "./main-content/main-content.component";
+import {  BreadcrumbModule} from "mcapp.ng.components";
 
 @NgModule({
     imports: [
-       
+        BreadcrumbModule
     ],
     declarations: [
         MainLayoutComponent,
@@ -15,6 +16,7 @@ import { MainContentComponent } from "./main-content/main-content.component";
         ContentRightComponent,
         HeaderComponent, 
         MainContentComponent
+       
     ],
     exports: [
         MainLayoutComponent,
