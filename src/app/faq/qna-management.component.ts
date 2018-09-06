@@ -23,6 +23,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public openQnAForm: boolean;
     public openCategoryForm: boolean;
     public isFullScreen: boolean;
+    public selectedTab: string;
 
     public constructor(injector: Injector) {
         super(injector);
@@ -42,7 +43,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.openCategoryForm = false;
         this.selectedCategory = new CategoryDto();
         this.selectedQnA = new CategoryDto();
-        
+        this.selectedTab = "category";
+
     }
 
     private closeFullScreenDetails(): void {
@@ -56,7 +58,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.isFullScreen = !this.isFullScreen;
   
-        if (this.selectedCategory === null || this.selectedCategory === undefined) {
+        if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
             this.onSelectCategory(this.selectedCategory);
 
         } else if (this.selectedCategory != null) {
@@ -174,6 +176,10 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         });
 
+    }
+
+    public tabClick(tab): void {
+        this.selectedTab = tab;
     }
 
 }
