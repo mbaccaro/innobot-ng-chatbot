@@ -32,7 +32,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public ngOnInit(): void {
 
-        this.agentId = 3;
+        this.agentId = 1;
         this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
         this.loadQnAGrid();
         this.showDetailsQnA = false;

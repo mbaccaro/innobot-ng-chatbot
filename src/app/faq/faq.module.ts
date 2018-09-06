@@ -35,6 +35,7 @@ import {
     MultiSelectModule
 } from "mcapp.ng.components";
 
+
 @NgModule({
     imports: [
         LayoutModule,
@@ -73,7 +74,7 @@ import {
         CategoryFormComponent,
         CategoryFormComponent,
         SearchBoxComponent,
-        TriggerFaqBtnComponent
+        TriggerFaqBtnComponent,
     ],
     exports: [
         QnaManagementComponent,
