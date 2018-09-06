@@ -7,10 +7,16 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TriggerFaqBtnComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit() {
-    
+
+  }
+
+  onClick() {
+    console.log("someone click me");
   }
 
 }

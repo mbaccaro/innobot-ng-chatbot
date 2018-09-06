@@ -12,6 +12,7 @@ import { SearchBoxComponent } from "../shared/common/search-box/search-box.compo
 import { LayoutModule } from "./../layout/layout.module";
 import { CategoryFormComponent } from "./category/category-form.component";
 import { FAQService } from "./faq-service";
+import {SafeHtmlPipe} from "../faq/utils/safe-html-pipe";
 
 import {
     TableModule,
@@ -71,9 +72,10 @@ import {
         QnaDetailComponent,
         CategoryTreeComponent,
         CategoryFormComponent,
-        TriggerFaqBtnComponent,
         CategoryFormComponent,
-        SearchBoxComponent
+        SearchBoxComponent,
+        TriggerFaqBtnComponent,
+        SafeHtmlPipe
     ],
     exports: [
         QnaManagementComponent,
