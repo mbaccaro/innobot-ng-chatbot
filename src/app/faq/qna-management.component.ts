@@ -94,9 +94,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.loadQnAGrid();
 
     }
-
-    
-
+  
     public onSelectQnA(qnA: QnADto): void {
 
         this.closeFullScreenDetails();
@@ -147,7 +145,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.loadQnAGrid();
 
     }
-
+    
     public createQnA(): void {
 
         this.isFullScreen = true;
@@ -156,6 +154,15 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedQnA.id = 0;
         this.selectedQnA.agentId = this.agentId;
 
+    }
+
+    public onSaveQnA(): void {
+
+        this.openQnAForm = false;
+        this.showDetailsQnA = true;
+        this.isFullScreen = true; 
+        this.loadQnAGrid();
+        
     }
 
     public onLoadGrid(queryParameters: QueryParameters): void {

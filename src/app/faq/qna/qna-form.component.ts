@@ -4,6 +4,8 @@ import * as underscore from "lodash";
 import { QnADto, QnAQuestionDto } from "./qna-model";
 import { AppComponentBase } from "../../shared/common/app-base-component";
 import { CategoryDto, QnAAgentCategoryDto } from "../category/category-model";
+import { FAQService } from "../faq-service";
+import { ChatBotAgentQnA } from "innobot-chat-api";
 
 @Component({
     selector: "qna-form",
@@ -15,6 +17,8 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     @Output() public cancel: EventEmitter<any> = new EventEmitter();
     @Output() public save: EventEmitter<QnADto> = new EventEmitter();
 
+    public faqService: FAQService;
+    private chatBotAgentQnAInstance: ChatBotAgentQnA;
     public qnA: QnADto;
     public newQuestion: QnAQuestionDto;
     public primaryQuestion: QnAQuestionDto;
@@ -28,6 +32,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         super(injector);
 
         this.formBuilder = injector.get(FormBuilder);
+        this.faqService = injector.get(FAQService);
 
     }
 
@@ -56,6 +61,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         this.validateQuestions = false;
         this.loadQnAParameters();
         this.createValidationModel();
+        this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
 
     }
 
@@ -71,49 +77,47 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     private loadQnAParameters(): void {
 
         if (!this.qnA) {
-         
+
             this.qnA = new QnADto();
             this.qnA.questions = [];
             this.primaryQuestion = new QnAQuestionDto();
-        
+
         }
     }
 
-    private updateQnA(qnA: QnADto): void {
+    private updateQnA(qnA: any): void {
 
-        // this.qnAServiceProxy.updateQnA(qnA, API_VERSION)
-        //     .finally(() => { this.saving = false; })
-        //     .subscribe((result) => {
+        this.chatBotAgentQnAInstance.editQnA(qnA)
+            .subscribe((result) => {
 
-        //         if (result.value > 0) {
+                if (result.value > 0) {
 
-        //             //this.notify.info(this.l("SavedSuccessfully"));
-        //             this.goQnaGrid();
+                    //this.notify.info(this.l("SavedSuccessfully"));
+                    //this.goQnaGrid();
 
-        //         } else {
-        //             this.checkResultError(result);
-        //         }
+                } else {
+                    this.checkResultError(result);
+                }
 
-        //     });
+            });
 
     }
 
-    private insertQnA(qnA: QnADto): void {
+    private insertQnA(qnA: any): void {
 
-        // this.qnAServiceProxy.createQnA(qnA, API_VERSION)
-        //     .finally(() => { this.saving = false; })
-        //     .subscribe((result) => {
+        this.chatBotAgentQnAInstance.addQnA(qnA)
+            .subscribe((result) => {
 
-        //         // if (result.value > 0) {
+                if (result.value > 0) {
 
-        //         //     this.notify.info(this.l("SavedSuccessfully"));
-        //         //     this.goQnaGrid();
+                    //this.notify.info(this.l("SavedSuccessfully"));
+                    //this.goQnaGrid();
 
-        //         // } else {
-        //         //     this.checkResultError(result);
-        //         // }
+                } else {
+                    this.checkResultError(result);
+                }
 
-        //     });
+            });
 
     }
 
@@ -134,6 +138,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     public saveQnA(): void {
 
+        debugger;
         this.loadPrimaryQuestion();
 
         if (this.checkAlternativeQuestion(null) === true) {
