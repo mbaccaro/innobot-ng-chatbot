@@ -4,7 +4,10 @@ import { SortEvent } from "../../../../node_modules/primeng/api";
 import { AppComponentBase } from "../../shared/common/app-base-component";
 import { QnADto, AgentDto, QnAQuestionDto } from "./qna-model";
 import { SortDirection } from "../../shared/helpers/QueryParameters";
-import {ChatBotClientConfig, ChatBotAgentQnA} from "innobot-chat-api";
+import { FAQService } from "../faq-service";
+import { DomSanitizer } from "@angular/platform-browser";
+import { SafeHtmlPipe } from "../utils/safe-html-pipe";
+
 @Component({
     selector: "qna-grid",
     templateUrl: "./qna-grid.component.html"
@@ -17,9 +20,9 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
   
     @Output() public selectQnA: EventEmitter<QnADto> = new EventEmitter();
     @Output() public unselectQnA: EventEmitter<QnADto> = new EventEmitter();
-
     @Output() public searchLazyLoad: EventEmitter<any> = new EventEmitter();
     @Output() public reloadGrid: EventEmitter<any> = new EventEmitter();
+
     @Input() public set totals(totals: number) {
         this.dataGridConfig.totals = totals;
     }
@@ -27,18 +30,36 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
     @Input() public qnAs: Array<QnADto>;
     @Input() public hideActionButtons: boolean;
     @Input() public enableLazyLoad: boolean;
-
+    private faqService: FAQService;
     
     public constructor(injector: Injector) {
         super(injector);
+
+        this.faqService = injector.get(FAQService);
+
+
+        // this.projectAgentService = injector.get(ProjectAgentService);
+        // this.qnAServiceProxy = injector.get(QnAServiceProxy);
+        // this.router = injector.get(Router);
+        // this.route = injector.get(ActivatedRoute);
+
     }
+   
 
     public ngOnInit(): void {
 
         this.qnAs = [];
-      
-        this.totals = 0;
+        this.totals = 0;     
+      console.log( this.selectQnA);
         this.setupGrid();
+
+    }
+    public getDetails(item: QnADto) {
+
+      console.log(item);
+      
+      this.selectQnA.emit(item);
+
 
     }
 
@@ -72,25 +93,8 @@ export class QnaGridComponent extends AppComponentBase implements OnInit {
 
         this.getQnAs();
 
-    }
-    
-    public onChange2(event: LazyLoadEvent): void {
-
-        this.dataGridConfig.state = event;
-        const skip = event.first;
-
-        if (this.dataGridConfig.take !== event.rows) {
-
-            this.dataGridConfig.skip = 0;
-            this.dataGridConfig.take = event.rows;
-
-        } else if (skip !== this.dataGridConfig.skip) {
-            this.dataGridConfig.skip = skip;
-        }
-
-        this.getQnAs();
-
-    }
+    }    
+   
 
     public onSearch(searchValue): void {
 

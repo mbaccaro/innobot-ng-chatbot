@@ -11,14 +11,16 @@ export class QnaDetailComponent extends AppComponentBase implements OnInit {
 
     @Output() public delete: EventEmitter<QnADto> = new EventEmitter();
     @Output() public edit: EventEmitter<QnADto> = new EventEmitter();
-    public qnA: QnADto;
-
-    @Input() public set model(model: QnADto) {
-        this.qnA = model;
+    @Output() public unselectQnA: EventEmitter<QnADto> = new EventEmitter();
+    @Input() public qna: QnADto;
+    @Input() public selectedQnA: QnADto;
+    @Input() public set model(model: QnADto) {        
+        
+        this.qna = model;
     }
 
     public get model() {
-        return this.qnA;
+        return this.qna;
     }
 
     public constructor(injector: Injector) {
@@ -28,16 +30,16 @@ export class QnaDetailComponent extends AppComponentBase implements OnInit {
 
     public ngOnInit(): void {
 
-        this.qnA = new QnADto();
+      //  this.qna = new QnADto();
 
     }
 
     public onEditQnA(): void {
-        this.edit.emit(this.qnA);
+        this.edit.emit(this.qna);
     }
 
     public onDeleteQnA(): void {
-        this.edit.emit(this.qnA);
+        this.edit.emit(this.qna);
     }
     
 }
