@@ -17,36 +17,6 @@
     }
 }
 
-.innobot-faq-list{
-    .innobot-faq-item{
-        display:flex;
-        border-bottom: 1px solid #ebedf2;
-        &:hover{
-            background: #ebedf2;
-        }
-        .innobot-faq-body{
-            padding: 10px;
-        }
-        .innobot-faq-question{
-            color: #a32020;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .innobot-faq-anwser{
-            color: #34495e;
-            font-size: 12px;
-            margin-top: 10px;
-        }
-        .innobot-faq-arrow{
-            width: 40px;
-            padding: 10px;
-            display:flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-}
 
 //breadcrumbs
 .innobot-breadcrumbs {

@@ -10,7 +10,8 @@ import { SafeHtmlPipe } from "../utils/safe-html-pipe";
 
 @Component({
     selector: "qna-grid",
-    templateUrl: "./qna-grid.component.html"
+    templateUrl: "./qna-grid.component.html",
+    styleUrls: ["./qna-grid.scss"]
 })
 
 export class QnaGridComponent extends AppComponentBase implements OnInit {
