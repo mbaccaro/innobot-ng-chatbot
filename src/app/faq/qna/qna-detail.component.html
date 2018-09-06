@@ -1,37 +1,37 @@
-<div>
-    <div class="ml-auto">
+<div class="innobot-qna-detail">
+    <div class="innobot-qna-detail-body">
+        <div class="innobot-qna-detail-row">
+            <div class="innobot-qna-detail-left i-p-15"></div>
+            <div class="innobot-qna-detail-righ t i-p-15">
+                <ng-container *ngFor="let question of qna.questions">
+                    <h6 class="innobot-qna-title" *ngIf="question.isPrimary === true">
+                        {{question.question}}
+                    </h6>
+                </ng-container>                
+                <div class="i-mt-10">
+                    <span class="i-badge i-badge-secondary i-mr-10"><i class="far fa-eye i-mr-5"></i> <label>201</label></span>
+                    <span class="i-badge i-badge-secondary"><i class="far fa-clock i-mr-5"></i><label>July 27, 2018</label></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="innobot-qna-detail-row">
+            <div class="innobot-qna-detail-left i-p-15">
+                <button class="innobot-btn innobot-btn-icon innobot-btn-primary-gradient"><i class="far fa-lightbulb"></i></button>
+            </div>
+            <div class="innobot-qna-detail-right">
+                <div class="innobot-qna-detal-body i-p-15">
+                    <div [innerHtml]="qna.answer | safehtml"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="innobot-qna-detail-footer i-p-15">
         <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button">
             <i class="la la-save"></i>Delete Q&A
         </button>
         <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" (click)="onEditQnA();">
             <i class="la la-save"></i>Edit Q&A
         </button>
-    </div>
-    <br>
-    <div>
-        <div id="m_repeater_2">
-            <div class="form-group m-form__group row">
-                <label class="col-form-label col-lg-2 col-sm-12">
-                    Question:
-                </label>
-                <div class="col-lg-10 col-md-10 col-sm-12 mb-3">
-                    <div class="input-group">
-                        <div *ngFor="let question of qna.questions">
-                            <span *ngIf="question.isPrimary === true">
-                                {{question.question}}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="form-group m-form__group row my-3">
-            <label class="col-form-label col-lg-2 col-md-12">
-                Answer:
-            </label>
-            <div class="col-lg-10 col-md-12" [innerHtml] ="qna.answer | safehtml">
-               
-            </div>
-        </div>
     </div>
 </div>
