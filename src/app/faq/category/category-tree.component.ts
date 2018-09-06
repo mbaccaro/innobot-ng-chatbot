@@ -77,7 +77,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
         this.generalCategory = new CategoryDto();
         this.generalCategory.id = -1; 
-        this.generalCategory.name = 'General';
+        this.generalCategory.name = "General";
         this.generalCategory.parentId = null;
         this.generalCategory.agentId = this.agentId;
         this.creatTreeNode(this.generalCategory, null);
