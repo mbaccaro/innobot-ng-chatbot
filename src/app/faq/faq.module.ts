@@ -11,7 +11,7 @@ import { CategoryTreeComponent } from "./category/category-tree.component";
 import { SearchBoxComponent } from "../shared/common/search-box/search-box.component";
 import { LayoutModule } from "./../layout/layout.module";
 import { CategoryFormComponent } from "./category/category-form.component";
-// import { FAQService } from "./faq-service";
+import { FAQService } from "./faq-service";
 
 import {
     TableModule,
@@ -81,7 +81,7 @@ import {
         TriggerFaqBtnComponent
     ],
     providers: [
-        // FAQService
+         FAQService
     ],
     entryComponents: [
         QnaManagementComponent,

@@ -5,8 +5,8 @@ import { MenuItem } from "mcapp.ng.components";
 import * as underscore from "lodash";
 import { AppComponentBase } from "../../shared/common/app-base-component";
 import { QnAAgentCategoryDto, CategoryDto } from "./category-model";
-//import { FAQService } from "../faq-service";
-//import { ChatBotAgentCategory } from "innobot-chat-api";
+import { FAQService } from "../faq-service";
+import { ChatBotAgentCategory } from "innobot-chat-api";
 
 @Component({
     selector: "category-tree",
@@ -15,7 +15,7 @@ import { QnAAgentCategoryDto, CategoryDto } from "./category-model";
 
 export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
-    //protected faqService: FAQService;
+    private faqService: FAQService;
     public categoryTree: TreeNodeClass[];
     public selectedFiles: any;
     public parentNodes: TreeNodeClass[] = [];
@@ -26,11 +26,15 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     public isTreeReady = false;
     public categoryModel: CategoryDto;
     public contextSelectNode: TreeNodeClass;
-    //private chatBotAgentCategoryIntance: ChatBotAgentCategory;
+    private chatBotAgentCategoryIntance: ChatBotAgentCategory;
+    private generalCategory: CategoryDto;
+
     @Output() public selectNode: EventEmitter<CategoryDto> = new EventEmitter();
     @Output() public unselectNode: EventEmitter<CategoryDto> = new EventEmitter();
     @Input() public agentId: number;
     @Input() public selectionMode: string;
+
+
     @Input() public set selectedQnaCategories(value: QnAAgentCategoryDto[]) {
 
         this.pSelectedQnaCategories = value;
@@ -48,7 +52,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     public constructor(injector: Injector) {
         super(injector);
 
-        //this.faqService = injector.get(FAQService);
+        this.faqService = injector.get(FAQService);
 
     }
 
@@ -56,7 +60,6 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
         this.previousSelectNodes = [];
         this.categoryTree = [];
-        this.populateTree();
         this.items = [
             { label: "Edit", icon: "la la-edit", command: (event) => this.editCategoryModel() },
             { label: "Add Sub Category", icon: "la la-plus", command: (event) => this.createCategoryModel(false) },
@@ -64,57 +67,44 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         ];
         this.previousSingleSelect = new TreeNodeClass();
         this.contextSelectNode = new TreeNodeClass();
-        //this.chatBotAgentCategoryIntance = this.faqService.getChatBotAgentCategory();
+        this.chatBotAgentCategoryIntance = this.faqService.getChatBotAgentCategory();
+        this.initGeneralCategory();
+        this.populateTree();
+       
+    }
+
+    public initGeneralCategory(): void {
+
+        this.generalCategory = new CategoryDto();
+        this.generalCategory.id = -1; 
+        this.generalCategory.name = "General";
+        this.generalCategory.parentId = null;
+        this.generalCategory.agentId = this.agentId;
+        this.creatTreeNode(this.generalCategory, null);
+
     }
 
     public populateTree(): void {
+        
+        this.chatBotAgentCategoryIntance.getCategories(this.agentId).subscribe((result) => {
 
-        const categories = [];
-        let category: CategoryDto = new CategoryDto();
-        category.id = -1;
-        category.agentId = 3;
-        category.name = 'General';
-        category.parentId = null;
-        categories.push(category);
+            const categories = result;
+      
+            if (categories && categories.length > 0) {
 
-        category = new CategoryDto();
-        category.id = 1;
-        category.agentId = 3;
-        category.name = 'Greetings';
-        category.parentId = null;
-        categories.push(category);
+                categories.forEach(category => {
+                    this.creatTreeNode(category, null);
+                });
 
-        category = new CategoryDto();
-        category.id = 2;
-        category.agentId = 3;
-        category.name = 'Compliments';
-        category.parentId = null;
+            }
 
-        categories.push(category);
+            if (this.selectionMode === "checkbox") {
+                this.findSelectedNodes();
+            }
 
-        categories.forEach(category => {
-            this.creatTreeNode(category, null);
+            this.isTreeReady = true;
+
         });
-
-        // this.chatBotAgentCategoryIntance.getCategories(this.agentId).subscribe((result) => {
-
-        //     const categories = result;
-
-        //     if (categories && categories.length > 0) {
-
-        //         categories.forEach(category => {
-        //             this.creatTreeNode(category, null);
-        //         });
-
-        //     }
-
-        //     if (this.selectionMode === "checkbox") {
-        //         this.findSelectedNodes();
-        //     }
-
-        //     this.isTreeReady = true;
-
-        // });
 
     }
 
@@ -238,52 +228,52 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
     public createCategory(category: CategoryDto): void {
 
-        // this.chatBotAgentCategoryIntance.addCategory(category)
-        //     .subscribe((result) => {
+        this.chatBotAgentCategoryIntance.addCategory(category)
+            .subscribe((result) => {
 
-        //         if (result.value > 0) {
+                if (result.value > 0) {
 
-        //             //this.notify.info(this.l("SavedSuccessfully"));
-        //             this.categoryModel = null;
-        //             category.id = result.value;
-        //             this.addNewTreeNode(category);
+                    //this.notify.info(this.l("SavedSuccessfully"));
+                    this.categoryModel = null;
+                    category.id = result.value;
+                    this.addNewTreeNode(category);
 
-        //         } else {
-        //             this.checkResultError(result);
-        //         }
+                } else {
+                    this.checkResultError(result);
+                }
 
-        //     });
+            });
 
     }
 
     public updateCategory(category: CategoryDto): void {
 
-        // this.chatBotAgentCategoryIntance.editCategory(category)
-        //     .subscribe((result) => {
+        this.chatBotAgentCategoryIntance.editCategory(category)
+            .subscribe((result) => {
 
-        //         if (result.value > 0) {
+                if (result.value > 0) {
 
-        //             //this.notify.info(this.l("SavedSuccessfully"));
-        //             this.categoryModel = null;
-        //             this.contextSelectNode.label = category.name;
+                    //this.notify.info(this.l("SavedSuccessfully"));
+                    this.categoryModel = null;
+                    this.contextSelectNode.label = category.name;
 
-        //             if (this.selectionMode === "single") {
+                    if (this.selectionMode === "single") {
 
-        //                 // this.categoryServiceProxy.isCategoryUsedByQnA(this.contextSelectNode.id, API_VERSION).subscribe((re) => {
+                        // this.categoryServiceProxy.isCategoryUsedByQnA(this.contextSelectNode.id, API_VERSION).subscribe((re) => {
 
-        //                 //     if (re) {
-        //                 //         this.selectNode.emit(category);
-        //                 //     }
+                        //     if (re) {
+                        //         this.selectNode.emit(category);
+                        //     }
 
-        //                 // });
+                        // });
 
-        //             }
+                    }
 
-        //         } else {
-        //             this.checkResultError(result);
-        //         }
+                } else {
+                    this.checkResultError(result);
+                }
 
-        //     });
+            });
 
     }
 

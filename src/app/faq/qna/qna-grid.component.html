@@ -4,19 +4,15 @@
             <app-search-box (onSearch)="onSearch($event)" [value]="dataGridConfig.filter"></app-search-box>
         </div>
     </div>
-    <div *ngIf="!hideActionButtons" class="ml-auto mr-3">
-        <button (click)="createQna();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-            <i class="la la-plus"></i>New Q&A
-        </button>
-    </div>
+
 </div>
 
 <div class="primeng-data-style">
-    <mcapp-web-dataList [value]="qnAs" [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take" [rowsPerPageOptions]="dataGridConfig.rowsPerPage"
-        [lazy]="true" (onLazyLoad)="onChange2($event)" [paginator]="true" >
-       
+    <mcapp-web-dataList [value]="qnAs"  [totalRecords]="dataGridConfig.totals" [rows]="dataGridConfig.take"
+        [rowsPerPageOptions]="dataGridConfig.rowsPerPage" [lazy]="true" (onLazyLoad)="onChange2($event)" [paginator]="true">
 
-               <!-- <ui-datalist>
+
+        <!-- <ui-datalist>
                     <ui-datalist-header>
 
                     </ui-datalist-header>
@@ -32,19 +28,17 @@
                     {{item.question}}
                 </td>
             </div> -->
-            <ng-template pTemplate="body" let-rowData >
-                    <tr >
-                             <td>
-                            <div *ngFor="let question of rowData.questions">
-                                <span *ngIf="question.isPrimary === true">
-                                    {{question.question}}
-                                </span>
-                            </div>
-                        </td>
-                   
-                </tr>
-            </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td>
+                    <div *ngFor="let question of rowData.questions">
+                        <span *ngIf="question.isPrimary === true">
+                            {{question.question}}
+                        </span>
+                    </div>
+                </td>
 
-        
+            </tr>
+        </ng-template>
     </mcapp-web-dataList>
 </div>
