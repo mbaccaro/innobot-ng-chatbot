@@ -1,0 +1,12 @@
+.innobot-qna-detail{
+    display:flex;
+    flex-direction: column;
+    height: 100%;
+    .innobot-qna-detail-body{
+        flex: 1;
+    }
+    .innobot-qna-detail-footer{
+        background-color: #ffffff;
+        box-shadow: 0 1px 15px 0 rgba(69, 65, 78, 0.1);
+    }
+}

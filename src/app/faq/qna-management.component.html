@@ -4,7 +4,7 @@
         <app-content-left>
 
             <!-- CATEGORY SCREEN-->
-            <div *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
+            <ng-container *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
                 <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Go Full Screen
                 </button>
@@ -22,12 +22,15 @@
                 <div *ngIf="selectedTab === 'commonQuestions'">
                     Most Common Questions
                 </div>
-            </div>
+            </ng-container>
+
             <!-- QNA LIST SCREEN-->
-            <div *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Toggle Full Screen
+            <ng-container *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
+                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                    Toggle Full Screen
                 </button>
-                <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go back
+                <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                    Go back
                 </button>
                 <qna-grid (selectQnA)="onSelectQnA($event)" (unselectQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
                     (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
@@ -37,15 +40,18 @@
                         <i class="la la-plus"></i>Add Q&A
                     </button>
                 </div>
-            </div>
+            </ng-container>
+
             <!-- QNA DETAIL -->
-            <div *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Toggle Full Screen
+            <ng-container *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
+                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                    Toggle Full Screen
                 </button>
-                <button (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">Go back
+                <button (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                    Go back
                 </button>
                 <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
-            </div>
+            </ng-container>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">
             <div *ngIf="selectedQnA === undefined">
