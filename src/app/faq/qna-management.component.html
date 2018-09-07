@@ -1,13 +1,9 @@
-<app-layout>
-    <app-header></app-header>
+<app-layout *ngIf="isFaqOpen">
+    <app-header (fullscreenChange)="fullscreenToggle()" [isFullscreen]="isFullScreen"></app-header>
     <app-main-content>
         <app-content-left>
-
             <!-- CATEGORY SCREEN-->
             <ng-container *ngIf="(selectedCategory.id === 0 || selectedCategory.id === undefined) && (selectedQnA.id === 0 || selectedQnA.id === undefined)">
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                    Go Full Screen
-                </button>
                 <ul class="innobot-tabs">
                     <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
                         <span>Category</span>
@@ -32,9 +28,6 @@
             <!-- QNA LIST SCREEN-->
             <ng-container *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
                 <breadcrumbs *ngIf="!isFullScreen" [selectedCategory]="selectedCategory"></breadcrumbs>
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                    Toggle Full Screen
-                </button>
                 <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Go back
                 </button>
@@ -52,9 +45,6 @@
             <!-- QNA DETAIL -->
             <ng-container *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
                 <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
-                <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                    Toggle Full Screen
-                </button>
                 <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Go back
                 </button>

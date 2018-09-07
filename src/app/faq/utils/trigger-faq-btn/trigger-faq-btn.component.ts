@@ -1,4 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output } from "@angular/core";
+import { LayoutService } from "../../../layout/layout.service";
+import { EventEmitter } from "@angular/core";
 
 @Component({
   selector: "app-trigger-faq-btn",
@@ -7,16 +9,24 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TriggerFaqBtnComponent implements OnInit {
 
-  constructor() {
+  private isFaqOpen: boolean;
+
+  constructor(private layoutService: LayoutService) {
     
-   }
+    this.layoutService.config.subscribe(layout => {
+      this.isFaqOpen = layout.isFaqOpen;
+    });
+
+  }
 
   ngOnInit() {
 
   }
 
-  onClick() {
-    console.log("someone click me");
+  toggleFaq() {
+
+    this.layoutService.toggleFAQ();
+
   }
 
 }
