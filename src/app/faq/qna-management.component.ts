@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit, Input } from "@angular/core";
+import { Component, Injector, OnInit, Input, ViewChild } from "@angular/core";
 import { AppComponentBase } from "../shared/common/app-base-component";
 import { FAQService } from "./faq-service";
 import { CategoryDto, QnAAgentCategoryDto } from "./category/category-model";
@@ -6,6 +6,7 @@ import { QueryParameters } from "../shared/helpers/QueryParameters";
 import { QnADto, QnAQuestionDto } from "./qna/qna-model";
 import { ChatBotAgentQnA } from "innobot-chat-api";
 import { LayoutService } from "../layout/layout.service";
+import { CategoryTreeComponent } from "./category/category-tree.component";
 
 @Component({
     selector: "qna-management",
@@ -13,6 +14,8 @@ import { LayoutService } from "../layout/layout.service";
 })
 
 export class QnaManagementComponent extends AppComponentBase implements OnInit {
+
+    @ViewChild(CategoryTreeComponent) public categoryTreeComponent: CategoryTreeComponent;
 
     private faqService: FAQService;
     private chatBotAgentQnAInstance: ChatBotAgentQnA;
@@ -65,14 +68,15 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     }
 
     public fullscreenToggle(): void {
-        
+
         this.layoutService.toggleFullScreen();
+
         if (this.isFullScreen) {
             this.displayStyle = "fullscreen";
         } else {
             this.displayStyle = "side";
         }
-        
+
         if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
             this.onSelectCategory(this.selectedCategory);
 
@@ -83,7 +87,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         } else {
             this.onUnselectCategory(null);
         }
-       
+
+
     }
 
     public onSelectCategory(category: CategoryDto): void {
@@ -110,14 +115,30 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     }
 
-
     public createCategory(): void {
 
         this.closeFullScreenDetails();
+        this.layoutService.openFullScreen();
+        this.displayStyle = "fullscreen";
         this.isFullScreen = true;
         this.openCategoryForm = true;
         this.selectedCategory = new CategoryDto();
         this.selectedCategory.agentId = this.agentId;
+
+    }
+
+    public onSaveCategory(): void {
+
+        this.closeFullScreenDetails();
+        this.categoryTreeComponent.populateTree(undefined);
+
+    }
+
+    public onCancelCategory(): void {
+
+        this.closeFullScreenDetails();
+        this.layoutService.closeFullScreen();
+        this.displayStyle = "side";
         
     }
 
@@ -137,8 +158,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         }
 
     }
-    
-    public selectedQnAGridrow () {
+
+    public selectedQnAGridrow() {
         this.selectedQnA = this.qnAsGrid.length === 0 ? undefined : this.qnAsGrid[0];
     }
 
@@ -163,7 +184,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.isFullScreen = true;
         this.openQnAForm = true;
         this.showDetailsQnA = false;
-        
+
     }
 
     public deleteQnA(): void {
@@ -246,11 +267,11 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public onLoadCommonQuestions(queryParameters: QueryParameters): void {
 
-       // Todo: need chatApi
+        // Todo: need chatApi
         const categoryName = "Interest";
 
         this.chatBotAgentQnAInstance.getQnA(this.agentId, categoryName, queryParameters.toString()).subscribe((result) => {
-           
+
             this.qnAsGrid = result.result;
             this.dataGridConfig.totals = result.count;
 
@@ -260,7 +281,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public tabClick(tab): void {
 
-        if (tab === "commonQuestions" ) {
+        if (tab === "commonQuestions") {
             this.loadCommonQuestionsGrid();
             this.isFullScreen = false;
             this.selectedCategory = new CategoryDto();
@@ -268,7 +289,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.showDetailsQnA = false;
 
         }
-        this.selectedTab = tab;              
+        this.selectedTab = tab;
 
     }
 }

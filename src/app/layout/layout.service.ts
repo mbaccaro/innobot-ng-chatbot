@@ -9,7 +9,7 @@ export class LayoutService {
   public config;
   private state: LayoutModel;
 
-  constructor() { 
+  constructor() {
     this.config = this.LayoutConfig.asObservable();
     this.state = this.LayoutConfig.getValue();
   }
@@ -18,7 +18,7 @@ export class LayoutService {
     this.state.isFullScreen = true;
     this.LayoutConfig.next(this.state);
   }
-  
+
   closeFullScreen() {
     this.state.isFullScreen = false;
     this.LayoutConfig.next(this.state);

@@ -34,7 +34,6 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     @Input() public agentId: number;
     @Input() public selectionMode: string;
 
-
     @Input() public set selectedQnaCategories(value: QnAAgentCategoryDto[]) {
 
         this.pSelectedQnaCategories = value;
@@ -89,6 +88,8 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
     }
 
     public populateTree(searchValue: string): void {
+
+        this.categoryTree = [];     
 
         this.chatBotAgentCategoryIntance.getCategories(this.agentId, searchValue).subscribe((result) => {
 
@@ -501,8 +502,8 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
     public onSearch($event) {
       
-        this.categoryTree = [];     
         this.populateTree($event);
+    
     }
 
 }

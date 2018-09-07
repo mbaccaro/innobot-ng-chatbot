@@ -62,7 +62,7 @@
             </div>
             <!-- CATEGORY FORM -->
             <div *ngIf="openCategoryForm">
-                <category-form [model]="selectedCategory" (save)="onCategorySaved($event)" (cancel)="onCancelCategory()"></category-form>
+                <category-form [model]="selectedCategory" (save)="onSaveCategory()" (cancel)="onCancelCategory()"></category-form>
             </div>
             <!-- QNA DETAIL -->
             <div *ngIf="showDetailsQnA && selectedQnA.id  > 0 ">
