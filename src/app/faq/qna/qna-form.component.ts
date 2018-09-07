@@ -42,6 +42,8 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
         if (this.qnA.id > 0 && this.qnA.questions && this.qnA.questions.length > 0) {
             this.primaryQuestion = this.qnA.questions.find(x => x.isPrimary === true);
+        }else {
+            this.primaryQuestion = new QnAQuestionDto();
         }
 
     }
@@ -83,6 +85,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
             this.primaryQuestion = new QnAQuestionDto();
 
         }
+
     }
 
     private updateQnA(qnA: any): void {
@@ -160,6 +163,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     public cancelQnA(): void {
 
+        this.qnA = this.model;
         this.cancel.emit();
 
     }
@@ -195,6 +199,10 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     }
 
     public addQuestion(question: any): void {
+
+        if(this.qnA.questions === undefined){
+            this.qnA.questions = [];
+        }
 
         if (this.newQuestion && this.newQuestion.question !== "") {
 

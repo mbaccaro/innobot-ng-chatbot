@@ -61,7 +61,7 @@
             </div>
             <!-- QNA FORM -->
             <div *ngIf="openQnAForm">
-                <qna-form [model]="selectedQnA" (save)="onSaveQnA()"></qna-form>
+                <qna-form [model]="selectedQnA" (save)="onSaveQnA()" (cancel)="onCancelQnA()"></qna-form>
             </div>
         </app-content-right>
     </app-main-content>

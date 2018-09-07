@@ -1,4 +1,4 @@
-<form novalidate>
+<form  #qnaForm="ngForm" novalidate>
     <div class="m-subheader" appunwraptag="">
         <div class="d-flex align-items-center">
             <div class="mr-auto">
@@ -8,7 +8,7 @@
             </div>
             <div class="ml-auto">
                 <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="checkEmptyQuestions || saving"
-                    (click)="cancelQnA();">
+                    (click)="qnaForm.reset();cancelQnA();">
                     <i class="la la-save"></i>Cancel
                 </button>
                 <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="checkEmptyQuestions || saving"

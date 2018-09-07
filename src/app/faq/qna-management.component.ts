@@ -1,7 +1,7 @@
 import { Component, Injector, OnInit } from "@angular/core";
 import { AppComponentBase } from "../shared/common/app-base-component";
 import { FAQService } from "./faq-service";
-import { CategoryDto } from "./category/category-model";
+import { CategoryDto, QnAAgentCategoryDto } from "./category/category-model";
 import { QueryParameters } from "../shared/helpers/QueryParameters";
 import { QnADto, QnAQuestionDto } from "./qna/qna-model";
 import { ChatBotAgentQnA } from "innobot-chat-api";
@@ -57,14 +57,14 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public toggle(): void {
 
         this.isFullScreen = !this.isFullScreen;
-  
+
         if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
             this.onSelectCategory(this.selectedCategory);
 
         } else if (this.selectedCategory != null) {
-         
+
             this.onSelectQnA(this.selectedQnA);
-            
+
         } else {
             this.onUnselectCategory(null);
         }
@@ -82,7 +82,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.loadQnAGrid();
 
         }
-       
+
     }
 
     public onUnselectCategory(category: CategoryDto): void {
@@ -94,7 +94,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.loadQnAGrid();
 
     }
-  
+
     public onSelectQnA(qnA: QnADto): void {
 
         this.closeFullScreenDetails();
@@ -104,12 +104,12 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.showDetailsQnA = true;
 
         } else {
-    
+
             this.loadQnAGrid();
             this.selectedQnA = this.qnAsGrid.pop();
             this.showDetailsQnA = true;
         }
-       
+
     }
 
     public onUnselectQnA(qnA: QnADto): void {
@@ -131,21 +131,21 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public editQnA(): void {
 
         this.isFullScreen = true;
-        this.openQnAForm = true; 
+        this.openQnAForm = true;
         this.showDetailsQnA = false;
         debugger;
     }
-    
+
     public deleteQnA(): void {
 
         this.isFullScreen = false;
-        this.openQnAForm = false; 
+        this.openQnAForm = false;
         this.showDetailsQnA = false;
         //routine to delete the selected qna here.
         this.loadQnAGrid();
 
     }
-    
+
     public createQnA(): void {
 
         this.isFullScreen = true;
@@ -153,6 +153,18 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedQnA = new QnADto();
         this.selectedQnA.id = 0;
         this.selectedQnA.agentId = this.agentId;
+        
+        if (this.selectedCategory) {
+
+            const qnAAgentCategoryDto: QnAAgentCategoryDto = new QnAAgentCategoryDto();
+            qnAAgentCategoryDto.id = 0;
+            qnAAgentCategoryDto.agentCategoryId = this.selectedCategory.id;
+            qnAAgentCategoryDto.agentCategoryName = this.selectedCategory.name;
+
+            this.selectedQnA.categories = [];
+            this.selectedQnA.categories.push(qnAAgentCategoryDto);
+
+        }
 
     }
 
@@ -160,9 +172,17 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.openQnAForm = false;
         this.showDetailsQnA = true;
-        this.isFullScreen = true; 
+        this.isFullScreen = true;
         this.loadQnAGrid();
-        
+
+    }
+
+    public onCancelQnA(): void {
+
+        this.openQnAForm = false;
+        this.showDetailsQnA = true;
+        this.isFullScreen = true;
+
     }
 
     public onLoadGrid(queryParameters: QueryParameters): void {
