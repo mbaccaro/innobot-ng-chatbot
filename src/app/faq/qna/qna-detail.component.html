@@ -1,5 +1,16 @@
 
 <div class="innobot-qna-detail">
+    <div *ngIf="isFullScreen">
+        <span class="i-badge i-badge-secondary i-mr-10"><i class="far fa-eye i-mr-5"></i> <label>201</label></span>
+        <span class="i-badge i-badge-secondary"><i class="far fa-clock i-mr-5"></i><label>July 27, 2018</label></span>
+        <span class="i-badge i-badge-secondary i-mr-10" type="button" (click)="onDeleteQnA();"><i class="far fa-eye i-mr-5"></i>
+            <label>Delete</label>
+        </span>
+        <span class="i-badge i-badge-secondary" type="button" (click)="onEditQnA();"><i class="far fa-clock i-mr-5"></i>
+            <label>Edit</label>
+        </span>
+
+    </div>
     <div class="innobot-qna-detail-body">
         <div class="innobot-qna-detail-row">
             <div class="innobot-qna-detail-left i-p-15"></div>
@@ -8,8 +19,8 @@
                     <h6 class="innobot-qna-title" *ngIf="question.isPrimary === true">
                         {{question.question}}
                     </h6>
-                </ng-container>                
-                <div class="i-mt-10">
+                </ng-container>
+                <div *ngIf="!isFullScreen" class="i-mt-10">
                     <span class="i-badge i-badge-secondary i-mr-10"><i class="far fa-eye i-mr-5"></i> <label>201</label></span>
                     <span class="i-badge i-badge-secondary"><i class="far fa-clock i-mr-5"></i><label>July 27, 2018</label></span>
                 </div>
@@ -27,11 +38,11 @@
             </div>
         </div>
     </div>
-    <div class="innobot-qna-detail-footer i-p-15">
-        <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button">
-            <i class="la la-save"></i>Delete Q&A
+    <div *ngIf="!isFullScreen" class="innobot-qna-detail-footer i-p-15">
+        <button class="innobot-btn innobot-btn-primary-gradient i-w-100" type="button" (click)="onDeleteQnA();">
+            <i class="la la-trash"></i>Delete Q&A
         </button>
-        <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" (click)="onEditQnA();">
+        <button class="innobot-btn innobot-btn-primary-gradient i-w-100" type="button" (click)="onEditQnA();">
             <i class="la la-save"></i>Edit Q&A
         </button>
     </div>

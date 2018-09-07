@@ -3,20 +3,25 @@
     <app-main-content>
         <app-content-left>
             <!-- CATEGORY SCREEN-->
-            <ng-container *ngIf="selectedCategory.id === 0 || selectedCategory.id === undefined">
+            <ng-container *ngIf="(selectedCategory.id === 0 || selectedCategory.id === undefined) && (selectedQnA.id === 0 || selectedQnA.id === undefined)">
                 <ul class="innobot-tabs">
                     <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
                         <span>Category</span>
                     </li>
-                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}" (click)="tabClick('commonQuestions')">
+                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}"
+                        (click)="tabClick('commonQuestions')">
                         <span>Common Questions</span>
                     </li>
-                </ul>                                                              
+                </ul>
                 <div *ngIf="selectedTab === 'category'">
-                    <category-tree [agentId]="agentId" selectionMode="single" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
+                    <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
+                        (unselectNode)="onUnselectCategory($event)"></category-tree>
                 </div>
                 <div *ngIf="selectedTab === 'commonQuestions'">
-                    Most Common Questions
+                    <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);"
+                        (reloadGrid)="onLoadCommonQuestions($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
+                        [qnAs]="qnAsGrid">
+                    </qna-grid>
                 </div>
             </ng-container>
 
@@ -26,11 +31,12 @@
                 <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Go back
                 </button>
+
                 <qna-grid (selectQnA)="onSelectQnA($event)" (unselectQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
                     (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
                 </qna-grid>
                 <div *ngIf="!openQnAForm">
-                    <button (click)="createQnA();" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                    <button (click)="createQnA();" class="innobot-btn innobot-btn-primary-gradient i-w-100">
                         <i class="la la-plus"></i>Add Q&A
                     </button>
                 </div>
@@ -38,8 +44,13 @@
 
             <!-- QNA DETAIL -->
             <ng-container *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
-                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
-                <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
+                <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
+                <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                    Go back
+                </button>
+
+                <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"
+                    [isFullScreen]="isFullScreen"></qna-detail>
             </ng-container>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">
@@ -52,12 +63,11 @@
             </div>
             <!-- QNA DETAIL -->
             <div *ngIf="showDetailsQnA && selectedQnA.id  > 0 ">
-                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
-                <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
+                <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
+                <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA" [isFullScreen]="isFullScreen"></qna-detail>
             </div>
             <!-- QNA FORM -->
             <div *ngIf="openQnAForm">
-                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
                 <qna-form [model]="selectedQnA" (save)="onSaveQnA()" (cancel)="onCancelQnA()"></qna-form>
             </div>
         </app-content-right>

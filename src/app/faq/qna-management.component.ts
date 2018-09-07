@@ -75,7 +75,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         } else {
             this.onUnselectCategory(null);
         }
-
+       
     }
 
     public onSelectCategory(category: CategoryDto): void {
@@ -112,10 +112,14 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         } else {
 
             this.loadQnAGrid();
-            this.selectedQnA = this.qnAsGrid.pop();
+            this.selectedQnAGridrow();
             this.showDetailsQnA = true;
         }
 
+    }
+    
+    public selectedQnAGridrow () {
+        this.selectedQnA = this.qnAsGrid.length === 0 ? undefined : this.qnAsGrid[0];
     }
 
     public onUnselectQnA(qnA: QnADto): void {
@@ -139,7 +143,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.isFullScreen = true;
         this.openQnAForm = true;
         this.showDetailsQnA = false;
-        debugger;
+        
     }
 
     public deleteQnA(): void {
@@ -147,7 +151,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.isFullScreen = false;
         this.openQnAForm = false;
         this.showDetailsQnA = false;
-        //routine to delete the selected qna here.
+        // routine to delete the selected qna here.
         this.loadQnAGrid();
 
     }
@@ -189,6 +193,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.openQnAForm = false;
         this.showDetailsQnA = true;
         this.isFullScreen = true;
+        this.selectedQnAGridrow();
 
     }
 
@@ -201,13 +206,50 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.qnAsGrid = result.result;
             this.dataGridConfig.totals = result.count;
 
+            if (this.isFullScreen && this.selectedCategory.id > 0) {
+
+                this.selectedQnAGridrow();
+                this.showDetailsQnA = !this.openQnAForm;
+
+            }
+
+        });
+
+    }
+
+    private loadCommonQuestionsGrid(): void {
+
+        this.applyQueryParameters();
+        this.onLoadCommonQuestions(this.queryParameters);
+
+    }
+
+    public onLoadCommonQuestions(queryParameters: QueryParameters): void {
+
+       // Todo: need chatApi
+        const categoryName = "Interest";
+
+        this.chatBotAgentQnAInstance.getQnA(this.agentId, categoryName, queryParameters.toString()).subscribe((result) => {
+           
+            this.qnAsGrid = result.result;
+            this.dataGridConfig.totals = result.count;
+
         });
 
     }
 
     public tabClick(tab): void {
-        this.selectedTab = tab;
-    }
 
+        if (tab === "commonQuestions" ) {
+            this.loadCommonQuestionsGrid();
+            this.isFullScreen = false;
+            this.selectedCategory = new CategoryDto();
+            this.selectedQnA = new CategoryDto();
+            this.showDetailsQnA = false;
+
+        }
+        this.selectedTab = tab;              
+
+    }
 }
 

@@ -17,32 +17,24 @@ import { SafeHtmlPipe } from "../utils/safe-html-pipe";
 export class QnaGridComponent extends AppComponentBase implements OnInit {
 
     public currentTab = "answer";
-    public searchString = "";
-  
+    public searchString = "";  
     @Output() public selectQnA: EventEmitter<QnADto> = new EventEmitter();
     @Output() public unselectQnA: EventEmitter<QnADto> = new EventEmitter();
     @Output() public searchLazyLoad: EventEmitter<any> = new EventEmitter();
     @Output() public reloadGrid: EventEmitter<any> = new EventEmitter();
-
-    @Input() public set totals(totals: number) {
-        this.dataGridConfig.totals = totals;
-    }
     @Input() agent: AgentDto;
     @Input() public qnAs: Array<QnADto>;
     @Input() public hideActionButtons: boolean;
     @Input() public enableLazyLoad: boolean;
-    private faqService: FAQService;
+    private faqService: FAQService;    
+    @Input() public set totals(totals: number) {
+        this.dataGridConfig.totals = totals;
+    }
     
     public constructor(injector: Injector) {
         super(injector);
 
         this.faqService = injector.get(FAQService);
-
-
-        // this.projectAgentService = injector.get(ProjectAgentService);
-        // this.qnAServiceProxy = injector.get(QnAServiceProxy);
-        // this.router = injector.get(Router);
-        // this.route = injector.get(ActivatedRoute);
 
     }
    
