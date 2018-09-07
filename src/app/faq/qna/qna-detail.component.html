@@ -1,11 +1,14 @@
 <div class="innobot-qna-detail">
     <div *ngIf="isFullScreen">
-        <button class="innobot-btn innobot-btn-primary-gradient" type="button" (click)="onDeleteQnA();">
-            <i class="fa fa-trash"></i>Delete
-        </button>
-        <button class="innobot-btn innobot-btn-primary-gradient" type="button" (click)="onEditQnA();">
-            <i class="la la-save"></i>Edit Q&A
-        </button>
+        <span class="i-badge i-badge-secondary i-mr-10"><i class="far fa-eye i-mr-5"></i> <label>201</label></span>
+        <span class="i-badge i-badge-secondary"><i class="far fa-clock i-mr-5"></i><label>July 27, 2018</label></span>
+        <span class="i-badge i-badge-secondary i-mr-10" type="button" (click)="onDeleteQnA();"><i class="far fa-eye i-mr-5"></i>
+            <label>Delete</label>
+        </span>
+        <span class="i-badge i-badge-secondary" type="button" (click)="onEditQnA();"><i class="far fa-clock i-mr-5"></i>
+            <label>Edit</label>
+        </span>
+
     </div>
     <div class="innobot-qna-detail-body">
         <div class="innobot-qna-detail-row">
@@ -16,7 +19,7 @@
                         {{question.question}}
                     </h6>
                 </ng-container>
-                <div class="i-mt-10">
+                <div *ngIf="!isFullScreen" class="i-mt-10">
                     <span class="i-badge i-badge-secondary i-mr-10"><i class="far fa-eye i-mr-5"></i> <label>201</label></span>
                     <span class="i-badge i-badge-secondary"><i class="far fa-clock i-mr-5"></i><label>July 27, 2018</label></span>
                 </div>
