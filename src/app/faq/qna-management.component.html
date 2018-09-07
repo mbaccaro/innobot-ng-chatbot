@@ -1,4 +1,4 @@
-<app-layout *ngIf="isFaqOpen">
+<app-layout *ngIf="isFaqOpen" [iStyle]="displayStyle">
     <app-header (fullscreenChange)="fullscreenToggle()" [isFullscreen]="isFullScreen"></app-header>
     <app-main-content>
         <app-content-left>

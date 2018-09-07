@@ -1,4 +1,4 @@
-<div class="innobot-chatbot-container innobot-side-style">
+<div class="innobot-chatbot-container" [ngClass]=" iStyle ? 'innobot-' + iStyle + '-style' : 'innobot-default-style'">
   <div class="innobot-chatbot-inner">
     <ng-content></ng-content>
   </div>
