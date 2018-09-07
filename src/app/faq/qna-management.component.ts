@@ -199,6 +199,12 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
             this.qnAsGrid = result.result;
             this.dataGridConfig.totals = result.count;
+            if (this.isFullScreen && this.selectedCategory.id > 0) {
+
+                this.selectedQnAGridrow();
+                this.showDetailsQnA = true;
+
+            }
 
         });
 
