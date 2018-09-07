@@ -1,12 +1,6 @@
-
-<div class="row align-items-center m-form m-form--label-align-right m--margin-bottom-30">
-        <div class="col">
-            <div class="form-group m-form__group align-items-center">
-                <app-search-box (onSearch)="onSearch($event)" [value]="searchValue"></app-search-box>
-            </div>
-        </div>
-    
-    </div>
+<div class="p-3 my-2">
+    <app-search-box (onSearch)="onSearch($event)" [value]="searchValue"></app-search-box>
+</div>
 <mcapp-web-tree [value]="categoryTree" [selectionMode]="selectionMode" [(selection)]="selectedFiles" (onNodeSelect)="nodeSelect($event)"
     (onNodeUnselect)="nodeUnselect($event)" [propagateSelectionDown]="false" [contextMenu]="cm" (onNodeContextMenuSelect)="contextSelect($event)"></mcapp-web-tree>        
 <mcapp-web-contextMenu appendTo="body" #cm [model]="items" ></mcapp-web-contextMenu>
