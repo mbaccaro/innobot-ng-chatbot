@@ -5,10 +5,11 @@ import { CategoryDto, QnAAgentCategoryDto } from "./category/category-model";
 import { QueryParameters } from "../shared/helpers/QueryParameters";
 import { QnADto, QnAQuestionDto } from "./qna/qna-model";
 import { ChatBotAgentQnA } from "innobot-chat-api";
+import { LayoutService } from "../layout/layout.service";
 
 @Component({
     selector: "qna-management",
-    templateUrl: "./qna-management.component.html"
+    templateUrl: "./qna-management.component.html",
 })
 
 export class QnaManagementComponent extends AppComponentBase implements OnInit {
@@ -24,9 +25,10 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public openCategoryForm: boolean;
     public isFullScreen: boolean;
     public selectedTab: string;
+    public isFaqOpen: boolean;
     @Input() public agentName: string;
 
-    public constructor(injector: Injector) {
+    public constructor(injector: Injector, private layoutService: LayoutService) {
         super(injector);
 
         this.faqService = injector.get(FAQService);
@@ -39,12 +41,16 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
         this.loadQnAGrid();
         this.showDetailsQnA = false;
-        this.isFullScreen = false;
         this.openQnAForm = false;
         this.openCategoryForm = false;
         this.selectedCategory = new CategoryDto();
         this.selectedQnA = new CategoryDto();
         this.selectedTab = "category";
+
+        this.layoutService.config.subscribe(layout => {
+            this.isFullScreen = layout.isFullScreen;
+            this.isFaqOpen = layout.isFaqOpen;
+        });
 
     }
 
@@ -55,9 +61,9 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.openCategoryForm = false;
     }
 
-    public toggle(): void {
-
-        this.isFullScreen = !this.isFullScreen;
+    public fullscreenToggle(): void {
+        
+        this.layoutService.toggleFullScreen();
 
         if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
             this.onSelectCategory(this.selectedCategory);
@@ -70,7 +76,6 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.onUnselectCategory(null);
         }
 
-        console.log(this.isFullScreen);
     }
 
     public onSelectCategory(category: CategoryDto): void {
