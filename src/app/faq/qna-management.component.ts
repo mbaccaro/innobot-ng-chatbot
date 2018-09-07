@@ -69,8 +69,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         } else {
             this.onUnselectCategory(null);
         }
-
-        console.log(this.isFullScreen);
+       
     }
 
     public onSelectCategory(category: CategoryDto): void {
@@ -107,10 +106,14 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         } else {
 
             this.loadQnAGrid();
-            this.selectedQnA = this.qnAsGrid.pop();
+            this.selectedQnAGridrow();
             this.showDetailsQnA = true;
         }
 
+    }
+    
+    public selectedQnAGridrow () {
+        this.selectedQnA = this.qnAsGrid.length === 0 ? undefined : this.qnAsGrid[0];
     }
 
     public onUnselectQnA(qnA: QnADto): void {
@@ -184,6 +187,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.openQnAForm = false;
         this.showDetailsQnA = true;
         this.isFullScreen = true;
+        this.selectedQnAGridrow();
 
     }
 
