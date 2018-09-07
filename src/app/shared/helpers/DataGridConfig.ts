@@ -14,7 +14,7 @@ export class DataGridConfig {
 
     constructor() {
 
-        this.take = 20;
+        this.take = 10;
         this.skip = 0;
         this.totals = 0;
         this.state = { first: 0 };

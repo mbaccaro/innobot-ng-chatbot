@@ -14,6 +14,7 @@ import { CategoryFormComponent } from "./category/category-form.component";
 import { FAQService } from "./faq-service";
 import {SafeHtmlPipe} from "../faq/utils/safe-html-pipe";
 import {StripHtmlPipe} from "../faq/utils/strip-html-pipe";
+import {BreadcrumbsComponent} from "../faq/breadcrumbs/breadcrumbs.component";
 
 import {
     TableModule,
@@ -65,6 +66,7 @@ import {
         TreeModule,
         ContextMenuModule,
         MultiSelectModule
+        
          
     ],
     declarations: [
@@ -78,7 +80,8 @@ import {
         SearchBoxComponent,
         TriggerFaqBtnComponent,
         SafeHtmlPipe,
-        StripHtmlPipe
+        StripHtmlPipe,
+        BreadcrumbsComponent
     ],
     exports: [
         QnaManagementComponent,

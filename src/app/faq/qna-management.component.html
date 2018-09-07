@@ -26,6 +26,7 @@
 
             <!-- QNA LIST SCREEN-->
             <ng-container *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
+               <breadcrumbs *ngIf="!isFullScreen" [selectedCategory]="selectedCategory"></breadcrumbs>
                 <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Toggle Full Screen
                 </button>
@@ -44,12 +45,11 @@
 
             <!-- QNA DETAIL -->
             <ng-container *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
+                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
                 <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Toggle Full Screen
                 </button>
-                <button (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                    Go back
-                </button>
+                
                 <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
             </ng-container>
         </app-content-left>
@@ -63,10 +63,12 @@
             </div>
             <!-- QNA DETAIL -->
             <div *ngIf="showDetailsQnA && selectedQnA.id  > 0 ">
+                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
                 <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA"></qna-detail>
             </div>
             <!-- QNA FORM -->
             <div *ngIf="openQnAForm">
+                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
                 <qna-form [model]="selectedQnA" (save)="onSaveQnA()" (cancel)="onCancelQnA()"></qna-form>
             </div>
         </app-content-right>
