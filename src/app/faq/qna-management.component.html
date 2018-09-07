@@ -28,7 +28,7 @@
 
             <!-- QNA LIST SCREEN-->
             <ng-container *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
-               <breadcrumbs *ngIf="!isFullScreen" [selectedCategory]="selectedCategory"></breadcrumbs>
+                <breadcrumbs *ngIf="!isFullScreen" [selectedCategory]="selectedCategory"></breadcrumbs>
                 <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Toggle Full Screen
                 </button>
@@ -36,13 +36,14 @@
                     Go back
                 </button>
                 <ul class="innobot-tabs">
-                        <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
-                            <span>Category</span>
-                        </li>
-                        <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}" (click)="tabClick('commonQuestions')">
-                            <span>Common Questions</span>
-                        </li>
-                    </ul> 
+                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
+                        <span>Category</span>
+                    </li>
+                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}"
+                        (click)="tabClick('commonQuestions')">
+                        <span>Common Questions</span>
+                    </li>
+                </ul>
                 <qna-grid (selectQnA)="onSelectQnA($event)" (unselectQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
                     (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
                 </qna-grid>
@@ -55,21 +56,22 @@
 
             <!-- QNA DETAIL -->
             <ng-container *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
-                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
+                <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
                 <button (click)="toggle()" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Toggle Full Screen
                 </button>
                 <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                        Go back
-                    </button>
+                    Go back
+                </button>
                 <ul class="innobot-tabs">
-                        <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
-                            <span>Category</span>
-                        </li>
-                        <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}" (click)="tabClick('commonQuestions')">
-                            <span>Common Questions</span>
-                        </li>
-                    </ul>               
+                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
+                        <span>Category</span>
+                    </li>
+                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}"
+                        (click)="tabClick('commonQuestions')">
+                        <span>Common Questions</span>
+                    </li>
+                </ul>
                 <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"
                     [isFullScreen]="isFullScreen"></qna-detail>
             </ng-container>
@@ -88,7 +90,6 @@
             </div>
             <!-- QNA FORM -->
             <div *ngIf="openQnAForm">
-                    <breadcrumbs  [selectedCategory]="selectedCategory"></breadcrumbs>
                 <qna-form [model]="selectedQnA" (save)="onSaveQnA()" (cancel)="onCancelQnA()"></qna-form>
             </div>
         </app-content-right>
