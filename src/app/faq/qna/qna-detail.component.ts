@@ -13,6 +13,7 @@ export class QnaDetailComponent extends AppComponentBase implements OnInit {
     @Output() public delete: EventEmitter<QnADto> = new EventEmitter();
     @Output() public edit: EventEmitter<QnADto> = new EventEmitter();
     @Output() public unselectQnA: EventEmitter<QnADto> = new EventEmitter();
+    @Input() public isFullScreen: boolean;
     @Input() public qna: QnADto;
     @Input() public selectedQnA: QnADto;
     @Input() public set model(model: QnADto) {        
@@ -40,7 +41,7 @@ export class QnaDetailComponent extends AppComponentBase implements OnInit {
     }
 
     public onDeleteQnA(): void {
-        this.edit.emit(this.qna);
+        this.delete.emit(this.qna);
     }
     
 }

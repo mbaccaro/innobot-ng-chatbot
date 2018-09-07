@@ -7,13 +7,13 @@
                 </h3>
             </div>
             <div class="ml-auto">
-                <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="checkEmptyQuestions || saving"
+                <button class="innobot-btn innobot-btn-primary-gradient" type="button" [disabled]="checkEmptyQuestions || saving"
                     (click)="qnaForm.reset();cancelQnA();">
                     <i class="la la-save"></i>Cancel
                 </button>
-                <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" [disabled]="checkEmptyQuestions || saving"
+                <button class="innobot-btn innobot-btn-primary-gradient" type="button" [disabled]="checkEmptyQuestions || saving"
                     (click)="saveQnA();">
-                    <i class="la la-save"></i>Save Q&A
+                    <i class="la la-save"></i>Save
                 </button>
             </div>
         </div>
