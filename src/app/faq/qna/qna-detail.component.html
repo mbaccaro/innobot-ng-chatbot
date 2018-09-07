@@ -1,4 +1,12 @@
 <div class="innobot-qna-detail">
+    <div *ngIf="isFullScreen">
+        <button class="innobot-btn innobot-btn-primary-gradient" type="button" (click)="onDeleteQnA();">
+            <i class="fa fa-trash"></i>Delete Q&A
+        </button>
+        <button class="innobot-btn innobot-btn-primary-gradient" type="button" (click)="onEditQnA();">
+            <i class="la la-save"></i>Edit Q&A
+        </button>
+    </div>
     <div class="innobot-qna-detail-body">
         <div class="innobot-qna-detail-row">
             <div class="innobot-qna-detail-left i-p-15"></div>
@@ -7,7 +15,7 @@
                     <h6 class="innobot-qna-title" *ngIf="question.isPrimary === true">
                         {{question.question}}
                     </h6>
-                </ng-container>                
+                </ng-container>
                 <div class="i-mt-10">
                     <span class="i-badge i-badge-secondary i-mr-10"><i class="far fa-eye i-mr-5"></i> <label>201</label></span>
                     <span class="i-badge i-badge-secondary"><i class="far fa-clock i-mr-5"></i><label>July 27, 2018</label></span>
@@ -26,11 +34,11 @@
             </div>
         </div>
     </div>
-    <div class="innobot-qna-detail-footer i-p-15">
-        <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button">
-            <i class="la la-save"></i>Delete Q&A
+    <div *ngIf="!isFullScreen" class="innobot-qna-detail-footer i-p-15">
+        <button class="innobot-btn innobot-btn-primary-gradient i-w-100" type="button" (click)="onDeleteQnA();">
+            <i class="la la-trash"></i>Delete Q&A
         </button>
-        <button class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-info" type="button" (click)="onEditQnA();">
+        <button class="innobot-btn innobot-btn-primary-gradient i-w-100" type="button" (click)="onEditQnA();">
             <i class="la la-save"></i>Edit Q&A
         </button>
     </div>
