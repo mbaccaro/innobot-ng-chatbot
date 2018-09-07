@@ -34,7 +34,8 @@
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.3.2",
     "zone.js": "~0.8.26",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "simple-line-icons": "^2.4.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",

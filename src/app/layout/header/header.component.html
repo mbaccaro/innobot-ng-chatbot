@@ -3,6 +3,10 @@
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/PricewaterhouseCoopers_Logo.svg" alt=""/>
   </div>
   <div class="innobot-user-navbar">
-    <button class="btn" (click)="toggleFullscreenClick()">X</button>
+    <button class="btn" (click)="toggleFullscreenClick()">
+      <i *ngIf="!isFullscreen" class="fa fa-expand" aria-hidden="true"></i>
+      <i *ngIf="isFullscreen" class="fa fa-compress" aria-hidden="true"></i>
+    </button>
+    
   </div>
 </div>
