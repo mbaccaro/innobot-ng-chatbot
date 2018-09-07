@@ -1,15 +1,14 @@
-<form novalidate (ngSubmit)="save()" [formGroup]="formValidation">
+<form novalidate>
     <div class="form-group">
-        <label>CategoryName</label>
-        <input class="form-control" type="text" name="name" [(ngModel)]="model.name" formControlName="Name"
-            [fieldValidate]="validate" [formFieldValidation]="formValidation.controls.Name">
+        <label>Category Name</label>
+        <input class="form-control" type="text" name="name" [(ngModel)]="category.name" >
     </div>
 </form>
 <mcapp-web-footer>
-    <button [disabled]="saving" McAppButton type="button" state="secondary" (click)="onCancel();">
-        <i class="la la-close"></i>{{l("Cancel")}}
+    <button [disabled]="saving"  class="innobot-btn innobot-btn-primary-gradient" type="button" state="secondary" (click)="onCancel();">
+        <i class="la la-close"></i>Cancel
     </button>
-    <button [disabled]="formValidation.invalid" McAppButton type="button" state="primary" (click)="onSave()">
-        <i class="la la-save"></i>{{l("Save")}}
+    <button  class="innobot-btn innobot-btn-primary-gradient" type="button" state="primary" (click)="onSave()">
+        <i class="la la-save"></i>Save
     </button>
 </mcapp-web-footer>

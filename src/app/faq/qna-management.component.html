@@ -16,6 +16,9 @@
                 <div *ngIf="selectedTab === 'category'">
                     <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
                         (unselectNode)="onUnselectCategory($event)"></category-tree>
+                    <button class="innobot-btn innobot-btn-primary-gradient i-w-100" type="button" (click)="createCategory();">
+                        <i class="la la-save"></i>Add Category
+                    </button>
                 </div>
                 <div *ngIf="selectedTab === 'commonQuestions'">
                     <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);"
@@ -59,7 +62,7 @@
             </div>
             <!-- CATEGORY FORM -->
             <div *ngIf="openCategoryForm">
-                <!-- <category-form [model]="category" (save)="onCategorySaved($event)" (cancel)="onCancelCategory()"></category-form> -->
+                <category-form [model]="selectedCategory" (save)="onCategorySaved($event)" (cancel)="onCancelCategory()"></category-form>
             </div>
             <!-- QNA DETAIL -->
             <div *ngIf="showDetailsQnA && selectedQnA.id  > 0 ">

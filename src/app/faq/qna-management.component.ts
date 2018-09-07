@@ -84,6 +84,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedCategory = category;
         this.selectedQnA = new QnADto();
         this.selectedQnA.id = 0;
+
         if (this.selectedCategory !== undefined) {
             this.loadQnAGrid();
 
@@ -99,6 +100,17 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedQnA.id = 0;
         this.loadQnAGrid();
 
+    }
+
+
+    public createCategory(): void {
+
+        this.closeFullScreenDetails();
+        this.isFullScreen = true;
+        this.openCategoryForm = true;
+        this.selectedCategory = new CategoryDto();
+        this.selectedCategory.agentId = this.agentId;
+        
     }
 
     public onSelectQnA(qnA: QnADto): void {
