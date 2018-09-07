@@ -93,7 +93,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.chatBotAgentCategoryIntance.getCategories(this.agentId, searchValue).subscribe((result) => {
 
             const categories = result;
-            debugger
+            
             if (categories && categories.length > 0) {
 
                 categories.forEach(category => {
