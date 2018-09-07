@@ -3,8 +3,8 @@
     <app-main-content>
         <app-content-left>
             <!-- CATEGORY SCREEN-->
-            <ng-container *ngIf="(selectedCategory.id === 0 || selectedCategory.id === undefined) && (selectedQnA.id === 0 || selectedQnA.id === undefined)">
-                <ul class="innobot-tabs">
+            <ng-container *ngIf="(selectedCategory.id === 0 || selectedCategory.id === undefined) ">
+                <ul class="innobot-tabs" *ngIf="(selectedQnA.id === 0 || selectedQnA.id === undefined)">
                     <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
                         <span>Category</span>
                     </li>
@@ -20,7 +20,7 @@
                         <i class="la la-save"></i>Add Category
                     </button>
                 </div>
-                <div *ngIf="selectedTab === 'commonQuestions'">
+                <div *ngIf="(selectedTab === 'commonQuestions') && (selectedQnA.id === 0 || selectedQnA.id === undefined || isFullScreen === true)">
                     <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);"
                         (reloadGrid)="onLoadCommonQuestions($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
                         [qnAs]="qnAsGrid">
