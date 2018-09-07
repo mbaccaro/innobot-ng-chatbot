@@ -22,9 +22,10 @@
                         (unselectNode)="onUnselectCategory($event)"></category-tree>
                 </div>
                 <div *ngIf="selectedTab === 'commonQuestions'">
-                    <qna-grid (selectQnA)="onSelectQnA($event)"  (searchLazyLoad)="onLoadCommonQuestions($event);"
-                    (reloadGrid)="onLoadCommonQuestions($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
-                </qna-grid>
+                    <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);"
+                        (reloadGrid)="onLoadCommonQuestions($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
+                        [qnAs]="qnAsGrid">
+                    </qna-grid>
                 </div>
             </ng-container>
 
@@ -37,7 +38,7 @@
                 <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Go back
                 </button>
-                
+
                 <qna-grid (selectQnA)="onSelectQnA($event)" (unselectQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
                     (reloadGrid)="onLoadGrid($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
                 </qna-grid>
@@ -57,7 +58,7 @@
                 <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
                     Go back
                 </button>
-                
+
                 <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"
                     [isFullScreen]="isFullScreen"></qna-detail>
             </ng-container>
@@ -72,6 +73,7 @@
             </div>
             <!-- QNA DETAIL -->
             <div *ngIf="showDetailsQnA && selectedQnA.id  > 0 ">
+                <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
                 <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA" [isFullScreen]="isFullScreen"></qna-detail>
             </div>
             <!-- QNA FORM -->
