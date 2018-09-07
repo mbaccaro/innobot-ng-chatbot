@@ -77,15 +77,23 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.displayStyle = "side";
         }
 
-        if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
-            this.onSelectCategory(this.selectedCategory);
-
-        } else if (this.selectedCategory != null) {
-
+        if (this.selectedTab === "commonQuestions") {
+            
             this.onSelectQnA(this.selectedQnA);
 
         } else {
-            this.onUnselectCategory(null);
+
+            if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
+                this.onSelectCategory(this.selectedCategory);
+    
+            } else if (this.selectedCategory != null) {
+    
+                this.onSelectQnA(this.selectedQnA);
+    
+            } else {
+                this.onUnselectCategory(null);
+            }
+
         }
 
 
@@ -146,13 +154,16 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.closeFullScreenDetails();
 
-        if (!this.isFullScreen || qnA.id !== 0) {
+        if (!this.isFullScreen || (qnA.id && qnA.id !== 0))  {
             this.selectedQnA = qnA;
             this.showDetailsQnA = true;
 
         } else {
 
-            this.loadQnAGrid();
+            if (this.selectedTab === "category") {
+                this.loadQnAGrid();
+            } 
+           
             this.selectedQnAGridrow();
             this.showDetailsQnA = true;
         }
