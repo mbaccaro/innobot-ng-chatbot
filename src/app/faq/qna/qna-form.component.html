@@ -6,9 +6,9 @@
                     <div class="m-subheader">
                         <div class="d-flex align-items-center">
                             <div class="ml-auto">
-                                <button class="innobot-btn innobot-btn-primary-gradient" type="button" [disabled]="checkEmptyQuestions || saving"
+                                <button class="innobot-btn innobot-btn-secondary" type="button" [disabled]="checkEmptyQuestions || saving"
                                     (click)="qnaForm.reset();cancelQnA();">
-                                    <i class="la la-save"></i>Cancel
+                                    <i class="la la-close"></i>Cancel
                                 </button>
                                 <button class="innobot-btn innobot-btn-primary-gradient" type="button" [disabled]="checkEmptyQuestions || saving"
                                     (click)="saveQnA();">
