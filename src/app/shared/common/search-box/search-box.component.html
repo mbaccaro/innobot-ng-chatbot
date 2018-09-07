@@ -1,5 +1,5 @@
 <div class="m-input-icon m-input-icon--left">
-  <input type="text" class="form-control m-input" (input)="search($event.target.value)" placeholder="Search..." id="generalSearch" [(ngModel)]="value">
+  <input type="text" class="form-control m-input" (input)="search($event.target.value)" [placeholder]="placeholder" id="generalSearch" [(ngModel)]="value">
   <span class="m-input-icon__icon m-input-icon__icon--left">
       <span>
           <i class="la la-search"></i>

@@ -26,6 +26,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public isFullScreen: boolean;
     public selectedTab: string;
     public isFaqOpen: boolean;
+    public displayStyle: string;
+
     @Input() public agentName: string;
 
     public constructor(injector: Injector, private layoutService: LayoutService) {
@@ -46,6 +48,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedCategory = new CategoryDto();
         this.selectedQnA = new CategoryDto();
         this.selectedTab = "category";
+        this.displayStyle = "side";
 
         this.layoutService.config.subscribe(layout => {
             this.isFullScreen = layout.isFullScreen;
@@ -64,7 +67,12 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public fullscreenToggle(): void {
         
         this.layoutService.toggleFullScreen();
-
+        if (this.isFullScreen) {
+            this.displayStyle = "fullscreen";
+        } else {
+            this.displayStyle = "side";
+        }
+        
         if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
             this.onSelectCategory(this.selectedCategory);
 
