@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from "@angular/core";
+import { Component, Injector, OnInit, Input } from "@angular/core";
 import { AppComponentBase } from "../shared/common/app-base-component";
 import { FAQService } from "./faq-service";
 import { CategoryDto, QnAAgentCategoryDto } from "./category/category-model";
@@ -24,6 +24,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public openCategoryForm: boolean;
     public isFullScreen: boolean;
     public selectedTab: string;
+    @Input() public agentName: string;
 
     public constructor(injector: Injector) {
         super(injector);
@@ -153,8 +154,9 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.selectedQnA = new QnADto();
         this.selectedQnA.id = 0;
         this.selectedQnA.agentId = this.agentId;
-        
-        if (this.selectedCategory) {
+        this.selectedQnA.agentName = this.agentName;
+
+        if (this.selectedCategory && this.selectedCategory.id > 0) {
 
             const qnAAgentCategoryDto: QnAAgentCategoryDto = new QnAAgentCategoryDto();
             qnAAgentCategoryDto.id = 0;

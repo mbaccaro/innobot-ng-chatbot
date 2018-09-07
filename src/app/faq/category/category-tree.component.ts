@@ -70,13 +70,17 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.chatBotAgentCategoryIntance = this.faqService.getChatBotAgentCategory();
         this.initGeneralCategory();
         this.populateTree();
-       
+
     }
 
     public initGeneralCategory(): void {
 
+        if (this.selectionMode === "checkbox") {
+            return;
+        }
+
         this.generalCategory = new CategoryDto();
-        this.generalCategory.id = -1; 
+        this.generalCategory.id = -1;
         this.generalCategory.name = "General";
         this.generalCategory.parentId = null;
         this.generalCategory.agentId = this.agentId;
@@ -89,7 +93,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.chatBotAgentCategoryIntance.getCategories(this.agentId).subscribe((result) => {
 
             const categories = result;
-      
+
             if (categories && categories.length > 0) {
 
                 categories.forEach(category => {

@@ -126,6 +126,10 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     private loadPrimaryQuestion(): void {
 
+        if(this.qnA.questions === undefined){
+            this.qnA.questions = [];
+        }
+        
         const primaryQuestionIndex: number = this.qnA.questions.findIndex(x => x.isPrimary === true);
 
         if (primaryQuestionIndex > -1) {
