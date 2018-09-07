@@ -204,9 +204,39 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     }
 
-    public tabClick(tab): void {
-        this.selectedTab = tab;
+    private loadCommonQuestionsGrid(): void {
+
+        this.applyQueryParameters();
+        this.onLoadCommonQuestions(this.queryParameters);
+
     }
 
+    public onLoadCommonQuestions(queryParameters: QueryParameters): void {
+
+       // Todo: need chatApi
+        const categoryName = "Interest";
+
+        this.chatBotAgentQnAInstance.getQnA(this.agentId, categoryName, queryParameters.toString()).subscribe((result) => {
+           
+            this.qnAsGrid = result.result;
+            this.dataGridConfig.totals = result.count;
+
+        });
+
+    }
+
+    public tabClick(tab): void {
+
+        if (tab === "commonQuestions" ) {
+            this.loadCommonQuestionsGrid();
+            this.isFullScreen = false;
+            this.selectedCategory = new CategoryDto();
+            this.selectedQnA = new CategoryDto();
+            this.showDetailsQnA = false;
+
+        }
+        this.selectedTab = tab;              
+
+    }
 }
 
