@@ -1,0 +1,24 @@
+
+//breadcrumbs
+.innobot-breadcrumbs {
+    margin: 0px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    .innobot-breadcrumbs-item {
+        list-style: none;
+        color:#34495e;
+        text-transform: uppercase;
+        font-size:10px;
+        margin-right: 7px;
+        font-weight: 400;
+        &:nth-child(1 + n){
+            &:after{
+                content: '\f054';
+                font-family: "Font Awesome 5 Pro";
+                margin-left: 7px;
+            }
+        }
+        
+    }
+}
