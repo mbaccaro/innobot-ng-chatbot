@@ -69,7 +69,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.contextSelectNode = new TreeNodeClass();
         this.chatBotAgentCategoryIntance = this.faqService.getChatBotAgentCategory();
         this.initGeneralCategory();
-        this.populateTree();
+        this.populateTree("");
 
     }
 
@@ -88,12 +88,12 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
     }
 
-    public populateTree(): void {
+    public populateTree(searchValue: string): void {
 
-        this.chatBotAgentCategoryIntance.getCategories(this.agentId).subscribe((result) => {
+        this.chatBotAgentCategoryIntance.getCategories(this.agentId, searchValue).subscribe((result) => {
 
             const categories = result;
-
+            debugger
             if (categories && categories.length > 0) {
 
                 categories.forEach(category => {
@@ -497,6 +497,12 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         newNode.id = category.id;
         return newNode;
 
+    }
+
+    public onSearch($event) {
+      
+        this.categoryTree = [];     
+        this.populateTree($event);
     }
 
 }
