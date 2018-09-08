@@ -78,18 +78,18 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         }
 
         if (this.selectedTab === "commonQuestions") {
-            
+
             this.onSelectQnA(this.selectedQnA);
 
         } else {
 
             if (this.selectedCategory.id === null || this.selectedCategory.id === undefined) {
                 this.onSelectCategory(this.selectedCategory);
-    
+
             } else if (this.selectedCategory != null) {
-    
+
                 this.onSelectQnA(this.selectedQnA);
-    
+
             } else {
                 this.onUnselectCategory(null);
             }
@@ -147,14 +147,14 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
         this.closeFullScreenDetails();
         this.layoutService.closeFullScreen();
         this.displayStyle = "side";
-        
+
     }
 
     public onSelectQnA(qnA: QnADto): void {
 
         this.closeFullScreenDetails();
 
-        if (!this.isFullScreen || (qnA.id && qnA.id !== 0))  {
+        if (!this.isFullScreen || (qnA.id && qnA.id !== 0)) {
             this.selectedQnA = qnA;
             this.showDetailsQnA = true;
 
@@ -162,8 +162,8 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
             if (this.selectedTab === "category") {
                 this.loadQnAGrid();
-            } 
-           
+            }
+
             this.selectedQnAGridrow();
             this.showDetailsQnA = true;
         }
@@ -200,11 +200,21 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
     public deleteQnA(): void {
 
-        this.isFullScreen = false;
-        this.openQnAForm = false;
-        this.showDetailsQnA = false;
-        // routine to delete the selected qna here.
-        this.loadQnAGrid();
+        this.closeFullScreenDetails();
+
+        this.chatBotAgentQnAInstance.deleteQnA(this.selectedQnA)
+            .subscribe((result) => {
+
+                if (result.value > 0) {
+                    //this.notify.info(this.l("SavedSuccessfully"));
+                    //this.goQnaGrid();
+                    this.loadQnAGrid();
+
+                } else {
+                    this.checkResultError(result);
+                }
+
+            });
 
     }
 
@@ -232,7 +242,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     }
 
     public onSaveQnA(): void {
-        debugger;
+
         this.openQnAForm = false;
         this.showDetailsQnA = true;
         this.isFullScreen = true;
@@ -293,6 +303,7 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     public tabClick(tab): void {
 
         if (tab === "commonQuestions") {
+
             this.loadCommonQuestionsGrid();
             this.isFullScreen = false;
             this.selectedCategory = new CategoryDto();
@@ -300,8 +311,10 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
             this.showDetailsQnA = false;
 
         }
+
         this.selectedTab = tab;
 
     }
+
 }
 
