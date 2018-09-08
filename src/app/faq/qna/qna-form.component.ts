@@ -42,7 +42,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
         if (this.qnA.id > 0 && this.qnA.questions && this.qnA.questions.length > 0) {
             this.primaryQuestion = this.qnA.questions.find(x => x.isPrimary === true);
-        }else {
+        } else {
             this.primaryQuestion = new QnAQuestionDto();
         }
 
@@ -94,7 +94,8 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
             .subscribe((result) => {
 
                 if (result.value > 0) {
-
+                    
+                    this.save.emit(this.qnA);
                     //this.notify.info(this.l("SavedSuccessfully"));
                     //this.goQnaGrid();
 
@@ -116,6 +117,8 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
                     //this.notify.info(this.l("SavedSuccessfully"));
                     //this.goQnaGrid();
 
+                    this.save.emit(this.qnA);
+
                 } else {
                     this.checkResultError(result);
                 }
@@ -126,10 +129,10 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     private loadPrimaryQuestion(): void {
 
-        if(this.qnA.questions === undefined){
+        if (this.qnA.questions === undefined) {
             this.qnA.questions = [];
         }
-        
+
         const primaryQuestionIndex: number = this.qnA.questions.findIndex(x => x.isPrimary === true);
 
         if (primaryQuestionIndex > -1) {
@@ -161,7 +164,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
             this.insertQnA(this.qnA);
         }
 
-        this.save.emit(this.qnA);
+
 
     }
 
@@ -171,6 +174,33 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         this.cancel.emit();
 
     }
+
+    public deleteQnA(): void {
+
+        // this.message.confirm("", this.l("AreYouSure"), isConfirmed => {
+
+        //     if (isConfirmed) {
+
+        const qnA: any = this.qnA;
+
+        this.chatBotAgentQnAInstance.deleteQnA(qnA)
+            .subscribe((result) => {
+
+                if (result.value > 0) {
+                    this.save.emit(this.qnA);
+                    //this.notify.info(this.l("SavedSuccessfully"));
+                    //this.goQnaGrid();
+
+                } else {
+                    this.checkResultError(result);
+                }
+
+            });
+        // }
+
+        // });
+    }
+
 
     private setValidateAlternativeQuestions(): void {
         this.validateQuestions = this.qnA !== null && this.qnA.questions !== null && this.qnA.questions.findIndex(x => x.question === "" && x.isDeleted === false) > -1;
@@ -204,7 +234,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     public addQuestion(question: any): void {
 
-        if(this.qnA.questions === undefined){
+        if (this.qnA.questions === undefined) {
             this.qnA.questions = [];
         }
 
@@ -241,15 +271,15 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
         //     if (isConfirmed) {
 
-        //         if (this.qnA.questions[index].id > 0) {
-        //             this.qnA.questions[index].isDeleted = true;
-        //         } else {
-        //             this.qnA.questions.splice(index, 1);
-        //         }
+        if (this.qnA.questions[index].id > 0) {
+            this.qnA.questions[index].isDeleted = true;
+        } else {
+            this.qnA.questions.splice(index, 1);
+        }
 
-        //         this.setValidateAlternativeQuestions();
+        this.setValidateAlternativeQuestions();
 
-        //     }
+        // }
 
         // });
 

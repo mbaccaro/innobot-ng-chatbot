@@ -232,10 +232,11 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
     }
 
     public onSaveQnA(): void {
-
+        debugger;
         this.openQnAForm = false;
         this.showDetailsQnA = true;
         this.isFullScreen = true;
+        this.layoutService.openFullScreen();
         this.loadQnAGrid();
 
     }
@@ -244,7 +245,6 @@ export class QnaManagementComponent extends AppComponentBase implements OnInit {
 
         this.openQnAForm = false;
         this.showDetailsQnA = true;
-        this.isFullScreen = true;
         this.selectedQnAGridrow();
 
     }

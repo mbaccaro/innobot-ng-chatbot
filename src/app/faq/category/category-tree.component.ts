@@ -67,7 +67,7 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
         this.previousSingleSelect = new TreeNodeClass();
         this.contextSelectNode = new TreeNodeClass();
         this.chatBotAgentCategoryIntance = this.faqService.getChatBotAgentCategory();
-        this.initGeneralCategory();
+        
         this.populateTree("");
 
     }
@@ -89,7 +89,9 @@ export class CategoryTreeComponent extends AppComponentBase implements OnInit {
 
     public populateTree(searchValue: string): void {
 
-        this.categoryTree = [];     
+        this.categoryTree = [];   
+        
+        this.initGeneralCategory();
 
         this.chatBotAgentCategoryIntance.getCategories(this.agentId, searchValue).subscribe((result) => {
 

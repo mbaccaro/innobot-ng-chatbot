@@ -6,6 +6,10 @@
                     <div class="m-subheader">
                         <div class="d-flex align-items-center">
                             <div class="ml-auto">
+                                <button *ngIf="qnA.id > 0" style="text-decoration: none" class="btn btn-secondary m-btn m-btn--icon m-btn--icon-only btn-icon-md ml-2 m-btn--hover-danger"
+                                    (click)="deleteQnA();">
+                                    <i class="la la-trash"></i>
+                                </button>
                                 <button class="innobot-btn innobot-btn-secondary" type="button" [disabled]="checkEmptyQuestions || saving"
                                     (click)="qnaForm.reset();cancelQnA();">
                                     <i class="la la-close"></i>Cancel
