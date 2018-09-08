@@ -20,7 +20,7 @@
                         <i class="la la-save"></i>Add Category
                     </button>
                 </div>
-                <div *ngIf="(selectedTab === 'commonQuestions') && (selectedQnA.id === 0 || selectedQnA.id === undefined || isFullScreen === true)">
+                <div *ngIf="(selectedTab === 'commonQuestions') && (selectedQnA === undefined || selectedQnA.id === 0 || selectedQnA.id === undefined || isFullScreen === true)">
                     <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);"
                         (reloadGrid)="onLoadCommonQuestions($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
                         [qnAs]="qnAsGrid">
@@ -29,7 +29,7 @@
             </ng-container>
 
             <!-- QNA LIST SCREEN-->
-            <ng-container *ngIf=" (selectedCategory.id  > 0 || selectedCategory.id === -1) && (selectedQnA.id === 0 || isFullScreen === true)">
+            <ng-container *ngIf="(selectedCategory.id  > 0 || selectedCategory.id === -1) && ((selectedQnA && selectedQnA.id === 0) || isFullScreen === true)">
                 <div class="innobot-faq-actions">
                     <button (click)="onUnselectCategory($event)" class="innobot-btn">
                         <i class="la la-external-link" aria-hidden="true"></i>
@@ -47,7 +47,7 @@
             </ng-container>
 
             <!-- QNA DETAIL -->
-            <ng-container *ngIf="(!isFullScreen && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
+            <ng-container *ngIf="(!isFullScreen && selectedQnA && (selectedQnA.id  > 0 || selectedQnA.id === -1))">
                 <div class="innobot-faq-actions">
                     <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="innobot-btn">
                         <i class="la la-external-link" aria-hidden="true"></i>
@@ -59,15 +59,12 @@
             </ng-container>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">
-            <div *ngIf="selectedQnA === undefined">
-                no content!
-            </div>
             <!-- CATEGORY FORM -->
             <div *ngIf="openCategoryForm">
                 <category-form [model]="selectedCategory" (save)="onSaveCategory()" (cancel)="onCancelCategory()"></category-form>
             </div>
             <!-- QNA DETAIL -->
-            <div *ngIf="showDetailsQnA && selectedQnA.id  > 0 ">
+            <div *ngIf="showDetailsQnA && selectedQnA && selectedQnA.id  > 0 ">
                 <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
                 <qna-detail (delete)="deleteQnA()" (edit)="editQnA()" [model]="selectedQnA" [isFullScreen]="isFullScreen"></qna-detail>
             </div>
