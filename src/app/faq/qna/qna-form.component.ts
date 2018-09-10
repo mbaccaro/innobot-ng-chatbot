@@ -117,6 +117,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
                     //this.notify.info(this.l("SavedSuccessfully"));
                     //this.goQnaGrid();
 
+                    this.qnA.id = result.value;
                     this.save.emit(this.qnA);
 
                 } else {
