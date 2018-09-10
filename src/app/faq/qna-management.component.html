@@ -8,22 +8,19 @@
                     <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'category')}" (click)="tabClick('category')">
                         <span>Category</span>
                     </li>
-                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}"
-                        (click)="tabClick('commonQuestions')">
+                    <li class="innobot-tabs-item" [ngClass]="{'active-tab': (selectedTab === 'commonQuestions')}" (click)="tabClick('commonQuestions')">
                         <span>Common Questions</span>
                     </li>
                 </ul>
                 <div *ngIf="selectedTab === 'category'">
-                    <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)"
-                        (unselectNode)="onUnselectCategory($event)"></category-tree>
+                    <category-tree [agentId]="agentId" [selectionMode]="'single'" (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-tree>
                     <button class="innobot-btn innobot-btn-primary-gradient i-w-100" type="button" (click)="createCategory();">
                         <i class="la la-save"></i>Add Category
                     </button>
                 </div>
                 <div *ngIf="(selectedTab === 'commonQuestions') && (selectedQnA === undefined || selectedQnA.id === 0 || selectedQnA.id === undefined || isFullScreen === true)">
-                    <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);"
-                        (reloadGrid)="onLoadCommonQuestions($event);" [totals]="dataGridConfig.totals" [enableLazyLoad]="true"
-                        [qnAs]="qnAsGrid">
+                    <qna-grid (selectQnA)="onSelectQnA($event)" (searchLazyLoad)="onLoadCommonQuestions($event);" (reloadGrid)="onLoadCommonQuestions($event);"
+                        [totals]="dataGridConfig.totals" [enableLazyLoad]="true" [qnAs]="qnAsGrid">
                     </qna-grid>
                 </div>
             </ng-container>
@@ -33,6 +30,9 @@
                 <div class="innobot-faq-actions">
                     <button (click)="onUnselectCategory($event)" class="innobot-btn">
                         <i class="la la-external-link" aria-hidden="true"></i>
+                    </button>
+                    <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                        Go back
                     </button>
                     <breadcrumbs *ngIf="!isFullScreen" [selectedCategory]="selectedCategory"></breadcrumbs>
                 </div>
@@ -52,10 +52,12 @@
                     <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="innobot-btn">
                         <i class="la la-external-link" aria-hidden="true"></i>
                     </button>
+                    <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
+                        Go back
+                    </button>
                     <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
                 </div>
-                <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA"
-                    [isFullScreen]="isFullScreen"></qna-detail>
+                <qna-detail (delete)="deleteQnA()" (unselectQnA)="onUnselectQnA($event)" (edit)="editQnA()" [model]="selectedQnA" [isFullScreen]="isFullScreen"></qna-detail>
             </ng-container>
         </app-content-left>
         <app-content-right *ngIf="isFullScreen">
