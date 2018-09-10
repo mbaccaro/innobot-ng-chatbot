@@ -7,14 +7,16 @@ import { QnaManagementComponent } from "./qna-management.component";
 import { QnaGridComponent } from "./qna/qna-grid.component";
 import { QnaFormComponent } from "./qna/qna-form.component";
 import { QnaDetailComponent } from "./qna/qna-detail.component";
+import { CategoryDropdownTreeComponent } from "./category/category-dropdown-tree/category-dropdown-tree.component";
 import { CategoryTreeComponent } from "./category/category-tree.component";
 import { SearchBoxComponent } from "../shared/common/search-box/search-box.component";
 import { LayoutModule } from "./../layout/layout.module";
 import { CategoryFormComponent } from "./category/category-form.component";
 import { FAQService } from "./faq-service";
-import {SafeHtmlPipe} from "../faq/utils/safe-html-pipe";
-import {StripHtmlPipe} from "../faq/utils/strip-html-pipe";
-import {BreadcrumbsComponent} from "../faq/breadcrumbs/breadcrumbs.component";
+import { SafeHtmlPipe } from "../faq/utils/safe-html-pipe";
+import { StripHtmlPipe } from "../faq/utils/strip-html-pipe";
+import { BreadcrumbsComponent } from "../faq/breadcrumbs/breadcrumbs.component";
+import { TreeviewModule } from "ngx-treeview";
 
 import {
     TableModule,
@@ -25,8 +27,8 @@ import {
     DialogModule,
     DataListModule,
     OrderListModule,
-    RadioButtonModule, 
-    InputTextareaModule, 
+    RadioButtonModule,
+    InputTextareaModule,
     ChipsModule,
     TooltipModule,
     TabViewModule,
@@ -45,7 +47,7 @@ import {
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        UtilsModule, 
+        UtilsModule,
         FileUploadModule,
         TableModule,
         PanelModule,
@@ -65,9 +67,8 @@ import {
         SpinnerModule,
         TreeModule,
         ContextMenuModule,
-        MultiSelectModule
-        
-         
+        MultiSelectModule,
+        TreeviewModule.forRoot()
     ],
     declarations: [
         QnaManagementComponent,
@@ -81,7 +82,8 @@ import {
         TriggerFaqBtnComponent,
         SafeHtmlPipe,
         StripHtmlPipe,
-        BreadcrumbsComponent
+        BreadcrumbsComponent,
+        CategoryDropdownTreeComponent
     ],
     exports: [
         QnaManagementComponent,
@@ -89,7 +91,7 @@ import {
         TriggerFaqBtnComponent
     ],
     providers: [
-         FAQService
+        FAQService
     ],
     entryComponents: [
         QnaManagementComponent,

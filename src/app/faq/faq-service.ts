@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ChatBotClient, ChatBotClientConfig, ChatBotAgentQnA, ChatBotAgentCategory } from 'innobot-chat-api';
 import { environment } from "../../environments/environment";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class FAQService {
@@ -38,6 +39,13 @@ export class FAQService {
         const chatbot = new ChatBotAgentCategory(this.config());
         return chatbot;
     
+    }
+
+    public getCategories(agentId: number, name: string) : Observable<any[]> {
+
+        const chatbot = new ChatBotAgentCategory(this.config());
+        return chatbot.getCategories(agentId, name);
+
     }
 
 }

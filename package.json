@@ -26,16 +26,18 @@
     "concat": "^1.0.3",
     "core-js": "^2.5.4",
     "document-register-element": "^1.7.2",
+    "font-awesome": "^4.7.0",
     "fs-extra": "^7.0.0",
     "innobot-chat-api": "^1.0.35",
     "mcapp.ng.components": "^1.0.38",
+    "ngx-treeview": "^6.0.1",
+    "npm": "^6.4.1",
     "primeng": "^5.2.7",
     "quill": "^1.3.6",
     "rxjs": "^6.2.0",
     "rxjs-compat": "^6.3.2",
-    "zone.js": "~0.8.26",
-    "font-awesome": "^4.7.0",
-    "simple-line-icons": "^2.4.1"
+    "simple-line-icons": "^2.4.1",
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.7.0",

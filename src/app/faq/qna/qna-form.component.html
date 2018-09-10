@@ -104,8 +104,10 @@
                                     </label>
 
                                 </div>
-                                <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)"
-                                    (unselectNode)="onUnselectCategory($event)" [selectedQnaCategories]="qnA.categories"></category-tree>
+                                <category-dropdown-tree [agentId]="qnA.agentId" [selectedQnaCategories]="qnA.categories"
+                                    (selectNode)="onSelectCategory($event)" (unselectNode)="onUnselectCategory($event)"></category-dropdown-tree>
+                                <!-- <category-tree [selectionMode]="'checkbox'" [agentId]="qnA.agentId" (selectNode)="onSelectCategory($event)"
+                                    (unselectNode)="onUnselectCategory($event)" [selectedQnaCategories]="qnA.categories"></category-tree> -->
                             </div>
                         </div>
                     </div>
