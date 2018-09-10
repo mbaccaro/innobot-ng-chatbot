@@ -170,8 +170,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
 
     public cancelQnA(): void {
 
-        this.qnA = this.model;
-        this.cancel.emit();
+        this.cancel.emit(this.qnA);
 
     }
 

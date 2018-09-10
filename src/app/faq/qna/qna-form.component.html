@@ -11,7 +11,7 @@
                                     <i class="la la-trash"></i>
                                 </button>
                                 <button class="innobot-btn innobot-btn-secondary" type="button" [disabled]="checkEmptyQuestions || saving"
-                                    (click)="qnaForm.reset();cancelQnA();">
+                                    (click)="cancelQnA();qnaForm.reset();">
                                     <i class="la la-close"></i>Cancel
                                 </button>
                                 <button class="innobot-btn innobot-btn-primary-gradient" type="button" [disabled]="checkEmptyQuestions || saving"
