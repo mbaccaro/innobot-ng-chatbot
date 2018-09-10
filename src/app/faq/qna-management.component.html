@@ -31,9 +31,6 @@
                     <button (click)="onUnselectCategory($event)" class="innobot-btn">
                         <i class="la la-external-link" aria-hidden="true"></i>
                     </button>
-                    <button (click)="onUnselectCategory($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                        Go back
-                    </button>
                     <breadcrumbs *ngIf="!isFullScreen" [selectedCategory]="selectedCategory"></breadcrumbs>
                 </div>
                 <qna-grid (selectQnA)="onSelectQnA($event)" (unselectQnA)="onUnselectQnA($event)" (searchLazyLoad)="onLoadGrid($event);"
@@ -51,9 +48,6 @@
                 <div class="innobot-faq-actions">
                     <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="innobot-btn">
                         <i class="la la-external-link" aria-hidden="true"></i>
-                    </button>
-                    <button *ngIf="(!isFullScreen)" (click)="onUnselectQnA($event)" class="btn m-btn m-btn--gradient-from-primary m-btn--gradient-to-focus">
-                        Go back
                     </button>
                     <breadcrumbs [selectedCategory]="selectedCategory"></breadcrumbs>
                 </div>
