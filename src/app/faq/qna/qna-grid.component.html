@@ -9,13 +9,12 @@
             <div class="innobot-faq-list">
                 <div class="innobot-faq-item">
                     <div class="innobot-faq-body">
-                        <ng-container *ngFor="let question of rowData.questions">
-                            <h6 class="innobot-faq-question" *ngIf="question.isPrimary === true" (click)="getDetails(rowData)">
-                                {{question.question}}
-                            </h6>
-                        </ng-container>
-
                         <div class="innobot-faq-anwser">
+                            <ng-container *ngFor="let question of rowData.questions">
+                                    <h6 class="innobot-faq-question" *ngIf="question.isPrimary === true" (click)="getDetails(rowData)">
+                                        {{question.question}}
+                                    </h6>
+                                </ng-container>
                             <div [innerHtml]="rowData.answer  | striphtml |  slice:0:200">.....</div>
                         </div>
                         <div class="innobot-faq-arrow">

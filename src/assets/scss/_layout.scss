@@ -138,3 +138,27 @@ body{
     }
 }
 
+
+
+// CATEGORY TREE
+.ui-tree-container{
+    //level one
+    .ui-treenode{
+        background: white;
+        .ui-tree-toggler{
+            background:gray;
+        }
+    }
+}
+
+
+// PAGINATION
+.mcapp-pagination{
+    flex-wrap: wrap;
+    flex-direction: row-reverse; 
+    justify-content: center;
+    al
+    .mcapp-pagination-nav {
+        min-width: 350px;
+    }
+}
