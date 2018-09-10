@@ -37,7 +37,9 @@ import {
     SpinnerModule,
     TreeModule,
     ContextMenuModule,
-    MultiSelectModule
+    MultiSelectModule,
+    MessagesModule,
+    MessageModule
 } from "mcapp.ng.components";
 
 
@@ -68,7 +70,9 @@ import {
         TreeModule,
         ContextMenuModule,
         MultiSelectModule,
-        TreeviewModule.forRoot()
+        TreeviewModule.forRoot(), 
+        MessageModule,
+        MessagesModule
     ],
     declarations: [
         QnaManagementComponent,

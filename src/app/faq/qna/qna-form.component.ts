@@ -6,6 +6,7 @@ import { AppComponentBase } from "../../shared/common/app-base-component";
 import { CategoryDto, QnAAgentCategoryDto } from "../category/category-model";
 import { FAQService } from "../faq-service";
 import { ChatBotAgentQnA } from "innobot-chat-api";
+//import { MessageInnobotService } from "../../shared/common/message/message-innobot.service";
 
 @Component({
     selector: "qna-form",
@@ -27,12 +28,14 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
     public validateQuestions: boolean;
     public saving: boolean;
     private formBuilder: FormBuilder;
+    //private message: MessageInnobotService;
 
     public constructor(injector: Injector) {
         super(injector);
 
         this.formBuilder = injector.get(FormBuilder);
         this.faqService = injector.get(FAQService);
+        //this.message = injector.get(MessageInnobotService);
 
     }
 
@@ -65,6 +68,7 @@ export class QnaFormComponent extends AppComponentBase implements OnInit {
         this.createValidationModel();
         this.chatBotAgentQnAInstance = this.faqService.getChatBotAgentQnAInstance();
 
+        //this.message.success("test", "test");
     }
 
     private createValidationModel(): void {
